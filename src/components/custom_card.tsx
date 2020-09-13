@@ -1,8 +1,8 @@
 import React from 'react'
-import {Card} from '@material-ui/core'
+import {Card } from '@material-ui/core'
 const CustomCard: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
-    <Card style = {{width: '80%' }}>
+    <Card style = {{width: '100%' }}>
       {children}
     </Card>
   )

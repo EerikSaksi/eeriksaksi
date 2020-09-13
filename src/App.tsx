@@ -1,15 +1,17 @@
 import React from 'react';
 import CustomDrawer from 'components/side_drawer';
-import {Container} from '@material-ui/core'
 import Welcome from 'components/cards/welcome'
-
+import {Grid} from '@material-ui/core'
+import SideDrawer from 'components/side_drawer'
 const App: React.FC = () => {
   return (
     <>
-      <Container style={{ width: '90vw', height: '100vh', marginLeft: '10vw'}}>
-        <Welcome/>
-      </Container>
-      <CustomDrawer />
+      <SideDrawer />
+      <Grid>
+        <Grid>
+          <Welcome/>
+        </Grid>
+      </Grid>
     </>
   );
 };
