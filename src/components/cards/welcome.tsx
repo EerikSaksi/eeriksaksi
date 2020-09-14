@@ -1,40 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  useRef } from 'react';
 import CustomCard from 'components/cards/custom_card';
-import { Container, Avatar, Grid, Typography } from '@material-ui/core';
+import { Avatar, Grid, Typography } from '@material-ui/core';
 const Welcome: React.FC = () => {
-  const [balls, setBalls] = useState(
-    <>
-      <Grid item xs={6}>
-        <Grid container justify='center'>
-          <Avatar key = "Frontend" style={{ width: 100, height: 100, backgroundColor: 'blue' }}>Frontend</Avatar>
-        </Grid>
-      </Grid>
-      <Grid item xs={6}>
-        <Grid container justify='center'>
-          <Avatar key = "Backend"  style={{ width: 100, height: 100, backgroundColor: 'yellow', color: 'black' }}>Backend</Avatar>
-        </Grid>
-      </Grid>
-    </>
-  );
+  //whether or not the balls should start moving, set from the useEffect hook 
+  const [ballsShifted, setBallsShifted] = useState(false);
+
+  const [showFullstack, setShowFullstack] = useState(false)
+
+  //used to calculate the left offset amount
+  const ballRowRef = useRef<HTMLDivElement>(null);
+
+  //the width of a row, used to calculate the offset amount
+  const [ballRowWidth, setBallRowWidth] = useState(0)
   useEffect(() => {
-    const sleepAndSetBalls = async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setBalls(
-        <Grid item xs={12}>
-          <Grid container justify='center'>
-            <Avatar key = "Frontend" style={{ width: 100, height: 100, backgroundColor: 'blue' }}>Frontend</Avatar>
-            <Avatar key = "Backend" style={{ width: 100, height: 100, backgroundColor: 'yellow', color: 'black' }}>Backend</Avatar>
-          </Grid>
-        </Grid>
-      )
+    const sleepAndShiftBalls = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setBallsShifted(true);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setShowFullstack(true)
+    };
+    sleepAndShiftBalls();
+  }, []);
+  useEffect(() => {
+    if (ballRowRef.current){
+      setBallRowWidth(ballRowRef.current.clientWidth - 50)
     }
-    sleepAndSetBalls()
-  }, [])
+  }, [ballRowWidth])
   return (
     <CustomCard>
       <Grid container justify='space-around'>
         <Grid item sm={6}>
-          <Grid style = {{ transition: 'all 1s' }} container justify='flex-end'>
+          <Grid container justify='flex-end'>
             <Grid item xs={12}>
               <Typography style={{ textAlign: 'center' }} variant='h1'>
                 Eerik Saksi
@@ -45,7 +41,28 @@ const Welcome: React.FC = () => {
                 Aspiring
               </Typography>
             </Grid>
-            {balls}
+            {
+            showFullstack
+            ?
+            <Grid item xs={12}>
+              <Grid container justify='center'>
+                <Avatar style={{   transition: 'all ease-in-out 1.5s', width: 100, height: 100, backgroundColor: 'green' }}>Fullstack</Avatar>
+              </Grid>
+            </Grid>
+            :
+            < >
+            <Grid ref={ballRowRef} item xs={6}>
+              <Grid container justify='flex-start'>
+                <Avatar style={{  backgroundBlendMode: 'multiply', opacity: 0.7, transition: 'all ease-in-out 1.5s', left: ballsShifted ? ballRowWidth : 0, width: 100, height: 100, backgroundColor: 'blue' }}>Frontend</Avatar>
+              </Grid>
+            </Grid>
+            <Grid item xs={6}>
+              <Grid container justify='flex-end'>
+                <Avatar style={{ backgroundBlendMode: 'multiply', opacity: 0.7, transition: 'all ease-in-out 1.5s', right: ballsShifted ? ballRowWidth : 0, width: 100, height: 100, backgroundColor: 'yellow', color: 'black' }}>Backend</Avatar>
+              </Grid>
+            </Grid>
+          </>
+            }
             <Grid item xs={12}>
               <Typography style={{ textAlign: 'center' }} variant='h2'>
                 Developer

@@ -3,6 +3,7 @@ import { IconButton, AppBar, CssBaseline, Divider, Drawer, Hidden, List, ListIte
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import AllClasses from 'components/cards/all_cards'
 
 const drawerWidth = 100;
 
@@ -39,8 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ResponsiveDrawer: React.FC<{content: React.ReactElement}> = ({content}) => {
-  console.log(content)
+const SideDrawer: React.FC  = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -123,10 +123,10 @@ const ResponsiveDrawer: React.FC<{content: React.ReactElement}> = ({content}) =>
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {content}
+        <AllClasses/>
       </main>
     </div>
   );
 }
 
-export default ResponsiveDrawer;
+export default SideDrawer;
