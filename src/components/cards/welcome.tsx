@@ -1,34 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CustomCard from 'components/cards/custom_card';
 import { Container, Avatar, Grid, Typography } from '@material-ui/core';
 const Welcome: React.FC = () => {
+  useEffect(() => {
+    const sleepAndSetBalls = () => {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setBalls()
+    }
+  }, [])
+  const [balls, setBalls] = useState(
+    <>
+      <Grid item xs={6}>
+        <Grid container justify='center'>
+          <Avatar style={{ width: 100, height: 100, backgroundColor: 'blue' }}>Frontend</Avatar>
+        </Grid>
+      </Grid>
+      <Grid item xs={6}>
+        <Grid container justify='center'>
+          <Avatar style={{ width: 100, height: 100, backgroundColor: 'yellow', color: 'black' }}>Backend</Avatar>
+        </Grid>
+      </Grid>
+    </>
+  );
   return (
     <CustomCard>
-      <Grid container justify = "space-around">
+      <Grid container justify='space-around'>
         <Grid item sm={6}>
           <Grid container justify='flex-end'>
-            <Grid item xs = {12}>
-              <Typography style = {{textAlign: 'center'}} variant='h1'>Eerik Saksi</Typography>
+            <Grid item xs={12}>
+              <Typography style={{ textAlign: 'center' }} variant='h1'>
+                Eerik Saksi
+              </Typography>
             </Grid>
-            <Grid item xs = {12}>
-              <Typography style = {{textAlign: 'center'}} variant='h2'>Aspiring</Typography>
+            <Grid item xs={12}>
+              <Typography style={{ textAlign: 'center' }} variant='h2'>
+                Aspiring
+              </Typography>
             </Grid>
-            <Grid item xs = {6}>
-              <Grid container justify = "center">
-                <Avatar style = {{width: 100, height: 100, backgroundColor: 'blue'}}>
-                  Frontend
-                </Avatar>
-              </Grid>
-            </Grid>
-            <Grid item xs = {6}>
-              <Grid container justify = "center">
-                <Avatar style = {{width: 100, height: 100, backgroundColor: 'yellow', color: 'black', }}>
-                  Backend
-                </Avatar>
-              </Grid>
-            </Grid>
-            <Grid item xs = {12}>
-              <Typography  style = {{textAlign: 'center'}} variant='h2'>Developer</Typography>
+            {balls}
+            <Grid item xs={12}>
+              <Typography style={{ textAlign: 'center' }} variant='h2'>
+                Developer
+              </Typography>
             </Grid>
           </Grid>
         </Grid>
