@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useTheme, Card } from '@material-ui/core';
+import { CardProps, useTheme, Card } from '@material-ui/core';
 
 //type CardProps = React.ReactNode
 //const CustomCard = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
@@ -8,9 +8,7 @@ import { useTheme, Card } from '@material-ui/core';
 //    <Card ref = {ref} style = {{ marginBottom: theme.spacing(10)}}>{props.children}</Card>
 //  );
 //})
-type ButtonProps = React.HTMLProps<HTMLButtonElement>;
-
-const FancyButton = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+const FancyButton = React.forwardRef<unknown, CardProps>((props, ref) => {
   const theme = useTheme()
   return (
     <Card ref={ref} style={{ marginBottom: theme.spacing(3)}}>
