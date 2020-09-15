@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import CustomCard from 'components/cards/custom_card';
 import { Container, Slider, Typography } from '@material-ui/core';
 
@@ -19,11 +19,13 @@ const TimeLine: React.FC = () => {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
   };
+  const maxDate = useMemo(() => getDeltaFromFirst(dates[dates.length - 1].endDate)
+  const {startDate, endDate, description} = dates[dateIndex]
   return (
     <CustomCard>
       <Typography variant='h1'>Timeline</Typography>
       <Container style={{ width: '90%' }}>
-        <Slider value={[getDeltaFromFirst(dates[dateIndex].startDate), getDeltaFromFirst(dates[dateIndex].endDate)]} getAriaLabel={() => {console.log(dates[dateIndex].description); return(dates[dateIndex].description)}} max = {getDeltaFromFirst(dates[dates.length - 1].endDate)} />
+        <Slider value={[getDeltaFromFirst(startDate), getDeltaFromFirst(endDate)]} getAriaLabel={() => startDate.toString()} max = {)} />
       </Container>
     </CustomCard>
   );
