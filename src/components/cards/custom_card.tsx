@@ -1,8 +1,22 @@
-import React from 'react';
-import { Card } from '@material-ui/core';
-const CustomCard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+import React, { forwardRef } from 'react';
+import { useTheme, Card } from '@material-ui/core';
+
+//type CardProps = React.ReactNode
+//const CustomCard = forwardRef<HTMLDivElement, CardProps>((props, ref) => {
+//  const theme = useTheme()
+//  return (
+//    <Card ref = {ref} style = {{ marginBottom: theme.spacing(10)}}>{props.children}</Card>
+//  );
+//})
+type ButtonProps = React.HTMLProps<HTMLButtonElement>;
+
+const FancyButton = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const theme = useTheme()
   return (
-    <Card>{children}</Card>
+    <Card ref={ref} style={{ marginBottom: theme.spacing(3)}}>
+      {props.children}
+    </Card>
   );
-};
-export default CustomCard;
+});
+
+export default FancyButton;

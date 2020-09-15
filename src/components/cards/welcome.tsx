@@ -1,33 +1,38 @@
-import React, { useState, useEffect,  useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CustomCard from 'components/cards/custom_card';
 import { Avatar, Grid, Typography } from '@material-ui/core';
+import { useInView } from 'react-hook-inview';
 const Welcome: React.FC = () => {
-  //whether or not the balls should start moving, set from the useEffect hook 
+  const [inViewRef, inView] = useInView();
+  //whether or not the balls should start moving, set from the useEffect hook
   const [ballsShifted, setBallsShifted] = useState(false);
 
-  const [showFullstack, setShowFullstack] = useState(false)
+  const [showFullstack, setShowFullstack] = useState(false);
 
   //used to calculate the left offset amount
   const ballRowRef = useRef<HTMLDivElement>(null);
 
   //the width of a row, used to calculate the offset amount
-  const [ballRowWidth, setBallRowWidth] = useState(0)
+  const [ballRowWidth, setBallRowWidth] = useState(0);
   useEffect(() => {
     const sleepAndShiftBalls = async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setBallsShifted(true);
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      setShowFullstack(true)
+      setShowFullstack(true);
     };
-    sleepAndShiftBalls();
-  }, []);
-  useEffect(() => {
-    if (ballRowRef.current){
-      setBallRowWidth(ballRowRef.current.clientWidth - 50)
+    //if inview trigger animations
+    if (inView) {
+      sleepAndShiftBalls();
     }
-  }, [ballRowWidth])
+  }, [inView]);
+  useEffect(() => {
+    if (ballRowRef.current) {
+      setBallRowWidth(ballRowRef.current.clientWidth - 50);
+    }
+  }, [ballRowWidth]);
   return (
-    <CustomCard>
+    <CustomCard ref={inViewRef}>
       <Grid container justify='space-around'>
         <Grid item sm={6}>
           <Grid container justify='flex-end'>
@@ -41,28 +46,26 @@ const Welcome: React.FC = () => {
                 Aspiring
               </Typography>
             </Grid>
-            {
-            showFullstack
-            ?
-            <Grid item xs={12}>
-              <Grid container justify='center'>
-                <Avatar style={{   transition: 'all ease-in-out 1.5s', width: 100, height: 100, backgroundColor: 'green' }}>Fullstack</Avatar>
+            {showFullstack ? (
+              <Grid item xs={12}>
+                <Grid container justify='center'>
+                  <Avatar style={{ transition: 'all ease-in-out 1.5s', width: 100, height: 100, backgroundColor: 'green' }}>Fullstack</Avatar>
+                </Grid>
               </Grid>
-            </Grid>
-            :
-            < >
-            <Grid ref={ballRowRef} item xs={6}>
-              <Grid container justify='flex-start'>
-                <Avatar style={{  backgroundBlendMode: 'multiply', opacity: 0.7, transition: 'all ease-in-out 1.5s', left: ballsShifted ? ballRowWidth : 0, width: 100, height: 100, backgroundColor: 'blue' }}>Frontend</Avatar>
-              </Grid>
-            </Grid>
-            <Grid item xs={6}>
-              <Grid container justify='flex-end'>
-                <Avatar style={{ backgroundBlendMode: 'multiply', opacity: 0.7, transition: 'all ease-in-out 1.5s', right: ballsShifted ? ballRowWidth : 0, width: 100, height: 100, backgroundColor: 'yellow', color: 'black' }}>Backend</Avatar>
-              </Grid>
-            </Grid>
-          </>
-            }
+            ) : (
+              <>
+                <Grid ref={ballRowRef} item xs={6}>
+                  <Grid container justify='flex-start'>
+                    <Avatar style={{ backgroundBlendMode: 'multiply', opacity: 0.7, transition: 'all ease-in-out 1.5s', left: ballsShifted ? ballRowWidth : 0, width: 100, height: 100, backgroundColor: 'blue' }}>Frontend</Avatar>
+                  </Grid>
+                </Grid>
+                <Grid item xs={6}>
+                  <Grid container justify='flex-end'>
+                    <Avatar style={{ backgroundBlendMode: 'multiply', opacity: 0.7, transition: 'all ease-in-out 1.5s', right: ballsShifted ? ballRowWidth : 0, width: 100, height: 100, backgroundColor: 'yellow', color: 'black' }}>Backend</Avatar>
+                  </Grid>
+                </Grid>
+              </>
+            )}
             <Grid item xs={12}>
               <Typography style={{ textAlign: 'center' }} variant='h2'>
                 Developer
