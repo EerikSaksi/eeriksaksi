@@ -1,5 +1,5 @@
 .MuiSlider-thumb {
-  transition: left 0.5s;
+  transition: left 1s;
 }
 
 /* This is needed. Without it drag and drop with a mouse looks very weird */
@@ -9,5 +9,15 @@
 
 /* Animating track with CSS3 as well */
 .MuiSlider-track {
-  transition: width 0.5s;
+  transition: width 1s;
+}
+
+.PrivateValueLabel-circle-26{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  transform: rotate(-45deg) translate(19px, -53px);
+}	
+.PrivateValueLabel-label-27{
+  text-align: center;
 }
