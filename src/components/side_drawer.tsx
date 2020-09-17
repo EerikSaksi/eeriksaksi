@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards'
+import 'components/side_drawer.css'
 
 const drawerWidth = 300;
 
@@ -52,15 +53,13 @@ const SideDrawer: React.FC  = () => {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Divider />
       <List>
         {['Welcome'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemText primary={text} />
+            <ListItemText style = {{fontSize: 100}} primary={text} />
           </ListItem>
         ))}
       </List>
-      <Divider />
       <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>

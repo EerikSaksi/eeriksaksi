@@ -2,10 +2,9 @@ import React, { forwardRef } from 'react';
 import { Container,  CardProps, useTheme, Paper } from '@material-ui/core';
 const FancyButton = React.forwardRef<unknown, CardProps>((props, ref) => {
   const theme = useTheme();
-
   return (
-    <Container style = {{  marginTop:'calc(50vh - 64px)', transform: 'translateY(-50%)', }}>
-      <Paper ref={ref}  >
+    <Container>
+      <Paper ref={ref} style = {{ marginBottom: theme.spacing(3)}} >
         {props.children}
       </Paper>
   </Container>
