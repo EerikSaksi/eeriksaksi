@@ -8,6 +8,9 @@ const AllCards: React.FC = () => {
       <Suspense fallback={<Loading height = {356}/>}>
         <Welcome />
       </Suspense>
+      <Suspense fallback={<Loading height = {356}/>}>
+        <Timeline />
+      </Suspense>
     </>
   );
 };

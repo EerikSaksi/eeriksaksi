@@ -4,9 +4,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards'
-import 'components/side_drawer.css'
 
-const drawerWidth = 300;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  listItemText:{
+    fontSize:'2em',
+  }
 }));
 
 const SideDrawer: React.FC  = () => {
@@ -56,14 +58,14 @@ const SideDrawer: React.FC  = () => {
       <List>
         {['Welcome'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemText style = {{fontSize: 100}} primary={text} />
+            <ListItemText classes = {{primary: classes.listItemText}} primary={text} />
           </ListItem>
         ))}
       </List>
       <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemText primary={text} />
+            <ListItemText classes = {{primary: classes.listItemText}} primary={text} />
           </ListItem>
         ))}
       </List>
