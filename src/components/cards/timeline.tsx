@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import CustomCard from 'components/cards/custom_card';
-import { Fade, useTheme, Container, Slider, Typography } from '@material-ui/core';
+import { TypographyProps, Fade, useTheme, Container, Slider, Typography } from '@material-ui/core';
 import 'components/cards/timeline.css';
 
 const dates = [
-  { description: "Here's my brief timeline:" },
+  { description: "Here's my brief timeline:", typographyVariant: 'h2', valueLabelDisplay: false },
   {
     description: 'Started studying in University of Glasgow second year entry',
     startDate: new Date('2018-09'),
     endDate: new Date('2019-05'),
+    typographyVariant: 'h2',
+    valueLabelDisplay: true,
   },
-  { description: 'Worked at UROS', startDate: new Date('2019-06-25'), endDate: new Date('2019-08-02') },
-  { description: 'Completed my third year at Glasgow', startDate: new Date('2019-09'), endDate: new Date('2020-05') },
-  { description: 'Worked on my front and backend skills with tunety.pe and this site', startDate: new Date('2020-05'), endDate: new Date('2020-09') },
-  { description: "What's my future looking like?" },
-  { description: 'Will complete my fourth year at Glasgow', startDate: new Date('2020-09'), endDate: new Date('2021-05') },
-  { description: "Hopefully working in an interesting company ( if you're reviewing my internship application you are one :) )", startDate: new Date('2020-06'), endDate: new Date('2021-09') },
+  { description: 'Worked at UROS', startDate: new Date('2019-06-25'), endDate: new Date('2019-08-02'), typographyVariant: 'h2', valueLabelDisplay: true },
+  { description: 'Completed my third year at Glasgow', startDate: new Date('2019-09'), endDate: new Date('2020-05'), typographyVariant: 'h2', valueLabelDisplay: true },
+  { description: 'Worked on my front and backend skills with tunety.pe and this site', startDate: new Date('2020-05'), endDate: new Date('2020-09'), typographyVariant: 'h2', valueLabelDisplay: true },
+  { description: "What's my future looking like?", typographyVariant: 'h2', valueLabelDisplay: false },
+  { description: 'Will complete my fourth year at Glasgow', startDate: new Date('2020-09'), endDate: new Date('2021-05'), typographyVariant: 'h2', valueLabelDisplay: true },
+  { description: "Hopefully working in an interesting company (if you're reviewing my internship application you are one 😊)", startDate: new Date('2021-06'), endDate: new Date('2021-09'), typographyVariant: 'h4', valueLabelDisplay: true},
+  { description: "Will complete my final year and graduate with an MSci in Computing", startDate: new Date('2021-09'), endDate: new Date('2022-05'), typographyVariant: 'h3', valueLabelDisplay: true},
 ];
 
 //estimates the readingTime required to read text
@@ -50,30 +53,34 @@ const TimeLine: React.FC = () => {
   const [sliderValue, setSliderValue] = useState<number[]>([0, 0]);
   const [description, setDescription] = useState('');
   const [descriptionVisible, setDescriptionVisible] = useState(false);
+  const [typographyVariant, setTypographyVariant] = useState<TypographyProps>({ variant: 'h1' });
+  const [valueLabelVisible, setValueLabelVisible] = useState(false)
   useEffect(() => {
     const periodicallyIncrementIndex = async () => {
       for (const date of dates) {
+        setTypographyVariant({ variant: date.typographyVariant } as TypographyProps);
         setDescriptionVisible(true);
         setDescription(date.description);
+        setValueLabelVisible(date.valueLabelDisplay)
         if (date.startDate) {
           setSliderValue([getDeltaFromFirst(date.startDate), getDeltaFromFirst(date.endDate)]);
         }
         await new Promise((resolve) => setTimeout(resolve, readingTime(date.description)));
         setDescriptionVisible(false);
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 500));
       }
     };
     periodicallyIncrementIndex();
   }, []);
   return (
-    <CustomCard>
+    <CustomCard style={{ height: 400 }}>
       <Fade in={descriptionVisible}>
-        <Typography style={{ textAlign: 'center' }} variant='h2'>
+        <Typography style={{ textAlign: 'center' }} {...typographyVariant}>
           {description}
         </Typography>
       </Fade>
-      <Container style={{ width: '90%', marginTop: theme.spacing(10), transition: 'all 500ms' }}>
-        <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={sliderValue[1] ? 'on' : 'off'} aria-labelledby='range-slider' />
+      <Container style={{ width: '90%', marginTop: theme.spacing(20), transition: 'all 500ms' }}>
+        <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={valueLabelVisible ? 'on' : 'off'} aria-labelledby='range-slider' />
       </Container>
     </CustomCard>
   );
