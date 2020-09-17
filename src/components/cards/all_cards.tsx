@@ -5,17 +5,13 @@ const Welcome = lazy(() => import('components/cards/welcome'));
 const AllCards: React.FC = () => {
   return (
     <>
-      <Suspense fallback={<Loading height = {356}/>}>
+      <Suspense fallback={<Loading height={356} />}>
         <Welcome />
       </Suspense>
-      <Suspense fallback={<Loading height = {356}/>}>
+      <Suspense fallback={<Loading height={356} />}>
         <Timeline />
       </Suspense>
     </>
   );
 };
 export default AllCards;
-
-
-
-
