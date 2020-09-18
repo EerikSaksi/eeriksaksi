@@ -84,7 +84,7 @@ const TimeLine: React.FC = () => {
       <Grid style = {{ height: '100%' }} container justify='center'>
         <Grid item xs={12}>
           <Fade in={descriptionVisible}>
-            <Typography style={{ textAlign: 'center' }} {...typographyVariant}>
+            <Typography style={{ textAlign: 'center' }} variant = 'h3'>
               {dates[dateIndex].description}
             </Typography>
           </Fade>

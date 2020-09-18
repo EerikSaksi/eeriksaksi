@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useMediaQuery, Container, CardProps, useTheme, Paper } from '@material-ui/core';
 
-const FancyButton = React.forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties; firstElement?: boolean }>(({ children, firstElement, style }, ref) => {
+const FancyButton = React.forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties; }>(({ children, firstElement, style }, ref) => {
   const theme = useTheme();
   const notPhone = useMediaQuery(theme.breakpoints.up('sm'));
   return (
