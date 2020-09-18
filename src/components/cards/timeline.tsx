@@ -78,9 +78,8 @@ const TimeLine: React.FC = () => {
       setSliderValue([getDeltaFromFirst(date.startDate), getDeltaFromFirst(date.endDate)]);
     }
   }, [dateIndex]);
-  const typographyVariant: TypographyProps = { variant: dates[dateIndex].typographyVariant } as TypographyProps;
   return (
-    <CustomCard ref={inViewRef} style={{ height: 500 }}>
+    <CustomCard ref={inViewRef} style={{ height: 500, backgroundColor: 'green' }}>
       <Grid style = {{ height: '100%' }} container justify='center'>
         <Grid item xs={12}>
           <Fade in={descriptionVisible}>

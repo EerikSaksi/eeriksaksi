@@ -1,0 +1,16 @@
+import React, { forwardRef } from 'react';
+import { useMediaQuery, Container, CardProps, useTheme, Paper } from '@material-ui/core';
+
+const FancyButton = React.forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties; firstElement?: boolean }>(({ children, firstElement, style }, ref) => {
+  const theme = useTheme();
+  const notPhone = useMediaQuery(theme.breakpoints.up('sm'));
+  return (
+    <Container style = {{ width: '100%', marginTop: 56, height: 'calc(100vh - 56px)' }}  >
+      <Paper ref={ref} style={{ height: '100%', transform: 'translateY(-50%)', scrollSnapAlign: 'center', }}>
+        {children}
+      </Paper>
+    </Container>
+  );
+});
+
+export default FancyButton;

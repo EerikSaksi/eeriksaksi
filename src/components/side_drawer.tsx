@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
+    opacity: 0.25,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -35,8 +36,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(3)
   },
   listItemText:{
     fontSize:'2em',
