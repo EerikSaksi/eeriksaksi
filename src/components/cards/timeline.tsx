@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CustomCard from 'components/cards/custom_card';
-import { TypographyProps, Fade, useTheme, Container, Slider, Typography } from '@material-ui/core';
+import { Grid, TypographyProps, Fade, useTheme, Slider, Typography } from '@material-ui/core';
 import 'components/cards/timeline.css';
 import { useInView } from 'react-hook-inview';
 
@@ -54,7 +54,7 @@ const TimeLine: React.FC = () => {
   const [sliderValue, setSliderValue] = useState<number[]>([0, 0]);
   const [descriptionVisible, setDescriptionVisible] = useState(false);
   const [dateIndex, setDateIndex] = useState(0);
-  const [ranFunction, setRanFunction] = useState(false)
+  const [ranFunction, setRanFunction] = useState(false);
   useEffect(() => {
     const periodicallyIncrementIndex = async () => {
       for (var i = dateIndex; i < dates.length && inView; i++) {
@@ -68,27 +68,33 @@ const TimeLine: React.FC = () => {
       }
     };
     if (inView && !ranFunction) {
-      setRanFunction(true)
+      setRanFunction(true);
       periodicallyIncrementIndex();
     }
   }, [inView, ranFunction]);
   useEffect(() => {
-    const date = dates[dateIndex]
+    const date = dates[dateIndex];
     if (date.startDate) {
       setSliderValue([getDeltaFromFirst(date.startDate), getDeltaFromFirst(date.endDate)]);
     }
-  }, [dateIndex])
-  const typographyVariant: TypographyProps = { variant: dates[dateIndex].typographyVariant } as TypographyProps
+  }, [dateIndex]);
+  const typographyVariant: TypographyProps = { variant: dates[dateIndex].typographyVariant } as TypographyProps;
   return (
-    <CustomCard ref={inViewRef} style={{ height: 500, padding: theme.spacing(10) }}>
-      <Fade in={descriptionVisible}>
-        <Typography style={{ textAlign: 'center' }} {...typographyVariant}>
-          {dates[dateIndex].description} 
-        </Typography>
-      </Fade>
-      <Container style={{ padding: 'inherit',position: 'absolute', bottom: 0, width: '100%', left: '50%', transform: 'translateX(-50%)', }}>
-        <Slider  value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? 'on' : 'off'} aria-labelledby='range-slider' />
-      </Container>
+    <CustomCard ref={inViewRef} style={{ height: 500 }}>
+      <Grid style = {{ height: '100%' }} container justify='center'>
+        <Grid item xs={12}>
+          <Fade in={descriptionVisible}>
+            <Typography style={{ textAlign: 'center' }} {...typographyVariant}>
+              {dates[dateIndex].description}
+            </Typography>
+          </Fade>
+        </Grid>
+        <Grid item xs={10}>
+          <Grid container>
+          <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? 'on' : 'off'} aria-labelledby='range-slider' />
+        </Grid>
+        </Grid>
+      </Grid>
     </CustomCard>
   );
 };
