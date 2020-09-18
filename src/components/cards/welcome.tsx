@@ -4,6 +4,7 @@ import { Avatar, Grid, Typography } from '@material-ui/core';
 import { useInView } from 'react-hook-inview';
 const Welcome: React.FC = () => {
   const [inViewRef, inView] = useInView();
+
   //whether or not the balls should start moving, set from the useEffect hook
   const [ballsShifted, setBallsShifted] = useState(false);
 

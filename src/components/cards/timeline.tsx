@@ -51,14 +51,18 @@ const maxDate = getDeltaFromFirst(dates[dates.length - 1].endDate!);
 const TimeLine: React.FC = () => {
   const theme = useTheme();
 
+  const [inViewRef, inView] = useInView();
   const [sliderValue, setSliderValue] = useState<number[]>([0, 0]);
   const [description, setDescription] = useState('');
   const [descriptionVisible, setDescriptionVisible] = useState(false);
   const [typographyVariant, setTypographyVariant] = useState<TypographyProps>({ variant: 'h1' });
   const [valueLabelVisible, setValueLabelVisible] = useState(false);
+  const [dateIndex, setDateIndex] = useState(0);
   useEffect(() => {
     const periodicallyIncrementIndex = async () => {
-      for (const date of dates) {
+      for (var i = dateIndex; i < dates.length && inView; i++) {
+        console.log(inView);
+        const date = dates[i];
         setTypographyVariant({ variant: date.typographyVariant } as TypographyProps);
         setDescriptionVisible(true);
         setDescription(date.description);
@@ -69,19 +73,23 @@ const TimeLine: React.FC = () => {
         await new Promise((resolve) => setTimeout(resolve, readingTime(date.description)));
         setDescriptionVisible(false);
         await new Promise((resolve) => setTimeout(resolve, 500));
+        setDateIndex(i);
       }
+      console.log('broke');
     };
-    periodicallyIncrementIndex();
-  }, []);
+    if (inView) {
+      periodicallyIncrementIndex();
+    }
+  }, [inView]);
   return (
-    <CustomCard style={{ height: 500 }}>
+    <CustomCard ref={inViewRef} style={{ height: 500 }}>
       <Fade in={descriptionVisible}>
         <Typography style={{ textAlign: 'center' }} {...typographyVariant}>
           {description}
         </Typography>
       </Fade>
       <Container style={{ width: '90%', marginTop: theme.spacing(20), transition: 'all 500ms' }}>
-        <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={valueLabelVisible ? 'on' : 'off'} aria-labelledby='range-slider' />
+        <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? 'on' : 'off'} aria-labelledby='range-slider' />
       </Container>
     </CustomCard>
   );
