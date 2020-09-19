@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Grid, useMediaQuery, CardProps, useTheme, Paper } from '@material-ui/core';
+import { Grid, useTheme, Paper } from '@material-ui/core';
 const CustomCard = React.forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties, containerStyle?: React.CSSProperties }>(({ children, style, containerStyle  }, ref) => {
   const theme = useTheme();
   return (
