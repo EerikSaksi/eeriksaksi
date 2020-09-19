@@ -7,13 +7,13 @@ const AllCards: React.FC = () => {
   return (
     < >
       <Suspense fallback={<Loading height={356} />}>
-        <SecondYear />
-      </Suspense>
-      <Suspense fallback={<Loading height={356} />}>
         <Welcome />
       </Suspense>
       <Suspense fallback={<Loading height={'40vh'} />}>
         <Timeline/>
+      </Suspense>
+      <Suspense fallback={<Loading height={356} />}>
+        <SecondYear />
       </Suspense>
     </>
   );
