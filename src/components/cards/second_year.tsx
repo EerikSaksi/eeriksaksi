@@ -1,22 +1,20 @@
-import React, {lazy,Suspense} from 'react'
+import React from 'react';
 import CustomCard from 'components/cards/custom_card';
-import {Grid, useTheme} from '@material-ui/core'
-import GlasgowBackground from 'media/glasgow.jpg'
-import {Typography} from '@material-ui/core'
-
+import { Grid, useTheme } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import ProgressiveImage from "react-progressive-image-loading";
 const SecondYear: React.FC = () => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
-
-  <React.Fragment>
-    <CustomCard containerStyle = {{ backgroundImage: `url(${GlasgowBackground})` , backgroundSize: 'cover', padding: theme.spacing(4)}}>
-      <Grid>
-        <Typography variant = "h2">
-          Second year at University of Glasgow
-        </Typography>
-      </Grid>
-    </CustomCard>
-  </React.Fragment>
-  )
-}
-export default SecondYear
+    <ProgressiveImage src = {require('media/glasgow.jpg')} placeholder={require('media/glasgow-tiny.jpg')}>
+      {(src) => (
+        <CustomCard containerStyle={{ backgroundImage: `url(${src})`, backgroundSize: 'cover', padding: theme.spacing(4) }}>
+          <Grid>
+            <Typography variant='h2'>Second year at University of Glasgow</Typography>
+          </Grid>
+        </CustomCard>
+      )}
+    </ProgressiveImage>
+  );
+};
+export default SecondYear;
