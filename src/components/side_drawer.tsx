@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    opacity: 0.25,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -36,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   content: {
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
+    width: '100%'
   },
   listItemText:{
     fontSize:'2em',
@@ -56,14 +56,14 @@ const SideDrawer: React.FC  = () => {
     <div>
       <div className={classes.toolbar} />
       <List>
-        {['Welcome'].map((text, index) => (
+        {[].map((text, index) => (
           <ListItem button key={text}>
             <ListItemText classes = {{primary: classes.listItemText}} primary={text} />
           </ListItem>
         ))}
       </List>
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {[].map((text, index) => (
           <ListItem button key={text}>
             <ListItemText classes = {{primary: classes.listItemText}} primary={text} />
           </ListItem>
@@ -87,9 +87,6 @@ const SideDrawer: React.FC  = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Responsive drawer
-          </Typography>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

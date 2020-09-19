@@ -63,7 +63,9 @@ const TimeLine: React.FC = () => {
         const date = dates[i];
         setDescriptionVisible(true);
         await new Promise((resolve) => setTimeout(resolve, readingTime(date.description)));
-        setDescriptionVisible(false);
+        if (i !== dates.length -1){
+          setDescriptionVisible(false);
+        }
         await new Promise((resolve) => setTimeout(resolve, 500));
       }
     };
@@ -79,19 +81,17 @@ const TimeLine: React.FC = () => {
     }
   }, [dateIndex]);
   return (
-    <CustomCard ref={inViewRef} style={{ height: 500, backgroundColor: 'green' }}>
-      <Grid style = {{ height: '100%' }} container justify='center'>
+    <CustomCard ref={inViewRef} style={{ height: '40vh', padding: theme.spacing(2) }}>
+      <Grid style={{ height: '100%' }} container justify='center'>
         <Grid item xs={12}>
           <Fade in={descriptionVisible}>
-            <Typography style={{ textAlign: 'center' }} variant = 'h3'>
+            <Typography style={{ textAlign: 'center' }} variant='h3'>
               {dates[dateIndex].description}
             </Typography>
           </Fade>
         </Grid>
-        <Grid item xs={10}>
-          <Grid container>
-          <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? 'on' : 'off'} aria-labelledby='range-slider' />
-        </Grid>
+        <Grid container xs={10} alignItems = 'flex-end'>
+            <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? 'on' : 'off'} aria-labelledby='range-slider' />
         </Grid>
       </Grid>
     </CustomCard>

@@ -33,7 +33,7 @@ const Welcome: React.FC = () => {
     }
   }, [ballRowWidth]);
   return (
-    <CustomCard  style = {{  }} ref={inViewRef}>
+    <CustomCard ref={inViewRef}>
       <Grid container justify='space-evenly'>
         <Grid item sm={6}>
           <Grid container justify='flex-end'>
