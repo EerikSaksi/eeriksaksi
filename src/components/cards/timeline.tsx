@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import CustomCard from 'components/cards/custom_card';
 import { Grid, Fade, useTheme, Slider, Typography } from '@material-ui/core';
 import 'components/cards/timeline.css';
-import { useInView } from 'react-hook-inview';
+import CustomCardWithBackground from './custom_card_with_background';
+import { ProgressiveImageProps } from 'react-progressive-image-loading';
 
 const dates = [
   { description: "Here's my brief timeline:", typographyVariant: 'h2', valueLabelDisplay: false },
@@ -50,7 +50,7 @@ function dayToDisplayDate(day: number) {
 const maxDate = getDeltaFromFirst(dates[dates.length - 1].endDate!);
 const TimeLine: React.FC = () => {
   const theme = useTheme();
-  const [inViewRef, inView] = useInView();
+  const [inView, setInView] = useState(false);
   const [sliderValue, setSliderValue] = useState<number[]>([0, 0]);
   const [descriptionVisible, setDescriptionVisible] = useState(false);
   const [dateIndex, setDateIndex] = useState(0);
@@ -81,7 +81,7 @@ const TimeLine: React.FC = () => {
     }
   }, [dateIndex]);
   return (
-    <CustomCard ref={inViewRef} style={{ height: '40vh', padding: theme.spacing(2) }}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/road.jpg'), preview: require('media/road-tiny.jpg')} as ProgressiveImageProps} setInView = {setInView}  cardStyle={{ height: '60vh', padding: theme.spacing(2) }} backgroundImageStyle = {{backgroundPosition: '40% 40%',  }}>
       <Grid style={{ height: '100%' }} container justify='center'>
         <Grid item xs={12}>
           <Fade in={descriptionVisible}>
@@ -90,11 +90,11 @@ const TimeLine: React.FC = () => {
             </Typography>
           </Fade>
         </Grid>
-        <Grid container xs={10} alignItems = 'flex-end'>
+        <Grid container xs={10} alignItems = 'flex-end' >
             <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? 'on' : 'off'} aria-labelledby='range-slider' />
         </Grid>
       </Grid>
-    </CustomCard>
+    </CustomCardWithBackground>
   );
 };
 export default TimeLine;
