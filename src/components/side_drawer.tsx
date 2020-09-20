@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards'
 
-const drawerWidth = 200;
+const drawerWidth = 150;
 
 const useStyles = makeStyles((theme) => ({
   root: {
