@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CustomCard from 'components/cards/custom_card';
-import { Grid, TypographyProps, Fade, useTheme, Slider, Typography } from '@material-ui/core';
+import { Grid, Fade, useTheme, Slider, Typography } from '@material-ui/core';
 import 'components/cards/timeline.css';
 import { useInView } from 'react-hook-inview';
 
