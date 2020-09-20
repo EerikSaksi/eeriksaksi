@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import CustomCard from 'components/cards/custom_card';
 import { Grid, useTheme } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
-import ProgressiveImage from 'react-progressive-image-loading';
+import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import { useInView } from 'react-hook-inview';
 import QAndAAccordion from 'components/q_and_a_accordion';
 import CourseTable from 'components/course_table';
+import CustomCardWithBackground from './custom_card_with_background';
 
 const rows = [
   ['Java Programming 2', 'Object Oriented Software Engineering 2'],
@@ -27,27 +28,19 @@ const SecondYear: React.FC = () => {
   const theme = useTheme();
   const [inViewRef, inView] = useInView();
   return (
-    <>
-      <ProgressiveImage
-        src={require('media/glasgow.jpg')}
-        preview={require('media/glasgow-tiny.jpg')}
-        render={(src, style) => {
-          return (
-            <CustomCard ref={inViewRef} containerStyle={{ paddingLeft: theme.spacing(4), paddingRight: theme.spacing(4) }}>
-              <div style={{ position: 'absolute', top: 0, right: 0, left: 0, bottom: 0, maxHeight: '100%', backgroundImage: `url(${src})`, backgroundSize: 'cover', zIndex: -1, opacity: inView ? 1 : 0, ...style, transition: 'all 500ms', backgroundPosition: '80% 80%' }}></div>
-              <Grid container justify='center'>
-                <Grid item xs={12}>
-                  <Typography style={{ textAlign: 'center' }} variant='h2'>
-                    2nd Year at University of Glasgow
-                  </Typography>
-                </Grid>
-              </Grid>
-              <QAndAAccordion questionAnswers={questionAnswers} />
-            </CustomCard>
-          );
-        }}
-      />
-    </>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow.jpg'), preview: require('media/glasgow-tiny.jpg') } as ProgressiveImageProps}>
+      >
+      <React.Fragment>
+        <Grid container justify='center'>
+          <Grid item xs={12}>
+            <Typography style={{ textAlign: 'center' }} variant='h2'>
+              2nd Year at University of Glasgow
+            </Typography>
+          </Grid>
+        </Grid>
+        <QAndAAccordion questionAnswers={questionAnswers} />
+      </React.Fragment>
+    </CustomCardWithBackground>
   );
 };
 

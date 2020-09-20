@@ -12,7 +12,14 @@ const CourseTable: React.FC<{ twoColRows: TwoColRows }> = ({ twoColRows }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-
+          {twoColRows.map((row, index) => {
+            return (
+              <TableRow key={index}>
+                <TableCell align='left'>{row[0]}</TableCell>
+                <TableCell align='left'>{row[1]}</TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </TableContainer>
