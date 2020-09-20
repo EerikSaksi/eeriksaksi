@@ -1,53 +1,11 @@
 import React, { useState } from 'react';
 import CustomCard from 'components/cards/custom_card';
-import { withStyles, Grid, useTheme, Table, TableHead, TableCell, TableRow, TableBody, Paper, TableContainer } from '@material-ui/core';
+import { Grid, useTheme,  } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import ProgressiveImage from 'react-progressive-image-loading';
 import { useInView } from 'react-hook-inview';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import QAndAAccordion from 'components/q_and_a_accordion'
 
-const Accordion = withStyles({
-  root: {
-    border: '1px solid rgba(0, 0, 0, .125)',
-    '&:not(:last-child)': {
-      borderBottom: 0,
-    },
-    '&:before': {
-      display: 'none',
-    },
-    '&$expanded': {
-      margin: 'auto',
-    },
-  },
-  expanded: {},
-})(MuiAccordion);
-
-const AccordionSummary = withStyles({
-  root: {
-    borderBottom: '1px solid rgba(0, 0, 0, .125)',
-    marginBottom: -1,
-    boxShadow: '0px 1px',
-    minHeight: 56,
-    '&$expanded': {
-      minHeight: 56,
-    },
-  },
-  content: {
-    '&$expanded': {
-      margin: '12px 0',
-    },
-  },
-  expanded: {},
-})(MuiAccordionSummary);
-
-const AccordionDetails = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiAccordionDetails);
 
 const rows = [
     ['Java Programming 2', 'Object Oriented Software Engineering 2'],
@@ -62,7 +20,7 @@ const questionAnswers = [
     question: 'What courses did I have?',
     answer: (
       <TableContainer component={Paper}>
-        <Table aria-label='simple table'>
+        <Table aria-label='simple table' size = 'small'>
           <TableHead>
             <TableRow>
               <TableCell align='left'>First Semester</TableCell>
@@ -89,7 +47,6 @@ const questionAnswers = [
 const SecondYear: React.FC = () => {
   const theme = useTheme();
   const [inViewRef, inView] = useInView();
-  const [currentlyOpenIndex, setCurrentlyOpenIndex] = useState(-1);
   return (
     <>
       <ProgressiveImage
@@ -97,7 +54,7 @@ const SecondYear: React.FC = () => {
         preview={require('media/glasgow-tiny.jpg')}
         render={(src, style) => {
           return (
-            <CustomCard ref={inViewRef} containerStyle={{ padding: theme.spacing(4) }}>
+            <CustomCard ref={inViewRef} containerStyle={{ paddingLeft: theme.spacing(4), paddingRight: theme.spacing(4) }}>
               <div style={{ position: 'absolute', top: 0, right: 0, left: 0, bottom: 0, maxHeight: '100%', backgroundImage: `url(${src})`, backgroundSize: 'cover', zIndex: -1, opacity: inView ? 1 : 0, ...style, transition: 'all 500ms', backgroundPosition: '80% 80%' }}></div>
               <Grid container justify='center'>
                 <Grid item xs={12}>
@@ -105,17 +62,8 @@ const SecondYear: React.FC = () => {
                     2nd Year at University of Glasgow
                   </Typography>
                 </Grid>
-                {questionAnswers.map(({ question, answer }, index) => (
-                  <Grid item xs={12}>
-                    <Accordion onChange={() => (index === currentlyOpenIndex ? setCurrentlyOpenIndex(-1) : setCurrentlyOpenIndex(index))} expanded={index === currentlyOpenIndex}>
-                      <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls='panel1a-content' id='panel1a-header'>
-                        <Typography variant='h4'>{question}</Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>{answer}</AccordionDetails>
-                    </Accordion>
-                  </Grid>
-                ))}
               </Grid>
+              <QAndAAccordion questionAnswers = {questionAnswers}/>
             </CustomCard>
           );
         }}
