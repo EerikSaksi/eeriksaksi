@@ -4,12 +4,16 @@ const Timeline = lazy(() => import('components/cards/timeline'));
 const Welcome = lazy(() => import('components/cards/welcome'));
 const SecondYear = lazy(() => import('components/cards/second_year'));
 const ThirdYear = lazy(() => import('components/cards/third_year'));
+const FourthYear = lazy(() => import('components/cards/fourth_year'));
 const Uros = lazy(() => import('components/cards/uros'));
 const TeamProject = lazy(() => import('components/cards/team_project'));
 const SummerProject = lazy(() => import('components/cards/summer_projects'));
 const AllCards: React.FC = () => {
   return (
-    < React.Fragment >
+    <React.Fragment >
+      <Suspense fallback={<Loading height={356} />}>
+        <FourthYear />
+      </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <Welcome />
       </Suspense>

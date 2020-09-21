@@ -1,7 +1,6 @@
 import React from 'react';
-import { IconButton, AppBar, CssBaseline, Divider, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@material-ui/core';
+import { IconButton, AppBar, CssBaseline, Drawer, SwipeableDrawer,  Hidden, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards'
 
@@ -89,13 +88,14 @@ const SideDrawer: React.FC  = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawer} >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
-          <Drawer
+          <SwipeableDrawer
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
+            onOpen = {() => setMobileOpen(true)}
             onClose={handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
@@ -105,7 +105,7 @@ const SideDrawer: React.FC  = () => {
             }}
           >
             {drawer}
-          </Drawer>
+          </SwipeableDrawer>
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer
@@ -113,7 +113,6 @@ const SideDrawer: React.FC  = () => {
               paper: classes.drawerPaper,
             }}
             variant="permanent"
-            open
           >
             {drawer}
           </Drawer>
