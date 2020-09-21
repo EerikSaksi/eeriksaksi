@@ -28,7 +28,6 @@ const questionAnswers = [
 const SecondYear: React.FC = () => {
   return (
     <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle = {{ backgroundPosition: '25%, 25%', }} photoCredit = 'University of Glasgow Facebook'>
-      >
       <React.Fragment>
         <Grid container justify='center'>
           <Grid item xs={12}>

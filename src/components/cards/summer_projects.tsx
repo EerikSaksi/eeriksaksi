@@ -61,7 +61,6 @@ const SummerProjects: React.FC = () => {
   ];
   return (
     <CustomCardWithBackground progressiveImageProps={{ src: require('media/rick.gif'), preview: require('media/rick-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '20% 0%' }}>
-      >
       <React.Fragment>
         <Grid container justify='center'>
           <Grid item xs={12}>

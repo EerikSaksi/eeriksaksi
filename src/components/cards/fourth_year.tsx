@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid} from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import QAndAAccordion from 'components/q_and_a_accordion';
@@ -17,18 +17,15 @@ const rows = [
 const questionAnswers = [
   {
     question: 'What courses did I have?',
-    answer: (
-      <CourseTable headers={['First Semester', 'Second Semester']} rowCols={rows}>
-        <Typography variant='body1'>Through both semesters, I also had a team project where we worked with a customer that was worth 33% of our grade.</Typography>
-      </CourseTable>
-    ),
+    answer: <CourseTable headers = {['First Semester','Second Semester']} rowCols={rows} />,
   },
   { question: 'What was the most useful course?', answer: <Typography variant='subtitle1'>Although it was difficult and painful for me at the time, Web App Development 2 taught me how to use Git and was my first experience with full stack development through Django, which I have come to love today.</Typography> },
   { question: 'What was my favourite course?', answer: <Typography variant='subtitle1'>I found Algorithms and Data Structures to be interesting, and the runtime complexity is something I always keep in the back of my mind to this day as I program.</Typography> },
 ];
-const SecondYear: React.FC = () => {
+const FourthYear: React.FC = () => {
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow.jpg'), preview: require('media/glasgow-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '80% 80%' }} photoCredit='Policy Scotland'>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow.jpg'), preview: require('media/glasgow-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle = {{ backgroundPosition: '80% 80%', }} photoCredit = 'Policy Scotland'>
+      >
       <React.Fragment>
         <Grid container justify='center'>
           <Grid item xs={12}>
@@ -43,4 +40,5 @@ const SecondYear: React.FC = () => {
   );
 };
 
-export default SecondYear;
+export default FourthYear;
+

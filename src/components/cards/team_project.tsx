@@ -14,7 +14,6 @@ const questionAnswers = [
 const SecondYear: React.FC = () => {
   return (
     <CustomCardWithBackground progressiveImageProps={{ src: require('media/leidos.jpeg'), preview: require('media/leidos-tiny.jpeg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 0%' }} photoCredit='Leidos Twitter'>
-      >
       <React.Fragment>
         <Grid container justify='center'>
           <Grid item xs={12}>
