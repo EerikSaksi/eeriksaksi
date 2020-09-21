@@ -57,9 +57,10 @@ const SummerProjects: React.FC = () => {
   const questionAnswers = [
     { question: 'What is this site?', answer: <Typography variant='body1'>I made this over the summer to get more experience in full stack development during the COVID epidemic when working was unfeasible. The site allows you to practice your typing to the lyrics of a song as it plays, and to create synchronizations for songs that don't have them. If you scroll down on the home page, you should see demonstrations of different features.</Typography> },
     { question: 'What technologies did I use?', answer: technologies },
+    { question: 'What do I still want to improve', answer: <Typography variant='body1'>I couldn't get in contact with the person who owns <a href = 'https://github.com/gabolsgabs/DALI' target = "_blank">this dataset</a>, and only managed to get in contact with a fellow student of theirs who told me they'd try to get in touch with the owner, who then didn't respond to any further messages. This would be great as it would remove the need to manually synchronize the song, and the user could skip straight to preview. Other things include better data browsing, such as a global leaderboards for users and most popular songs, and better mobile optimization (although I don't know if people want to practice their texting speed.) </Typography>  },
   ];
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/leidos.jpeg'), preview: require('media/leidos-tiny.jpeg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 0%' }}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/rick.gif'), preview: require('media/rick-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '20% 0%' }}>
       >
       <React.Fragment>
         <Grid container justify='center'>
