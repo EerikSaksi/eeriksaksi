@@ -1,7 +1,8 @@
 import React from 'react';
 import { Table, TableHead, TableCell, TableRow, TableBody, Paper, TableContainer, Grid } from '@material-ui/core';
-type TwoColRows = Array<Array<string>>;
-const CourseTable: React.FC<{ children?: React.ReactNode; twoColRows: TwoColRows }> = ({ children, twoColRows }) => {
+type RowCols = Array<Array<string>>;
+
+const CourseTable: React.FC<{ children?: React.ReactNode; headers: Array<string>; rowCols: RowCols }> = ({ children, headers, rowCols }) => {
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -12,19 +13,19 @@ const CourseTable: React.FC<{ children?: React.ReactNode; twoColRows: TwoColRows
           <Table aria-label='simple table' size='small'>
             <TableHead>
               <TableRow>
-                <TableCell align='left'>First Semester</TableCell>
-                <TableCell align='left'>Second Semester</TableCell>
+                {headers.map((header) => (
+                  <TableCell align='left'>{header}</TableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {twoColRows.map((row, index) => {
-                return (
-                  <TableRow key={index}>
-                    <TableCell align='left'>{row[0]}</TableCell>
-                    <TableCell align='left'>{row[1]}</TableCell>
-                  </TableRow>
-                );
-              })}
+              {rowCols.map((row, index) => (
+                <TableRow key={index}>
+                  {row.map((element) => (
+                    <TableCell align='left'>{element}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>

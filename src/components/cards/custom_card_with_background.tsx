@@ -3,7 +3,7 @@ import ProgressiveImage, { ProgressiveImageProps } from 'react-progressive-image
 import CustomCard from 'components/cards/custom_card';
 import { useInView } from 'react-hook-inview';
 
-const CustomCardWithBackground: React.FC<{ children: React.ReactNode; progressiveImageProps: ProgressiveImageProps; backgroundImageStyle?: React.CSSProperties; cardStyle?: React.CSSProperties; photoCredit?: string; setInView?: (boolean) => void }> = ({ progressiveImageProps, children, backgroundImageStyle, cardStyle, photoCredit, setInView }) => {
+const CustomCardWithBackground: React.FC<{ children: React.ReactNode; progressiveImageProps: ProgressiveImageProps; backgroundImageStyle?: React.CSSProperties; cardStyle?: React.CSSProperties; photoCredit?: string; setInView?: (arg: boolean) => void }> = ({ progressiveImageProps, children, backgroundImageStyle, cardStyle, photoCredit, setInView }) => {
   const [inViewRef, inView] = useInView();
   useEffect(() => {
     if (setInView) {

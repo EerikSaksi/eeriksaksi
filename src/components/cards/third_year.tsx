@@ -17,7 +17,7 @@ const questionAnswers = [
   {
     question: 'What courses did I have?',
     answer: (
-      <CourseTable twoColRows={rows}>
+      <CourseTable headers = {['First Semester','Second Semester']} rowCols={rows}>
         <Typography variant='body1'>Through both semesters, I also had a team project where we worked with a customer that was worth 33% of our grade.</Typography>
       </CourseTable>
     ),
