@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CustomCard from 'components/cards/custom_card';
 import { Avatar, Grid, Typography } from '@material-ui/core';
-import { useInView } from 'react-hook-inview';
+import CustomCardWithBackground from './custom_card_with_background';
+import { ProgressiveImageProps } from 'react-progressive-image-loading';
 const Welcome: React.FC = () => {
-  const [inViewRef, inView] = useInView();
+  const [inView, setInView] = useState(false)
 
   //whether or not the balls should start moving, set from the useEffect hook
   const [ballsShifted, setBallsShifted] = useState(false);
@@ -33,7 +34,7 @@ const Welcome: React.FC = () => {
     }
   }, [ballRowWidth]);
   return (
-    <CustomCard ref={inViewRef}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/coffee.jpg'), preview: require('media/coffee-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '0% 20%' }}  setInView = {setInView}>
       <Grid container justify='space-evenly'>
         <Grid item sm={6}>
           <Grid container justify='flex-end'>
@@ -80,7 +81,7 @@ const Welcome: React.FC = () => {
           </Grid>
         </Grid>
       </Grid>
-    </CustomCard>
+    </CustomCardWithBackground>
   );
 };
 export default Welcome;

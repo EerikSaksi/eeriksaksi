@@ -1,10 +1,10 @@
 import React from 'react';
-import { IconButton, AppBar, CssBaseline, Drawer, SwipeableDrawer, Hidden, List, ListItem, withStyles, ListItemText, Toolbar } from '@material-ui/core';
+import { IconButton, AppBar, CssBaseline, Drawer, List, ListItem, ListItemText, Toolbar, Divider, Box, Hidden } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards';
 
-const drawerWidth = 150;
+const drawerWidth = 180;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,11 +54,16 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+
+      <Divider />
       <List>
-        {['Welcome', 'My Timeline'].map((text, index) => (
-          <ListItem  onClick={() => jumpToNthElement(index)} button key={text}>
-            <ListItemText classes={{ primary: classes.listItemText }} primary={text} />
-          </ListItem>
+        {['Welcome', 'My Timeline', '2nd University Year', 'UROS', '3rd University Year', 'Team Project', 'tunety.pe', '4th University Year'].map((text, index) => (
+          <React.Fragment>
+            <ListItem onClick={() => jumpToNthElement(index)} button key={text}>
+              <ListItemText classes={{ primary: classes.listItemText }} primary={text} />
+            </ListItem>
+            <Divider />
+          </React.Fragment>
         ))}
       </List>
     </div>
@@ -77,12 +82,11 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
       <nav className={classes.drawer}>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation='css'>
-          <SwipeableDrawer
+          <Drawer
             variant='temporary'
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
-            onOpen={() => setMobileOpen(true)}
-            onClose={handleDrawerToggle}
+            onClose={() => setMobileOpen(false)}
             classes={{
               paper: classes.drawerPaper,
             }}
@@ -91,7 +95,7 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
             }}
           >
             {drawer}
-          </SwipeableDrawer>
+          </Drawer>
         </Hidden>
         <Hidden xsDown implementation='css'>
           <Drawer
