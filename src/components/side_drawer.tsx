@@ -1,8 +1,8 @@
 import React from 'react';
-import { IconButton, AppBar, CssBaseline, Drawer, SwipeableDrawer,  Hidden, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@material-ui/core';
+import { IconButton, AppBar, CssBaseline, Drawer, SwipeableDrawer, Hidden, List, ListItem, withStyles, ListItemText, Toolbar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AllClasses from 'components/cards/all_cards'
+import AllClasses from 'components/cards/all_cards';
 
 const drawerWidth = 150;
 
@@ -35,14 +35,14 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     padding: theme.spacing(3),
-    width: '100%'
+    width: '100%',
   },
-  listItemText:{
-    fontSize:'2em',
-  }
+  listItemText: {
+    fontSize: '1em',
+  },
 }));
 
-const SideDrawer: React.FC  = () => {
+const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jumpToNthElement }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -55,47 +55,33 @@ const SideDrawer: React.FC  = () => {
     <div>
       <div className={classes.toolbar} />
       <List>
-        {[].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText classes = {{primary: classes.listItemText}} primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <List>
-        {[].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText classes = {{primary: classes.listItemText}} primary={text} />
+        {['Welcome', 'My Timeline'].map((text, index) => (
+          <ListItem  onClick={() => jumpToNthElement(index)} button key={text}>
+            <ListItemText classes={{ primary: classes.listItemText }} primary={text} />
           </ListItem>
         ))}
       </List>
     </div>
   );
 
-
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
+          <IconButton color='inherit' aria-label='open drawer' edge='start' onClick={handleDrawerToggle} className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} >
+      <nav className={classes.drawer}>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
+        <Hidden smUp implementation='css'>
           <SwipeableDrawer
-            variant="temporary"
+            variant='temporary'
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
-            onOpen = {() => setMobileOpen(true)}
+            onOpen={() => setMobileOpen(true)}
             onClose={handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
@@ -107,12 +93,12 @@ const SideDrawer: React.FC  = () => {
             {drawer}
           </SwipeableDrawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden xsDown implementation='css'>
           <Drawer
             classes={{
               paper: classes.drawerPaper,
             }}
-            variant="permanent"
+            variant='permanent'
           >
             {drawer}
           </Drawer>
@@ -120,10 +106,10 @@ const SideDrawer: React.FC  = () => {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <AllClasses/>
+        <AllClasses />
       </main>
     </div>
   );
-}
+};
 
 export default SideDrawer;

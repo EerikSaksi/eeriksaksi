@@ -22,6 +22,7 @@ const questionAnswers = [
   { question: 'What was the most useful course?', answer: <Typography variant='subtitle1'>Although it was difficult and painful for me at the time, Web App Development 2 taught me how to use Git and was my first experience with full stack development through Django, which I have come to love today.</Typography> },
   { question: 'What was my favourite course?', answer: <Typography variant='subtitle1'>I found Algorithms and Data Structures to be interesting, and the runtime complexity is something I always keep in the back of my mind to this day as I program.</Typography> },
 ];
+
 const SecondYear: React.FC = () => {
   return (
     <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow.jpg'), preview: require('media/glasgow-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '80% 80%' }} photoCredit='Policy Scotland'>

@@ -12,9 +12,6 @@ const AllCards: React.FC = () => {
   return (
     <React.Fragment >
       <Suspense fallback={<Loading height={356} />}>
-        <FourthYear />
-      </Suspense>
-      <Suspense fallback={<Loading height={356} />}>
         <Welcome />
       </Suspense>
       <Suspense fallback={<Loading height={'40vh'} />}>
@@ -34,6 +31,9 @@ const AllCards: React.FC = () => {
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <SummerProject/>
+      </Suspense>
+      <Suspense fallback={<Loading height={356} />}>
+        <FourthYear />
       </Suspense>
     </React.Fragment >
   );

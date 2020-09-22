@@ -82,7 +82,7 @@ const TimeLine: React.FC = () => {
   }, [dateIndex]);
   return (
     <CustomCardWithBackground progressiveImageProps={{ src: require('media/road.jpg'), preview: require('media/road-tiny.jpg')} as ProgressiveImageProps} setInView = {setInView}  cardStyle={{ height: '60vh', padding: theme.spacing(2) }} backgroundImageStyle = {{backgroundPosition: '40% 40%',  }}>
-      <Grid style={{ height: '100%' }} container justify='center'>
+      <Grid id = "timeline" style={{ height: '100%' }} container justify='center'>
         <Grid item xs={12}>
           <Fade in={descriptionVisible}>
             <Typography style={{ textAlign: 'center' }} variant='h3'>
