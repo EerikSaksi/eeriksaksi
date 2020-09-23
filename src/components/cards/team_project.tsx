@@ -11,9 +11,9 @@ const questionAnswers = [
   { question: 'What was our techonology stack?', answer: <Typography variant='body1'>We used React Native in order to avoid creating two native apps, and as an API we used Python with FastAPI and SQLAlchemy for persistent storage.</Typography> },
   { question: 'What responsibilities did I assume?', answer: <Typography variant='body1'>We had no given roles, but I had the most prior experience with backend and frontend experience, and became the de facto lead software developer, (I chose React Native and FastAPI and helped my teammates understand it, and wrote the majority of the React Native app).</Typography> },
 ];
-const SecondYear: React.FC = () => {
+const SecondYear: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/leidos.jpeg'), preview: require('media/leidos-tiny.jpeg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 0%' }} photoCredit='Leidos Twitter'>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/leidos.jpeg'), preview: require('media/leidos-tiny.jpeg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 0%' }} photoCredit='Leidos Twitter'  alertCurrentlyVisible = {alertCurrentlyVisible}>
       <React.Fragment>
         <Grid container justify='center'>
           <Grid item xs={12}>

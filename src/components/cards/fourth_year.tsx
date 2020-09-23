@@ -23,9 +23,9 @@ const questionAnswers = [
     ),
   },
 ];
-const FourthYear: React.FC = () => {
+const FourthYear: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyVisible}) => {
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/cloisters.jpg'), preview: require('media/cloisters-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '50% 50%' }} photoCredit='_skynet on flickr'>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/cloisters.jpg'), preview: require('media/cloisters-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '50% 50%' }} photoCredit='_skynet on flickr'  alertCurrentlyVisible = {alertCurrentlyVisible}>
       <React.Fragment>
         <Grid container justify='center'>
           <Grid item xs={12}>

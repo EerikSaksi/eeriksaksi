@@ -1,10 +1,12 @@
-import React from 'react';
-import { IconButton, AppBar, CssBaseline, Drawer, List, ListItem, ListItemText, Toolbar, Divider, Box, Hidden } from '@material-ui/core';
+import React, { useState } from 'react';
+import { IconButton, AppBar, CssBaseline, Drawer, List, ListItem, ListItemText, Toolbar, Divider, Box, Hidden, Grid, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards';
+import EmailIcon from '@material-ui/icons/Email';
+import {useMetricsTracker} from 'hooks/use_metrics_tracker';
 
-const drawerWidth = 180;
+const drawerWidth = 350;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,14 +40,15 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   listItemText: {
-    fontSize: '1em',
+    fontSize: '2em',
   },
 }));
 
 const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jumpToNthElement }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const {visibleSection, setVisibleSection} = useMetricsTracker()
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -58,7 +61,7 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
       <Divider />
       <List>
         {['Welcome', 'My Timeline', '2nd University Year', 'UROS', '3rd University Year', 'Team Project', 'tunety.pe', '4th University Year'].map((text, index) => (
-          <React.Fragment>
+          <React.Fragment key = {index}>
             <ListItem onClick={() => jumpToNthElement(index)} button key={text}>
               <ListItemText classes={{ primary: classes.listItemText }} primary={text} />
             </ListItem>
@@ -77,6 +80,9 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
           <IconButton color='inherit' aria-label='open drawer' edge='start' onClick={handleDrawerToggle} className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
+          <Grid container justify = "center">
+            <Typography variant = "h3">{visibleSection}</Typography>
+          </Grid>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer}>
@@ -110,7 +116,7 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <AllClasses />
+        <AllClasses setVisibleSection={setVisibleSection} />
       </main>
     </div>
   );

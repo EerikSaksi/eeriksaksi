@@ -5,7 +5,7 @@ import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import CustomCardWithBackground from './custom_card_with_background';
 const QAndAAccordion = lazy(() => import('components/q_and_a_accordion'));
 
-const Uros: React.FC = () => {
+const Uros: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyVisible}) => {
   const theme = useTheme();
   const usingPhone = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -62,7 +62,7 @@ const Uros: React.FC = () => {
   );
 
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/uros.webp'), preview: require('media/uros.webp') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 100%' }} cardStyle={{ padding: theme.spacing(4) }} photoCredit='kolster.fi'>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/uros.webp'), preview: require('media/uros.webp') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 100%' }} cardStyle={{ padding: theme.spacing(4) }} photoCredit='kolster.fi'   alertCurrentlyVisible = {alertCurrentlyVisible}>
       {content}
     </CustomCardWithBackground>
   );

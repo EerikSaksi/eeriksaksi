@@ -48,8 +48,8 @@ function dayToDisplayDate(day: number) {
 
 //the maxDate (last days endDate)
 const maxDate = getDeltaFromFirst(dates[dates.length - 1].endDate!);
-const TimeLine: React.FC = () => {
-  const theme = useTheme();
+const TimeLine: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyVisible}) => { 
+  const theme = useTheme()
   const [inView, setInView] = useState(false);
   const [sliderValue, setSliderValue] = useState<number[]>([0, 0]);
   const [descriptionVisible, setDescriptionVisible] = useState(false);
@@ -59,7 +59,6 @@ const TimeLine: React.FC = () => {
     const periodicallyIncrementIndex = async () => {
       for (var i = dateIndex; i < dates.length && inView; i++) {
         setDateIndex(i);
-        console.log(inView);
         const date = dates[i];
         setDescriptionVisible(true);
         await new Promise((resolve) => setTimeout(resolve, readingTime(date.description)));
@@ -81,7 +80,7 @@ const TimeLine: React.FC = () => {
     }
   }, [dateIndex]);
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/road.jpg'), preview: require('media/road-tiny.jpg')} as ProgressiveImageProps} setInView = {setInView}  cardStyle={{ height: '60vh', padding: theme.spacing(2) }} backgroundImageStyle = {{backgroundPosition: '40% 40%',  }}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/road.jpg'), preview: require('media/road-tiny.jpg')} as ProgressiveImageProps} setInView = {setInView}  cardStyle={{ height: '60vh', padding: theme.spacing(2) }} backgroundImageStyle = {{backgroundPosition: '40% 40%',}} alertCurrentlyVisible = {alertCurrentlyVisible}>
       <Grid id = "timeline" style={{ height: '100%' }} container justify='center'>
         <Grid item xs={12}>
           <Fade in={descriptionVisible}>

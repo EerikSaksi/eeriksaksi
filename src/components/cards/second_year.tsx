@@ -23,9 +23,9 @@ const questionAnswers = [
   { question: 'What was my favourite course?', answer: <Typography variant='subtitle1'>I found Algorithms and Data Structures to be interesting, and the runtime complexity is something I always keep in the back of my mind to this day as I program.</Typography> },
 ];
 
-const SecondYear: React.FC = () => {
+const SecondYear: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyVisible}) => {
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow.jpg'), preview: require('media/glasgow-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '80% 80%' }} photoCredit='Policy Scotland'>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow.jpg'), preview: require('media/glasgow-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '80% 80%' }} photoCredit='Policy Scotland' alertCurrentlyVisible = {alertCurrentlyVisible}>
       <React.Fragment>
         <Grid container justify='center'>
           <Grid item xs={12}>

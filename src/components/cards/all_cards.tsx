@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import Loading from 'components/cards/loading';
 const Timeline = lazy(() => import('components/cards/timeline'));
 const Welcome = lazy(() => import('components/cards/welcome'));
@@ -8,32 +8,32 @@ const FourthYear = lazy(() => import('components/cards/fourth_year'));
 const Uros = lazy(() => import('components/cards/uros'));
 const TeamProject = lazy(() => import('components/cards/team_project'));
 const SummerProject = lazy(() => import('components/cards/summer_projects'));
-const AllCards: React.FC = () => {
+const AllCards: React.FC <{setVisibleSection: (arg: string) => void}> = ({setVisibleSection}) => {
   return (
     <React.Fragment >
       <Suspense fallback={<Loading height={356} />}>
-        <Welcome />
+        <Welcome alertCurrentlyVisible = {() => setVisibleSection('Welcome')}/>
       </Suspense>
       <Suspense fallback={<Loading height={'40vh'} />}>
-        <Timeline/>
+        <Timeline alertCurrentlyVisible = {() => setVisibleSection('Timeline')}/>
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
-        <SecondYear />
+        <SecondYear alertCurrentlyVisible = {() => setVisibleSection('Second Year')}/>
       </Suspense>
       <Suspense fallback={<Loading height={417} />}>
-        <Uros />
+        <Uros alertCurrentlyVisible = {() => setVisibleSection('UROS')}/>
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
-        <ThirdYear />
+        <ThirdYear alertCurrentlyVisible = {() => setVisibleSection('Third Year')}/>
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
-        <TeamProject />
+        <TeamProject alertCurrentlyVisible = {() => setVisibleSection('Third Year Team Project')}/>
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
-        <SummerProject/>
+        <SummerProject alertCurrentlyVisible = {() => setVisibleSection('tunety.pe')}/>
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
-        <FourthYear />
+        <FourthYear alertCurrentlyVisible = {() => setVisibleSection('Fourth Year')}/>
       </Suspense>
     </React.Fragment >
   );
