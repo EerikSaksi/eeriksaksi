@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 export const useMetricsTracker = () => {
   const [visibleSection, setVisibleSection] = useState('Welcome');
   const [sessionID, setSessionID] = useState('');
-  console.log(sessionID)
 
   const [timeSpentOnSections, setTimeSpentOnSections] = useState({
     Welcome: 0.0,
@@ -12,11 +11,13 @@ export const useMetricsTracker = () => {
     'Third Year': 0.0,
     'Third Year Team Project': 0.0,
     'tunety.pe': 0.0,
+    'Fourth Year': 0.0,
+    'Analytics': 0.0
   });
   useEffect(() => {
     //if we don't have a session id then fetch one
     if (sessionID === '') {
-       fetch('http://localhost:4000/session_id', {
+      fetch('http://localhost:4000/session_id', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -24,20 +25,18 @@ export const useMetricsTracker = () => {
           'Content-Type': 'application/json',
         },
       })
-        .then(response => {
-          return response.text()
+        .then((response) => {
+          return response.text();
         })
-        .then(text => {
-          setSessionID(text)
-        })
-        
+        .then((text) => {
+          setSessionID(text);
+        });
     }
   }, [sessionID]);
   useEffect(() => {
     //every second update the data on the API
     const apiInterval = setInterval(async () => {
       if (sessionID !== '') {
-        console.log('ran')
         await fetch('http://localhost:4000/send_session_info', {
           method: 'POST',
           mode: 'cors',
@@ -46,9 +45,7 @@ export const useMetricsTracker = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ sessionID, ...timeSpentOnSections }),
-        }).catch((error) => {
-          console.log(error);
-        });
+        })
       }
     }, 1000);
 

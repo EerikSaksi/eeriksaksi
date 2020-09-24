@@ -8,9 +8,13 @@ const FourthYear = lazy(() => import('components/cards/fourth_year'));
 const Uros = lazy(() => import('components/cards/uros'));
 const TeamProject = lazy(() => import('components/cards/team_project'));
 const SummerProject = lazy(() => import('components/cards/summer_projects'));
-const AllCards: React.FC <{setVisibleSection: (arg: string) => void}> = ({setVisibleSection}) => {
+const Analytics = lazy(() => import('components/cards/analytics'));
+const AllCards: React.FC <{setVisibleSection: (arg: string) => void, timeSpentOnSections: {}}> = ({setVisibleSection, timeSpentOnSections}) => {
   return (
     <React.Fragment >
+      <Suspense fallback={<Loading height={356} />}>
+        <Analytics alertCurrentlyVisible = {() => setVisibleSection('Analytics')} timeSpentOnSections = {timeSpentOnSections}/>
+      </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <Welcome alertCurrentlyVisible = {() => setVisibleSection('Welcome')}/>
       </Suspense>

@@ -48,7 +48,7 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const {visibleSection, setVisibleSection} = useMetricsTracker()
+  const {visibleSection, setVisibleSection, timeSpentOnSections} = useMetricsTracker()
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -57,7 +57,6 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-
       <Divider />
       <List>
         {['Welcome', 'My Timeline', '2nd University Year', 'UROS', '3rd University Year', 'Team Project', 'tunety.pe', '4th University Year'].map((text, index) => (
@@ -116,7 +115,7 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <AllClasses setVisibleSection={setVisibleSection} />
+        <AllClasses setVisibleSection={setVisibleSection} timeSpentOnSections = {timeSpentOnSections}/>
       </main>
     </div>
   );
