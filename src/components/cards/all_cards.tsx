@@ -15,12 +15,6 @@ const AllCards: React.FC <{setVisibleSection: (arg: string) => void, timeSpentOn
   return (
     <React.Fragment >
       <Suspense fallback={<Loading height={356} />}>
-        <SummerProject alertCurrentlyVisible = {() => setVisibleSection('tunety.pe')}/>
-      </Suspense>
-      <Suspense fallback={<Loading height={356} />}>
-        <Analytics alertCurrentlyVisible = {() => setVisibleSection('Analytics')} timeSpentOnSections = {timeSpentOnSections}/>
-      </Suspense>
-      <Suspense fallback={<Loading height={356} />}>
         <Welcome alertCurrentlyVisible = {() => setVisibleSection('Welcome')}/>
       </Suspense>
       <Suspense fallback={<Loading height={'40vh'} />}>
@@ -39,7 +33,13 @@ const AllCards: React.FC <{setVisibleSection: (arg: string) => void, timeSpentOn
         <TeamProject alertCurrentlyVisible = {() => setVisibleSection('Third Year Team Project')}/>
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
+        <SummerProject alertCurrentlyVisible = {() => setVisibleSection('tunety.pe')}/>
+      </Suspense>
+      <Suspense fallback={<Loading height={356} />}>
         <FourthYear alertCurrentlyVisible = {() => setVisibleSection('Fourth Year')}/>
+      </Suspense>
+      <Suspense fallback={<Loading height={356} />}>
+        <Analytics alertCurrentlyVisible = {() => setVisibleSection('Analytics')} timeSpentOnSections = {timeSpentOnSections}/>
       </Suspense>
     </React.Fragment >
   );
