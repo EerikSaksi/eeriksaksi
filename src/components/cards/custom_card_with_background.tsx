@@ -9,10 +9,10 @@ const CustomCardWithBackground: React.FC<{ children: React.ReactNode; progressiv
     if (setInView) {
       setInView(inView);
     }
-    if (inView && alertCurrentlyVisible){
+    if (inView){
       alertCurrentlyVisible()
     }
-  }, [inView]);
+  }, [inView, setInView, alertCurrentlyVisible]);
   return (
     <ProgressiveImage
       {...progressiveImageProps}

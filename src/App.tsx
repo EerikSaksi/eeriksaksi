@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React  from 'react';
 import SideDrawer from 'components/side_drawer';
 import 'App.css';
 const App: React.FC = () => {

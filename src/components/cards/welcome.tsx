@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import CustomCard from 'components/cards/custom_card';
 import { Avatar, Grid, Typography } from '@material-ui/core';
 import CustomCardWithBackground from './custom_card_with_background';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';

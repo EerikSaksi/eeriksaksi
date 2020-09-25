@@ -72,7 +72,7 @@ const TimeLine: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyV
       setRanFunction(true);
       periodicallyIncrementIndex();
     }
-  }, [inView, ranFunction]);
+  }, [inView, ranFunction, dateIndex]);
   useEffect(() => {
     const date = dates[dateIndex];
     if (date.startDate) {
@@ -89,8 +89,10 @@ const TimeLine: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyV
             </Typography>
           </Fade>
         </Grid>
-        <Grid container xs={10} alignItems = 'flex-end' >
+        <Grid  justify = "center" container  alignItems = 'flex-end' >
+          <Grid  item xs = {10}>
             <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? 'on' : 'off'} aria-labelledby='range-slider' />
+          </Grid>
         </Grid>
       </Grid>
     </CustomCardWithBackground>

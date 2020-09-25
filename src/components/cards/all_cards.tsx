@@ -1,5 +1,6 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy} from 'react';
 import Loading from 'components/cards/loading';
+import {TimeSpentOnSections} from 'types';
 const Timeline = lazy(() => import('components/cards/timeline'));
 const Welcome = lazy(() => import('components/cards/welcome'));
 const SecondYear = lazy(() => import('components/cards/second_year'));
@@ -9,9 +10,13 @@ const Uros = lazy(() => import('components/cards/uros'));
 const TeamProject = lazy(() => import('components/cards/team_project'));
 const SummerProject = lazy(() => import('components/cards/summer_projects'));
 const Analytics = lazy(() => import('components/cards/analytics'));
-const AllCards: React.FC <{setVisibleSection: (arg: string) => void, timeSpentOnSections: {}}> = ({setVisibleSection, timeSpentOnSections}) => {
+
+const AllCards: React.FC <{setVisibleSection: (arg: string) => void, timeSpentOnSections: TimeSpentOnSections}> = ({setVisibleSection, timeSpentOnSections}) => {
   return (
     <React.Fragment >
+      <Suspense fallback={<Loading height={356} />}>
+        <SummerProject alertCurrentlyVisible = {() => setVisibleSection('tunety.pe')}/>
+      </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <Analytics alertCurrentlyVisible = {() => setVisibleSection('Analytics')} timeSpentOnSections = {timeSpentOnSections}/>
       </Suspense>
@@ -32,9 +37,6 @@ const AllCards: React.FC <{setVisibleSection: (arg: string) => void, timeSpentOn
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <TeamProject alertCurrentlyVisible = {() => setVisibleSection('Third Year Team Project')}/>
-      </Suspense>
-      <Suspense fallback={<Loading height={356} />}>
-        <SummerProject alertCurrentlyVisible = {() => setVisibleSection('tunety.pe')}/>
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <FourthYear alertCurrentlyVisible = {() => setVisibleSection('Fourth Year')}/>

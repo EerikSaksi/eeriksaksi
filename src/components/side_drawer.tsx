@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { IconButton, AppBar, CssBaseline, Drawer, List, ListItem, ListItemText, Toolbar, Divider, Box, Hidden, Grid, Typography } from '@material-ui/core';
+import { IconButton, AppBar, CssBaseline, Drawer, List, ListItem, ListItemText, Toolbar, Divider,  Hidden, Grid, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards';
-import EmailIcon from '@material-ui/icons/Email';
 import {useMetricsTracker} from 'hooks/use_metrics_tracker';
 
 const drawerWidth = 350;
