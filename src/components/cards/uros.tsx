@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Grid, useTheme, Avatar, Paper, useMediaQuery } from '@material-ui/core';
+import { Grid, useTheme, Avatar, Paper, useMediaQuery, Hidden } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import CustomCardWithBackground from './custom_card_with_background';
@@ -12,11 +12,11 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
   const jobDescription = (
     <Grid container justify='center'>
       <Grid item>
-        {usingPhone ? null : (
+        <Hidden xsDown>
           <Typography style={{ textAlign: 'center' }} variant='h3'>
             What did I do at UROS?
           </Typography>
-        )}
+        </Hidden>
         <Typography style={{ textAlign: 'center' }} variant='body1'>
           I was given a legacy system running where data from a MYSQL databse was being processed by LabVIEW and a neural network written in C. I managed to reverse engineer and replace LabVIEW and the C library with a singular Python program, which allowed UROS to use a newer neural network technology whilst maintaining backwards compatibility.
         </Typography>
@@ -25,9 +25,11 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
   );
   const testimonial = (
     <Grid item xs={12}>
-      <Typography style={{ textAlign: 'center' }} variant='h2'>
-        UROS Internship
-      </Typography>
+      <Hidden xsDown>
+        <Typography style={{ textAlign: 'center' }} variant='h2'>
+          UROS Internship
+        </Typography>
+      </Hidden>
       <Grid item xs={12} style={{ marginBottom: theme.spacing(2) }}>
         <Grid container alignItems='center' justify='center'>
           <Grid item xs={12} sm={2}>

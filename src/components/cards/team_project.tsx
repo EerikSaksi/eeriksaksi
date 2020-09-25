@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import QAndAAccordion from 'components/q_and_a_accordion';
@@ -13,15 +13,17 @@ const questionAnswers = [
 ];
 const SecondYear: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/leidos.jpeg'), preview: require('media/leidos-tiny.jpeg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 0%' }} photoCredit='Leidos Twitter'  alertCurrentlyVisible = {alertCurrentlyVisible}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/leidos.jpeg'), preview: require('media/leidos-tiny.jpeg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 0%' }} photoCredit='Leidos Twitter' alertCurrentlyVisible={alertCurrentlyVisible}>
       <React.Fragment>
-        <Grid container justify='center'>
-          <Grid item xs={12}>
-            <Typography style={{ textAlign: 'center' }} variant='h2'>
-              3rd Year Team Project
-            </Typography>
+        <Hidden xsDown>
+          <Grid container justify='center'>
+            <Grid item xs={12}>
+              <Typography style={{ textAlign: 'center' }} variant='h2'>
+                3rd Year Team Project
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
+        </Hidden>
         <QAndAAccordion questionAnswers={questionAnswers} />
       </React.Fragment>
     </CustomCardWithBackground>

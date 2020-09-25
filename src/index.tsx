@@ -3,10 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { ThemeProvider, createMuiTheme, responsiveFontSizes} from '@material-ui/core';
+import { ThemeProvider, createMuiTheme} from '@material-ui/core';
 
 let theme = createMuiTheme()
-theme = responsiveFontSizes(theme)
+theme.typography.body1 = {
+  fontSize: '2rem',
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '1rem',
+  },
+};
+
+theme.typography.h3 = {
+  fontSize: '3rem',
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '1.5rem',
+  },
+};
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme = {theme}>

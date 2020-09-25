@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import QAndAAccordion from 'components/q_and_a_accordion';
@@ -29,6 +29,7 @@ const SecondYear: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentl
   return (
     <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle = {{ backgroundPosition: '25%, 25%', }} photoCredit = 'University of Glasgow Facebook' alertCurrentlyVisible = {alertCurrentlyVisible}>
       <React.Fragment>
+        <Hidden xsDown>
         <Grid container justify='center'>
           <Grid item xs={12}>
             <Typography style={{ textAlign: 'center' }} variant='h2'>
@@ -36,6 +37,7 @@ const SecondYear: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentl
             </Typography>
           </Grid>
         </Grid>
+      </Hidden>
         <Grid>
           <QAndAAccordion questionAnswers={questionAnswers} />
         </Grid>
