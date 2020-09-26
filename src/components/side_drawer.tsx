@@ -33,10 +33,11 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    shadows:  theme.shadows[20]
   },
   content: {
-    padding: theme.spacing(3),
     width: '100%',
+    padding: theme.spacing(4)
   },
   listItemText: {
     fontSize: '2em',

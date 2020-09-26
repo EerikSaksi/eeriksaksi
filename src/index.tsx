@@ -13,10 +13,10 @@ theme.typography.body1 = {
   },
 };
 
-theme.typography.h3 = {
-  fontSize: '3rem',
+theme.typography.h2 = {
+  fontSize: '3.75rem',
   [theme.breakpoints.down('xs')]: {
-    fontSize: '1.5rem',
+    fontSize: '2rem',
   },
 };
 ReactDOM.render(

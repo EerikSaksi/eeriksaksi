@@ -40,7 +40,7 @@ const technologyRows = [
 const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
   const [activeValue, setActiveValue] = useState(0);
   const technologies = (
-    <Grid style={{   maxWidth: '100%' }}>
+    <Grid style={{  maxWidth: '100%' }}>
       <Tabs value={activeValue} onChange={(_event, value) => setActiveValue(value)}>
         <Tab label='Frontend' />
         <Tab label='Backend' />

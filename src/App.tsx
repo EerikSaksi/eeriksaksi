@@ -6,7 +6,7 @@ const App: React.FC = () => {
     document.getElementsByClassName('app')[0]!.scrollTop = (nth * window.innerHeight) 
   }
   return (
-    <div className='app' style={{ height: '100vh', scrollSnapType: 'y mandatory', overflowY: 'scroll', scrollPaddingTop: 64 }}>
+    <div className='app' style={{ height: '100vh', scrollSnapType: 'y mandatory', overflowY: 'scroll', scrollPaddingTop: 64, }}>
       <SideDrawer jumpToNthElement = {jumpToNthElement} />
     </div>
   );

@@ -53,8 +53,8 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
     }
   }, [currentTab, timeSpentOnSections, averageTimeSpent, currentSection]);
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '25%, 25%' }} photoCredit='University of Glasgow Facebook' alertCurrentlyVisible={alertCurrentlyVisible} cardStyle={{ minHeight: '40vh', width: '100%' }}>
-      <Grid container justify='center'>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '25%, 25%' }} photoCredit='University of Glasgow Facebook' alertCurrentlyVisible={alertCurrentlyVisible} cardStyle={{ minHeight: '40vh', }}>
+      <Grid container justify='center' >
         <Tabs value={currentTab} onChange={(_event, value) => setCurrentTab(value)} indicatorColor='primary' textColor='primary' variant='scrollable' scrollButtons='auto' aria-label='scrollable auto tabs example'>
           <Tab label='Welcome' />
           <Tab label='Timeline' />
