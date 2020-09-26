@@ -15,11 +15,15 @@ const rows = [
 
 const questionAnswers = [
   {
+    question: 'Year description / How I chose my courses.',
+    answer: (
+        <Typography style = {{ padding: 16}} variant='h4'>Through both semesters, I also have a dissertation project which is worth 33% of our grade. For the first semester (and up until this point in my degree), we haven't have much freedom of choice, but for the second semester we had a lot of freedom, and I decided to study everything I could to increase my understanding and skill in full stack development.</Typography>
+    ),
+  },
+  {
     question: 'What courses do I have?',
     answer: (
-      <CourseTable headers={['First Semester', 'Second Semester']} rowCols={rows}>
-        <Typography variant='body1'>Through both semesters, I also have a dissertation project which is worth 33% of our grade. For the first semester (and up until this point in my degree), we haven't have much freedom of choice, but for the second semester we had a lot of freedom, and I decided to study everything I could to increase my understanding and skill in full stack development.</Typography>
-      </CourseTable>
+      <CourseTable headers={['First Semester', 'Second Semester']} rowCols={rows}/>
     ),
   },
 ];

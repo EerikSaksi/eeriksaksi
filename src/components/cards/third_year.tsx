@@ -18,12 +18,12 @@ const questionAnswers = [
     question: 'What courses did I have?',
     answer: (
       <CourseTable headers = {['First Semester','Second Semester']} rowCols={rows}>
-        <Typography variant='body1'>Through both semesters, I also had a team project where we worked with a customer that was worth 33% of our grade.</Typography>
+        <Typography variant='h3'>Through both semesters, I also had a team project where we worked with a customer that was worth 33% of our grade.</Typography>
       </CourseTable>
     ),
   },
-  { question: 'What were my favourite courses?', answer: <Typography variant='subtitle1'>I found Database Systems to be helpful to me for creating better and more extensible database schemas. Cyber Security Fundamentals has made me more vary of my security choices in applications</Typography> },
-  { question: 'What was my favourite course?', answer: <Typography variant='subtitle1'> Although I haven't touched low level languages since this class, Systems Programming has made me interested in implementing efficient API's with something like Rust's Actix Web.</Typography> },
+  { question: 'What were my favourite courses?', answer: <Typography variant='h3'>I found Database Systems to be helpful to me for creating better and more extensible database schemas. Cyber Security Fundamentals has made me more vary of my security choices in applications</Typography> },
+  { question: 'What was my favourite course?', answer: <Typography variant='h3'> Although I haven't touched low level languages since this class, Systems Programming has made me interested in implementing efficient API's with something like Rust's Actix Web.</Typography> },
 ];
 const SecondYear: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyVisible}) => {
   return (

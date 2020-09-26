@@ -15,13 +15,13 @@ const AllCards: React.FC<{ setVisibleSection: (arg: string) => void; timeSpentOn
   return (
     <React.Fragment>
       <Suspense fallback={<Loading height={356} />}>
-        <SecondYear alertCurrentlyVisible={() => setVisibleSection('Second Year')} />
-      </Suspense>
-      <Suspense fallback={<Loading height={356} />}>
         <Welcome alertCurrentlyVisible={() => setVisibleSection('Welcome')} />
       </Suspense>
       <Suspense fallback={<Loading height={'40vh'} />}>
         <Timeline alertCurrentlyVisible={() => setVisibleSection('Timeline')} />
+      </Suspense>
+      <Suspense fallback={<Loading height={356} />}>
+        <SecondYear alertCurrentlyVisible={() => setVisibleSection('Second Year')} />
       </Suspense>
       <Suspense fallback={<Loading height={417} />}>
         <Uros alertCurrentlyVisible={() => setVisibleSection('UROS')} />

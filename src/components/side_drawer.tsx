@@ -7,6 +7,7 @@ import {useMetricsTracker} from 'hooks/use_metrics_tracker';
 
 const drawerWidth = 350;
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',

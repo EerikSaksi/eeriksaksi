@@ -1,16 +1,27 @@
 import React, { useState, useEffect} from 'react';
-import { Typography, Slider, Tabs, Grid, Tab, useTheme } from '@material-ui/core';
+import { Typography, Slider, Tabs, Grid, Tab, useTheme, makeStyles } from '@material-ui/core';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import CustomCardWithBackground from './custom_card_with_background';
 import { TimeSpentOnSections } from 'types';
 
 const sections = ['Welcome', 'Timeline', 'Second Year', 'UROS', 'Third Year', 'Third Year Team Project', 'tunety.pe', 'Fourth Year', 'Analytics'];
 
+
+const useStyles = makeStyles(theme => ({
+  spacedRow: {
+    [theme.breakpoints.up('sm')]: {
+      marginBottom: theme.spacing(8)
+    },
+  },
+}))
+
+
 const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSections: TimeSpentOnSections }> = ({ alertCurrentlyVisible, timeSpentOnSections }) => {
   const [averageTimeSpent, setAverageTimeSpent] = useState<TimeSpentOnSections | null>(null);
   const [maxValue, setMaxValue] = useState(0.1);
   const [currentTab, setCurrentTab] = useState(0);
   const theme = useTheme();
+  const classes = useStyles()
   useEffect(() => {
     fetch('http://localhost:4000/averages', {
       method: 'POST',
@@ -54,8 +65,8 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
   }, [currentTab, timeSpentOnSections, averageTimeSpent, currentSection]);
   return (
     <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '25%, 25%' }} photoCredit='University of Glasgow Facebook' alertCurrentlyVisible={alertCurrentlyVisible} cardStyle={{ minHeight: '40vh', }}>
-      <Grid container justify='center' style = {{ width: '90%' }}>
-        <Tabs value={currentTab} onChange={(_event, value) => setCurrentTab(value)} indicatorColor='primary' textColor='primary' variant='scrollable' scrollButtons='auto' aria-label='scrollable auto tabs example'>
+      <Grid container justify='center' style = {{ width: '100%', marginRight: 0, padding: theme.spacing(2) }}>
+        <Tabs value={currentTab} onChange={(_event, value) => setCurrentTab(value)} indicatorColor='primary' textColor='primary' variant='scrollable' scrollButtons='on' aria-label='scrollable auto tabs example'>
           <Tab label='Welcome' />
           <Tab label='Timeline' />
           <Tab label='Second Year' />
@@ -67,12 +78,12 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
           <Tab label='Analytics' />
         </Tabs>
         <Grid item xs={12} style={{ marginBottom: theme.spacing(4) }}>
-          <Typography style={{ textAlign: 'center' }} variant='body1'>
-            I could talk about how I learned Material UI and TypeScript for this site (which I can't believe I lived without,) or I could show you how I've tracked your reading times and use it to estimate which sections are and aren't interesting. Here's your and the sites average analytics:
+          <Typography style={{ textAlign: 'center' }} variant='h5'>
+            I could talk about how I learned Material UI and TypeScript for this site (which I can't believe I lived without) or I could show you how I've tracked your reading times and use it to estimate which sections are and aren't interesting. Here's your and the sites average analytics:
           </Typography>
         </Grid>
         <Grid item xs={10}>
-          <Typography style={{ textAlign: 'center', marginBottom: theme.spacing(8) }} variant='h6'>
+          <Typography className = {classes.spacedRow} style={{ textAlign: 'center', }} variant='h6'>
             Your spent time
           </Typography>
         </Grid>
@@ -88,7 +99,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
             ]}
           />
         </Grid>
-        <Grid item xs={10} style={{ marginBottom: theme.spacing(8) }}>
+        <Grid className = {classes.spacedRow} item xs={10} >
           <Typography style={{ textAlign: 'center' }} variant='h6'>
             Average spent time
           </Typography>

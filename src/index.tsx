@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { ThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 
 let theme = createMuiTheme()
-theme = responsiveFontSizes(theme, {factor: 6})
+theme = responsiveFontSizes(theme, {factor: 10})
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Tabs, Tab, Hidden } from '@material-ui/core';
+import { Grid, Tabs, Tab, Hidden, makeStyles } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import QAndAAccordion from 'components/q_and_a_accordion';
@@ -37,28 +37,37 @@ const technologyRows = [
   ],
 ];
 
+const useStyles = makeStyles(theme => ({
+  tab: {
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '2em'
+    },
+  },
+}))
+
 const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
   const [activeValue, setActiveValue] = useState(0);
+  const classes = useStyles()
   const technologies = (
     <Grid style={{  maxWidth: '100%' }}>
-      <Tabs value={activeValue} onChange={(_event, value) => setActiveValue(value)}>
-        <Tab label='Frontend' />
-        <Tab label='Backend' />
-        <Tab label='Data storage' />
-        <Tab label='APIs' />
-        <Tab label='Hosting' />
+      <Tabs variant = "fullWidth" centered value={activeValue} onChange={(_event, value) => setActiveValue(value)}>
+        <Tab className = {classes.tab} label='Frontend' />
+        <Tab className = {classes.tab} label='Backend' />
+        <Tab className = {classes.tab} label='Data storage' />
+        <Tab className = {classes.tab} label='APIs' />
+        <Tab className = {classes.tab} label='Hosting' />
       </Tabs>
       <CourseTable headers={['Technology', 'Purpose']} rowCols={technologyRows[activeValue]} />
     </Grid>
   );
 
   const questionAnswers = [
-    { question: 'What is this site?', answer: <Typography variant='body1'>I made this over the summer to get more experience in full stack development during the COVID epidemic when working was unfeasible. The site allows you to practice your typing to the lyrics of a song as it plays, and to create synchronizations for songs that don't have them. If you scroll down on the home page, you should see demonstrations of different features.</Typography> },
+    { question: 'What is this site?', answer: <Typography variant='h3'>I made this over the summer to get more experience in full stack development during the COVID epidemic when working was unfeasible. The site allows you to practice your typing to the lyrics of a song as it plays, and to create synchronizations for songs that don't have them. If you scroll down on the home page, you should see demonstrations of different features.</Typography> },
     { question: 'What technologies did I use?', answer: technologies },
     {
       question: 'What do I still want to improve?',
       answer: (
-        <Typography variant='body1'>
+        <Typography variant='h3'>
           I couldn't get in contact with the person who owns{' '}
           <a href='https://github.com/gabolsgabs/DALI' target='_blank' rel="noopener noreferrer">
             this dataset

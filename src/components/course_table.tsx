@@ -5,12 +5,12 @@ type RowCols = Array<Array<string>>;
 const useStyles = makeStyles(theme => ({
   tableCell: {
     [theme.breakpoints.up('sm')]: {
-      fontSize: '3em'
+      fontSize: '2.5em'
     },
   },
   row: {
     [theme.breakpoints.up('sm')]: {
-      height: '4em'
+      height: '3em'
     },
   }
 }))
