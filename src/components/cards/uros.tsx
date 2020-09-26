@@ -13,11 +13,11 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
     <Grid container justify='center'>
       <Grid item>
         <Hidden xsDown>
-          <Typography style={{ textAlign: 'center' }} variant='h3'>
+          <Typography style={{ textAlign: 'center' }} variant='h2'>
             What did I do at UROS?
           </Typography>
         </Hidden>
-        <Typography style={{ textAlign: 'center' }} variant='body1'>
+        <Typography style={{ textAlign: 'center' }} variant='h4'>
           I was given a legacy system running where data from a MYSQL databse was being processed by LabVIEW and a neural network written in C. I managed to reverse engineer and replace LabVIEW and the C library with a singular Python program, which allowed UROS to use a newer neural network technology whilst maintaining backwards compatibility.
         </Typography>
       </Grid>
@@ -42,7 +42,7 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
           </Grid>
           <Grid item xs={12} sm={10}>
             <Paper>
-              <Typography variant='body1'>"Eerik filled very well his position as a trainee in our software development team. Eerik has enthusiastic attitude towards learning new areas, even difficult ones. This mindset helped us to achieve good goals in a short time. Promising young talent."</Typography>
+              <Typography variant='h4'>"Eerik filled very well his position as a trainee in our software development team. Eerik has enthusiastic attitude towards learning new areas, even difficult ones. This mindset helped us to achieve good goals in a short time. Promising young talent."</Typography>
             </Paper>
           </Grid>
         </Grid>
