@@ -38,10 +38,10 @@ const AllCards: React.FC<{ setVisibleSection: (arg: string) => void; timeSpentOn
       <Suspense fallback={<Loading height={356} />}>
         <FourthYear alertCurrentlyVisible={() => setVisibleSection('Fourth Year')} />
       </Suspense>
-      <Suspense fallback={<Loading height={356} />}>
-        <Analytics alertCurrentlyVisible={() => setVisibleSection('Analytics')} timeSpentOnSections={timeSpentOnSections} />
-      </Suspense>
     </React.Fragment>
   );
 };
 export default AllCards;
+//<Suspense fallback={<Loading height={356} />}>
+//<Analytics alertCurrentlyVisible={() => setVisibleSection('Analytics')} timeSpentOnSections={timeSpentOnSections} />
+//</Suspense>
