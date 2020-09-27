@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from 'react';
-import { Typography, Slider, Tabs, Grid, Tab, useTheme, makeStyles } from '@material-ui/core';
+import React, { useState, useEffect, useRef, useLayoutEffect} from 'react';
+import { Typography, Slider, Tabs, Grid, Tab, useTheme, makeStyles, useMediaQuery } from '@material-ui/core';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';
 import CustomCardWithBackground from './custom_card_with_background';
 import { TimeSpentOnSections } from 'types';
@@ -17,10 +17,12 @@ const useStyles = makeStyles(theme => ({
 
 
 const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSections: TimeSpentOnSections }> = ({ alertCurrentlyVisible, timeSpentOnSections }) => {
+  const theme = useTheme();
+  const usingPhone = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [averageTimeSpent, setAverageTimeSpent] = useState<TimeSpentOnSections | null>(null);
   const [maxValue, setMaxValue] = useState(0.1);
   const [currentTab, setCurrentTab] = useState(0);
-  const theme = useTheme();
   const classes = useStyles()
   useEffect(() => {
     fetch('http://localhost:4000/averages', {
@@ -64,9 +66,9 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
     }
   }, [currentTab, timeSpentOnSections, averageTimeSpent, currentSection]);
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '25%, 25%' }} photoCredit='University of Glasgow Facebook' alertCurrentlyVisible={alertCurrentlyVisible} cardStyle={{ minHeight: '40vh', }}>
-      <Grid container justify='center' style = {{ width: '100%', marginRight: 0, padding: theme.spacing(2) }}>
-        <Tabs value={currentTab} onChange={(_event, value) => setCurrentTab(value)} indicatorColor='primary' textColor='primary' variant='scrollable' scrollButtons='on' aria-label='scrollable auto tabs example'>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '25%, 25%',  }} photoCredit='University of Glasgow Facebook' alertCurrentlyVisible={alertCurrentlyVisible} cardStyle={{ minHeight: '40vh',  marginRight: 0, }}>
+      <Grid  container justify='center' >
+        <Tabs  value={currentTab} onChange={(_event, value) => setCurrentTab(value)} indicatorColor='primary' textColor='primary' variant='scrollable' scrollButtons = {usingPhone ? 'on' : 'off'} aria-label='scrollable auto tabs example' >
           <Tab label='Welcome' />
           <Tab label='Timeline' />
           <Tab label='Second Year' />

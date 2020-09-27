@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IconButton, AppBar, CssBaseline, Drawer, List, ListItem, ListItemText, Toolbar, Divider,  Hidden, Grid, Typography } from '@material-ui/core';
+import { IconButton, AppBar, CssBaseline, Drawer, List, ListItem, ListItemText, Toolbar, Divider,  Hidden, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards';
@@ -14,14 +14,14 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
+      width: `min(${drawerWidth}px, 50%)`,
       flexShrink: 0,
     },
   },
   appBar: {
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
+      marginLeft: `min(${drawerWidth}px, 50%)`,
     },
   },
   menuButton: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth,
+    width: `min(${drawerWidth}px, 50%)`,
     shadows:  theme.shadows[20]
   },
   content: {
@@ -50,6 +50,7 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const {visibleSection, setVisibleSection, timeSpentOnSections} = useMetricsTracker()
+  const usingPhone = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -77,11 +78,11 @@ const SideDrawer: React.FC<{ jumpToNthElement: (nth: number) => void }> = ({ jum
       <CssBaseline />
       <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
-          <IconButton color='inherit' aria-label='open drawer' edge='start' onClick={handleDrawerToggle} className={classes.menuButton}>
+          <IconButton  color='inherit' aria-label='open drawer' edge='start' onClick={handleDrawerToggle} className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
           <Grid container justify = "center">
-            <Typography variant = "h3">{visibleSection}</Typography>
+            <Typography style = {usingPhone ? { transform: 'translateX(-24px)'}: {}} variant = "h3">{visibleSection}</Typography>
           </Grid>
         </Toolbar>
       </AppBar>

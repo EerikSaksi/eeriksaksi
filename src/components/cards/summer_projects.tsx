@@ -67,7 +67,7 @@ const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alert
     {
       question: 'What do I still want to improve?',
       answer: (
-        <Typography variant='h3'>
+        <Typography variant='h4'>
           I couldn't get in contact with the person who owns{' '}
           <a href='https://github.com/gabolsgabs/DALI' target='_blank' rel="noopener noreferrer">
             this dataset
