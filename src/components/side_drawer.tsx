@@ -14,14 +14,14 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
-      width: `min(${drawerWidth}px, 50%)`,
+      width: `min(${drawerWidth}px, 25%)`,
       flexShrink: 0,
     },
   },
   appBar: {
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: `min(${drawerWidth}px, 50%)`,
+      marginLeft: `min(${drawerWidth}px, 25%)`,
     },
   },
   menuButton: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: `min(${drawerWidth}px, 50%)`,
+    width: `min(${drawerWidth}px, 25%)`,
     shadows:  theme.shadows[20]
   },
   content: {
