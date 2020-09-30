@@ -17,7 +17,7 @@ export const useMetricsTracker = () => {
   useEffect(() => {
     //if we don't have a session id then fetch one
     if (sessionID === '') {
-      fetch('http://localhost:4000/session_id', {
+      fetch('https://rocky-beyond-02836.herokuapp.com/session_id', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -37,7 +37,7 @@ export const useMetricsTracker = () => {
     //every second update the data on the API
     const apiInterval = setInterval(async () => {
       if (sessionID !== '') {
-        await fetch('http://localhost:4000/send_session_info', {
+        await fetch('https://rocky-beyond-02836.herokuapp.com/send_session_info', {
           method: 'POST',
           mode: 'cors',
           headers: {
@@ -52,15 +52,16 @@ export const useMetricsTracker = () => {
     //every .1 seconds increment total time spent on each section by 0.1
     const interval = setInterval(() => {
       setTimeSpentOnSections((timeSpentOnSections) => {
+        var toReturn = {...timeSpentOnSections}
         //add 0.1 to it
-        var newValue = timeSpentOnSections[visibleSection] + 0.1;
+        var newValue = timeSpentOnSections[visibleSection] + 0.2;
 
         //round to nearest tenth
         newValue = Math.round((newValue + Number.EPSILON) * 10) / 10;
-        timeSpentOnSections[visibleSection] = newValue;
-        return timeSpentOnSections;
+        toReturn[visibleSection] = newValue;
+        return toReturn;
       });
-    }, 100);
+    }, 200);
     return () => {
       clearInterval(interval);
       clearInterval(apiInterval);

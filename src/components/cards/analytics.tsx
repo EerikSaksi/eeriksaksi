@@ -25,7 +25,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
   const [currentTab, setCurrentTab] = useState(0);
   const classes = useStyles()
   useEffect(() => {
-    fetch('http://localhost:4000/averages', {
+    fetch('https://rocky-beyond-02836.herokuapp.com/averages', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -42,11 +42,6 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
     //find the max value (at the start)
     if (averageTimeSpent) {
       var tempMaxValue = 0;
-      Object.keys(averageTimeSpent!).forEach((key) => {
-        if (averageTimeSpent![key] > tempMaxValue) {
-          tempMaxValue = averageTimeSpent![key];
-        }
-      });
       Object.keys(timeSpentOnSections).forEach((key) => {
         if (timeSpentOnSections[key] > tempMaxValue) {
           tempMaxValue = timeSpentOnSections[key];
@@ -54,7 +49,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
       });
       setMaxValue(tempMaxValue);
     }
-  }, [averageTimeSpent, timeSpentOnSections,]);
+  }, [averageTimeSpent]);
   const currentSection = sections[currentTab];
 
   //whenever a section changes, update the max value (this is to prevent constant ugly maxValue updates but allows for changes in the range (for example in the analytics))
@@ -91,6 +86,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
         </Grid>
         <Grid item xs={10}>
           <Slider
+            style = {{ transition: 'all 200ms' }}
             max={maxValue}
             value={timeSpentOnSections[currentSection]}
             valueLabelFormat={(value) => `${value}s`}

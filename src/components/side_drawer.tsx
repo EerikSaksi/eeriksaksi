@@ -6,22 +6,20 @@ import AllClasses from 'components/cards/all_cards';
 import {useMetricsTracker} from 'hooks/use_metrics_tracker';
 
 const drawerWidth = 350;
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
-      width: `min(${drawerWidth}px, 25%)`,
+      width: `min(${drawerWidth}px, 40%)`,
       flexShrink: 0,
     },
   },
   appBar: {
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: `min(${drawerWidth}px, 25%)`,
+      marginLeft: `min(${drawerWidth}px, 40%)`,
     },
   },
   menuButton: {
@@ -33,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
-    width: `min(${drawerWidth}px, 25%)`,
+    width: `min(${drawerWidth}px, 40%)`,
     shadows:  theme.shadows[20]
   },
   content: {
@@ -41,7 +39,12 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4)
   },
   listItemText: {
-    fontSize: '2em',
+    [theme.breakpoints.down('xs')]: { 
+      fontSize: '1em'
+    },
+    [theme.breakpoints.up('sm')]: { 
+      fontSize: '2em'
+    }
   },
 }));
 
