@@ -12,7 +12,7 @@ export const useMetricsTracker = () => {
     'Third Year Team Project': 0.0,
     'tunety.pe': 0.0,
     'Fourth Year': 0.0,
-    'Analytics': 0.0
+    Analytics: 0.0,
   });
   useEffect(() => {
     //if we don't have a session id then fetch one
@@ -34,38 +34,32 @@ export const useMetricsTracker = () => {
     }
   }, [sessionID]);
   useEffect(() => {
-    //every second update the data on the API
-    const apiInterval = setInterval(async () => {
-      if (sessionID !== '') {
-        await fetch('https://rocky-beyond-02836.herokuapp.com/send_session_info', {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ sessionID, ...timeSpentOnSections }),
-        })
-      }
-    }, 1000);
-
     //every .1 seconds increment total time spent on each section by 0.1
     const interval = setInterval(() => {
       setTimeSpentOnSections((timeSpentOnSections) => {
-        var toReturn = {...timeSpentOnSections}
+        var toReturn = { ...timeSpentOnSections };
         //add 0.1 to it
-        var newValue = timeSpentOnSections[visibleSection] + 0.2;
+        var newValue = timeSpentOnSections[visibleSection] + 0.5;
 
         //round to nearest tenth
         newValue = Math.round((newValue + Number.EPSILON) * 10) / 10;
         toReturn[visibleSection] = newValue;
         return toReturn;
       });
-    }, 200);
-    return () => {
-      clearInterval(interval);
-      clearInterval(apiInterval);
-    };
+    }, 1000);
+    return () => clearInterval(interval);
   }, [visibleSection, sessionID]);
+  useEffect(() => {
+    fetch('https://rocky-beyond-02836.herokuapp.com/send_session_info', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sessionID, ...timeSpentOnSections }),
+    });
+  }, [timeSpentOnSections]);
+
   return { visibleSection, setVisibleSection, timeSpentOnSections };
 };

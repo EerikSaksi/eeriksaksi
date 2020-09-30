@@ -79,14 +79,14 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
             I could talk about how I learned Material UI and TypeScript for this site (which I can't believe I lived without) or I could show you how I've tracked your reading times and use it to estimate which sections are and aren't interesting. Here's your and the sites average analytics:
           </Typography>
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={10} style = {{ marginBottom: theme.spacing(4) }}>
           <Typography className = {classes.spacedRow} style={{ textAlign: 'center', }} variant='h6'>
             Your spent time
           </Typography>
         </Grid>
-        <Grid item xs={10}>
+        <Grid  style = {{ marginBottom: theme.spacing(4) }} item xs={10}>
           <Slider
-            style = {{ transition: 'all 200ms' }}
+            style = {{ transition: 'all 1000ms' }}
             max={maxValue}
             value={timeSpentOnSections[currentSection]}
             valueLabelFormat={(value) => `${value}s`}
@@ -97,7 +97,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
             ]}
           />
         </Grid>
-        <Grid className = {classes.spacedRow} item xs={10} >
+        <Grid style = {{ marginBottom: theme.spacing(4) }} className = {classes.spacedRow} item xs={10} >
           <Typography style={{ textAlign: 'center' }} variant='h6'>
             Average spent time
           </Typography>

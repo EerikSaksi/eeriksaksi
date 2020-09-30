@@ -10,6 +10,7 @@ const dates = [
     description: 'Started studying in University of Glasgow with second year entry',
     startDate: new Date('2018-09'),
     endDate: new Date('2019-05'),
+    valueLabelDisplay: true
   },
 
   { description: 'Worked at UROS', startDate: new Date('2019-06-25'), endDate: new Date('2019-08-02'), typographyVariant: 'h1', valueLabelDisplay: true },

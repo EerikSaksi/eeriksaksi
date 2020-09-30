@@ -62,7 +62,7 @@ const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alert
   );
 
   const questionAnswers = [
-    { question: 'What is this site?', answer: <Typography variant='h3'>I made this over the summer to get more experience in full stack development during the COVID epidemic when working was unfeasible. The site allows you to practice your typing to the lyrics of a song as it plays, and to create synchronizations for songs that don't have them. If you scroll down on the home page, you should see demonstrations of different features.</Typography> },
+    { question: 'What is this site?', answer: <Typography variant='h4'>I made this over the summer to get more experience in full stack development during the COVID epidemic when working was unfeasible. The site allows you to practice your typing to the lyrics of a song as it plays, and to create synchronizations for songs that don't have them. If you scroll down on the home page, you should see demonstrations of different features.</Typography> },
     { question: 'What technologies did I use?', answer: technologies },
     {
       question: 'What do I still want to improve?',
