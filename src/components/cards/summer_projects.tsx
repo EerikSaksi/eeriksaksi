@@ -28,7 +28,7 @@ const technologyRows = [
   [
     ['Genius API', "Song metadata and song search (also you'd think that Genius, who are known for lyrics would include lyrics in their API, but instead I had to fetch the page and parse the HTML DOM to get them.)"],
     ['Youtube API', 'Much like Genius, YouTube video search and and video metadata. I found that the default YouTube API quota is very low, but I managed to solve this by prefilling the Youtube search with the genius song name (one Youtube Search query as opposed to one whenever the user changes the search input)'],
-    ['Google OAuth 2.0', "When the user logged in on the react client, I sent the token to my server, which converted it to a GoogleID, and then sent back user data (or alerted that the user didn't exist.)"],
+    ['Google OAuth 2.0', "When the user logged in on the React client, I sent the token to my server, which converted it to a GoogleID, and then sent back user data (or alerted that the user didn't exist.)"],
   ],
   [
     ['Heroku', "Hosting is done on a Heroku hobby dyno (this provides free SSL and ensures the server doesn't sleep). Prior to pushing, I run my react App build script, and the tests are run on the Heroku server. I have two custom domains (www.tunety.pe and tunety.pe)."],

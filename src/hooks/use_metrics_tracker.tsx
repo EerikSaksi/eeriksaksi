@@ -59,7 +59,7 @@ export const useMetricsTracker = () => {
       },
       body: JSON.stringify({ sessionID, ...timeSpentOnSections }),
     });
-  }, [timeSpentOnSections]);
+  }, [timeSpentOnSections, sessionID]);
 
   return { visibleSection, setVisibleSection, timeSpentOnSections };
 };

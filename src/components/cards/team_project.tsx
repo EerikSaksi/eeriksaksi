@@ -6,7 +6,7 @@ import QAndAAccordion from 'components/q_and_a_accordion';
 import CustomCardWithBackground from './custom_card_with_background';
 
 const questionAnswers = [
-  { question: 'Assigned task', answer: <Typography variant='h4'>We were assigned with 4 other random students, and a customer to work with. We were assigned to work with Leidos. Leidos wanted an app that could help them manage their parking. </Typography> },
+  { question: 'Assigned task', answer: <Typography variant='h4'>We were assigned with 4 other random students, and a customer to work with (Leidos).Leidos wanted an app that could help them manage their parking. </Typography> },
   { question: 'What was our workflow like?', answer: <Typography variant='h4'>We tried to implement Agile Practices. We had an active backlog, regular stand ups, and regular meetings with the customer to change our goals and specification based on customer feedback. We used branching in Git and reviewed each others merge requests. We created and assigned issues, giving them rating from a scale of 1 to 5, and tried to assign fairly based on area of expertise and other assigned issues.</Typography> },
   { question: 'What was our technology stack?', answer: <Typography variant='h4'>We used React Native in order to avoid creating two native apps, and as an API we used Python with FastAPI and SQLAlchemy for persistent storage.</Typography> },
   { question: 'What responsibilities did I assume?', answer: <Typography variant='h4'>We had no given roles, but I had the most prior experience with backend and frontend experience, and became the de facto lead software developer, (I chose React Native and FastAPI and helped my teammates understand it, and wrote the majority of the React Native app).</Typography> },
