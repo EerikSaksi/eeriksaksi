@@ -93,7 +93,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
             valueLabelDisplay='on'
             marks={[
               { value: 0, label: '0s' },
-              { value: maxValue, label: `${maxValue}s` },
+              { value: maxValue, label: `${maxValue.toFixed(2)}s` },
             ]}
           />
         </Grid>
@@ -110,7 +110,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
             valueLabelDisplay='on'
             marks={[
               { value: 0, label: '0s' },
-              { value: maxValue, label: `${maxValue}s` },
+              { value: maxValue, label: `${maxValue.toFixed(2)}s` },
             ]}
           />
         </Grid>
