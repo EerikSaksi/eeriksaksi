@@ -89,7 +89,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
             style = {{ transition: 'all 1000ms' }}
             max={maxValue}
             value={timeSpentOnSections[currentSection]}
-            valueLabelFormat={(value) => `${value}s`}
+            valueLabelFormat={(value) => `${value.toFixed(2)}s`}
             valueLabelDisplay='on'
             marks={[
               { value: 0, label: '0s' },
@@ -106,7 +106,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
           <Slider
             max={maxValue}
             value={averageTimeSpent ? averageTimeSpent[currentSection] : 0}
-            valueLabelFormat={(value) => `${value}s`}
+            valueLabelFormat={(value) => `${value.toFixed(2)}s`}
             valueLabelDisplay='on'
             marks={[
               { value: 0, label: '0s' },
