@@ -24,7 +24,7 @@ const dates = [
 
 //estimates the readingTime required to read text
 const readingTime = (phrase: string) => {
-  return (phrase.length / 6) * 1000;
+  return (phrase.length / 8) * 1000;
 };
 
 //returns the total difference from the first day to the last day
