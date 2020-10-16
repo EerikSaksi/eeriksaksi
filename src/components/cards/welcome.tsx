@@ -83,7 +83,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
             <Avatar style={{ height: 200, width: 200, justifyContent: 'center' }} alt='Eerik Saksi' src={require('media/orek.jpg')} />
           </Grid>
           <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
-            <Grid item sm={1} xs={2} style={{ transform: 'translateY(20%)', }}>
+            <Grid item sm={1} xs={2} style = {{ display: 'flex', alignSelf: 'center' }}>
               <PhoneIcon />
             </Grid>
             <Grid item alignItems = "flex-start">
@@ -117,7 +117,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
             </Grid>
           </Grid>
           <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
-            <Grid item sm={1} xs={2} style={{ transform: 'translateY(15%)' }}>
+            <Grid item sm={1} xs={2} style = {{ display: 'flex', alignSelf: 'center' }}>
               <GitHubIcon />
             </Grid>
             <Grid item>
@@ -129,12 +129,12 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
             </Grid>
           </Grid>
           <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
-            <Grid item sm={1} xs={2} style={{ transform: 'translateY(15%)' }}>
+            <Grid item sm={1} xs={2} style={{ display: 'flex', alignSelf: 'center' }}>
               <PictureAsPdfIcon />
             </Grid>
             <Grid item>
               <Typography style={{ textAlign: 'center' }} variant='h5'>
-                <a href='https://drive.google.com/uc?export=download&id=1ZkthduWcQRQuJ70Ma_PTB11x7ePEzwM7' download target='_blank' rel='noopener noreferrer'>
+                <a href='https://drive.google.com/uc?export=download&id=1ZkthduWcQRQuJ70Ma_PTB11x7ePEzwM7' download >
                   Résumé
                 </a>
               </Typography>

@@ -20,7 +20,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: `min(${drawerWidth}px, 40%)`,
+
     },
+    boxShadow:  theme.shadows[24]
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -32,7 +34,12 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: `min(${drawerWidth}px, 40%)`,
-    shadows:  theme.shadows[20]
+    boxShadow:  theme.shadows[24],
+    background: 'rgba(255, 255, 255, .8)',
+    '&:hover': {
+      background:  'rgba(255, 255, 255, 1)'
+    },
+    transition: 'all 500ms'
   },
   content: {
     width: '100%',
@@ -44,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('sm')]: { 
       fontSize: '2em'
-    }
+    },
   },
 }));
 
