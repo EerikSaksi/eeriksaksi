@@ -18,7 +18,7 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
           </Typography>
         </Hidden>
         <Typography style={{ textAlign: 'center' }} variant='h4'>
-          I was given a legacy system running where data from a MYSQL database was being processed by LabVIEW and a neural network written in C. I managed to reverse engineer and replace LabVIEW and the C library with a singular Python program, which allowed UROS to use a newer neural network technology whilst maintaining backwards compatibility.
+          <Paper>I was given a legacy system running where data from a MYSQL database was being processed by LabVIEW and a neural network written in C. I managed to reverse engineer and replace LabVIEW and the C library with a singular Python program, which allowed UROS to use a newer neural network technology whilst maintaining backwards compatibility.</Paper>
         </Typography>
       </Grid>
     </Grid>
@@ -66,7 +66,7 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
   );
 
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/uros.webp'), preview: require('media/uros.webp') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 100%' }} cardStyle={{ padding: theme.spacing(4) }} photoCredit='kolster.fi' alertCurrentlyVisible={alertCurrentlyVisible}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/uros.webp'), preview: require('media/uros.webp') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '100% 100%' }} photoCredit='kolster.fi' alertCurrentlyVisible={alertCurrentlyVisible}>
       {content}
     </CustomCardWithBackground>
   );

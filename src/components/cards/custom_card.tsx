@@ -14,7 +14,7 @@ const CustomCard = forwardRef<unknown, { children: React.ReactNode; style?: Reac
   return (
     <Grid alignItems='center' container style={{ height: `calc(100vh - ${theme.spacing(6) + 64}px)`, marginBottom: theme.spacing(6) + 64, scrollSnapAlign: 'center', scrollSnapStop: 'always', ...containerStyle }}>
       <Grid item xs={12}>
-        <Paper ref={ref} style={{ alignSelf: 'center',    ...style }}>
+        <Paper className={classes.paper} ref={ref} style={{ alignSelf: 'center', ...style }}>
           {children}
         </Paper>
       </Grid>
