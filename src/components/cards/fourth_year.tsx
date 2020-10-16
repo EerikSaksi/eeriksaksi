@@ -29,7 +29,7 @@ const questionAnswers = [
   {
     question: 'What is my dissertation project?',
     answer: (
-      <Typography style={{ padding: 16 }} variant='h4'>
+      <Typography style={{ padding: 16 }} variant='h5'>
         I am working on a collaborative activity tracker app. The intent of the app is to encourage accountability for training partners through a common goal on the app that can only be achieved through both people consistently training. I might make it similar to an RPG clicker game, where DPS is increased through adherance but combined DPS is required to progress. I'm thinking of using React Native to make the app cross platform, as well as PostGraphile (I have been eyeing this library for a while, it auto generates a GraphQL schema from a PostgreSQL database eliminating the N+1 problem and eliminating the need for a lot of boilerplate code.)
       </Typography>
     ),

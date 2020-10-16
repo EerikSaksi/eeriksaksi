@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Avatar, Grid, Typography } from '@material-ui/core';
+import { Avatar, Grid, Hidden, Typography } from '@material-ui/core';
 import CustomCardWithBackground from './custom_card_with_background';
 import { ProgressiveImageProps } from 'react-progressive-image-loading';
-const Welcome: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyVisible}) => {
-  const [inView, setInView] = useState(false)
+import PhoneIcon from '@material-ui/icons/Phone';
+import MailIcon from '@material-ui/icons/Mail';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
+  const [inView, setInView] = useState(false);
 
   //whether or not the balls should start moving, set from the useEffect hook
   const [ballsShifted, setBallsShifted] = useState(false);
@@ -33,7 +37,7 @@ const Welcome: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyVi
     }
   }, [ballRowWidth]);
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/coffee.jpg'), preview: require('media/coffee-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '0% 20%' }}  setInView = {setInView} alertCurrentlyVisible = {alertCurrentlyVisible}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/coffee.jpg'), preview: require('media/coffee-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '0% 20%' }} setInView={setInView} alertCurrentlyVisible={alertCurrentlyVisible}>
       <Grid container justify='space-evenly'>
         <Grid item sm={6}>
           <Grid container justify='flex-end'>
@@ -74,9 +78,67 @@ const Welcome: React.FC<{alertCurrentlyVisible:() => void}> = ({alertCurrentlyVi
             </Grid>
           </Grid>
         </Grid>
-        <Grid item sm={1}>
-          <Grid container justify='flex-end'>
+        <Grid item sm={3}>
+          <Grid style={{ marginBottom: '0.5em' }} container justify='center'>
             <Avatar style={{ height: 200, width: 200, justifyContent: 'center' }} alt='Eerik Saksi' src={require('media/orek.jpg')} />
+          </Grid>
+          <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
+            <Grid item sm={1} xs={2} style={{ transform: 'translateY(20%)', }}>
+              <PhoneIcon />
+            </Grid>
+            <Grid item alignItems = "flex-start">
+              <Typography style={{ textAlign: 'center' }} variant='h5'>
+                <a href='tel:+44 7519 698 702'>
+                  <Hidden xsDown>
+                    +44 7519 698 702
+                  </Hidden>
+                  <Hidden smUp>
+                    Mobile
+                  </Hidden>
+                </a>
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
+            <Grid style = {{ display: 'flex', alignSelf: 'center' }} item sm={1} xs={2} >
+              <MailIcon />
+            </Grid>
+            <Grid item>
+              <Typography style={{ textAlign: 'center' }} variant='h5'>
+                <a href='mailto:saksi.eerik@gmail.com'>
+                  <Hidden xsDown>
+                    saksi.eerik@gmail.com
+                  </Hidden>
+                  <Hidden smUp>
+                    Email
+                  </Hidden>
+                </a>
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
+            <Grid item sm={1} xs={2} style={{ transform: 'translateY(15%)' }}>
+              <GitHubIcon />
+            </Grid>
+            <Grid item>
+              <Typography style={{ textAlign: 'center' }} variant='h5'>
+                <a href='https://github.com/EerikSaksi' target='_blank' rel='noopener noreferrer'>
+                  EerikSaksi
+                </a>
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
+            <Grid item sm={1} xs={2} style={{ transform: 'translateY(15%)' }}>
+              <PictureAsPdfIcon />
+            </Grid>
+            <Grid item>
+              <Typography style={{ textAlign: 'center' }} variant='h5'>
+                <a href='https://drive.google.com/uc?export=download&id=1ZkthduWcQRQuJ70Ma_PTB11x7ePEzwM7' download target='_blank' rel='noopener noreferrer'>
+                  Résumé
+                </a>
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

@@ -26,21 +26,23 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
   const testimonial = (
     <Grid item xs={12}>
       <Hidden xsDown>
-        <Typography style={{ textAlign: 'center' }} variant='h2'>
+        <Typography style={{ textAlign: 'center' }} variant='h3'>
           UROS Internship
         </Typography>
       </Hidden>
       <Grid item xs={12} style={{ marginBottom: theme.spacing(2) }}>
-        <Grid container alignItems='center' justify='center'>
+        <Grid container alignItems='center' justify='space-evenly'>
           <Grid item xs={12} sm={2}>
+            <Paper>
             <Grid container justify='center'>
-              <Avatar style={{ justifyContent: 'center', textAlign: 'center', height: 100, width: 100 }} src={require('media/jyrki.jpeg')} />
-              <Typography style={{ textAlign: 'center' }} variant='h5'>
-                Jyrki Hyvärinen, my supervisor
-              </Typography>
+                <Avatar style={{ justifyContent: 'center', textAlign: 'center', height: 100, width: 100 }} src={require('media/jyrki.jpeg')} />
+                <Typography style={{ textAlign: 'center' }} variant='h5'>
+                  Jyrki Hyvärinen, my supervisor
+                </Typography>
             </Grid>
+          </Paper>
           </Grid>
-          <Grid item xs={12} sm={10}>
+          <Grid item xs={12} sm={9}>
             <Paper>
               <Typography variant='h4'>"Eerik filled very well his position as a trainee in our software development team. Eerik has enthusiastic attitude towards learning new areas, even difficult ones. This mindset helped us to achieve good goals in a short time. Promising young talent."</Typography>
             </Paper>

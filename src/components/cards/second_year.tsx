@@ -30,7 +30,7 @@ const SecondYear: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurr
         <Hidden xsDown>
           <Grid container justify='center'>
             <Grid item xs={12}>
-              <Typography style={{ textAlign: 'center' }} variant='h1'>
+              <Typography style={{ textAlign: 'center' }} variant='h2'>
                 2nd Year at University of Glasgow
               </Typography>
             </Grid>
