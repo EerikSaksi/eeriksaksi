@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(6),
     },
+    boxShadow: theme.shadows[24]
   },
 }));
 const CustomCard = forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties; containerStyle?: React.CSSProperties }>(({ children, style, containerStyle }, ref) => {

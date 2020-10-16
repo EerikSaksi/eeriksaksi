@@ -22,7 +22,7 @@ const CourseTable: React.FC<{ children?: React.ReactNode; headers: Array<string>
         {children}
       </Grid>
       <Grid item xs={12}>
-        <TableContainer component={Paper}>
+        <TableContainer style = {{ boxShadow: 'none' }} component={Paper} >
           <Table aria-label='simple table' size='small'>
             <TableHead>
               <TableRow className = {classes.row}>

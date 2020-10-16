@@ -18,7 +18,7 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
           </Typography>
         </Hidden>
         <Typography style={{ textAlign: 'center' }} variant='h4'>
-          <Paper>I was given a legacy system running where data from a MYSQL database was being processed by LabVIEW and a neural network written in C. I managed to reverse engineer and replace LabVIEW and the C library with a singular Python program, which allowed UROS to use a newer neural network technology whilst maintaining backwards compatibility.</Paper>
+          I was given a legacy system running where data from a MYSQL database was being processed by LabVIEW and a neural network written in C. I managed to reverse engineer and replace LabVIEW and the C library with a singular Python program, which allowed UROS to use a newer neural network technology whilst maintaining backwards compatibility.
         </Typography>
       </Grid>
     </Grid>
@@ -33,19 +33,15 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
       <Grid item xs={12} style={{ marginBottom: theme.spacing(2) }}>
         <Grid container alignItems='center' justify='space-evenly'>
           <Grid item xs={12} sm={2}>
-            <Paper>
             <Grid container justify='center'>
                 <Avatar style={{ justifyContent: 'center', textAlign: 'center', height: 100, width: 100 }} src={require('media/jyrki.jpeg')} />
                 <Typography style={{ textAlign: 'center' }} variant='h5'>
                   Jyrki Hyvärinen, my supervisor
                 </Typography>
             </Grid>
-          </Paper>
           </Grid>
           <Grid item xs={12} sm={9}>
-            <Paper>
               <Typography variant='h4'>"Eerik filled very well his position as a trainee in our software development team. Eerik has enthusiastic attitude towards learning new areas, even difficult ones. This mindset helped us to achieve good goals in a short time. Promising young talent."</Typography>
-            </Paper>
           </Grid>
         </Grid>
       </Grid>
