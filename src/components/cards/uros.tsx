@@ -13,11 +13,11 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
     <Grid container justify='center'>
       <Grid item>
         <Hidden xsDown>
-          <Typography style={{ textAlign: 'center' }} variant='h2'>
+          <Typography style={{ textAlign: 'center', marginTop: usingPhone ? 0 :  theme.spacing(4)}} variant='h3'>
             What did I do at UROS?
           </Typography>
         </Hidden>
-        <Typography style={{ textAlign: 'center' }} variant='h4'>
+        <Typography style={{ textAlign: 'center', }} variant='h4'>
           I was given a legacy system running where data from a MYSQL database was being processed by LabVIEW and a neural network written in C. I managed to reverse engineer and replace LabVIEW and the C library with a singular Python program, which allowed UROS to use a newer neural network technology whilst maintaining backwards compatibility.
         </Typography>
       </Grid>

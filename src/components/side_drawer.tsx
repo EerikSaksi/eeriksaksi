@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
     transition: 'all 500ms'
   },
+
   content: {
     width: '100%',
     padding: theme.spacing(4)
