@@ -1,11 +1,20 @@
 import React, { forwardRef } from 'react';
-import { Grid, useTheme, Paper } from '@material-ui/core';
-const CustomCard = forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties, containerStyle?: React.CSSProperties }>(({ children, style, containerStyle  }, ref) => {
+import { Grid, useTheme, Paper, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(6),
+    },
+  },
+}));
+const CustomCard = forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties; containerStyle?: React.CSSProperties }>(({ children, style, containerStyle }, ref) => {
+  const classes = useStyles();
   const theme = useTheme();
   return (
-    <Grid alignItems='center' container style={{  height: `calc(100vh - ${theme.spacing(6) + 64}px)`, marginBottom: theme.spacing(6) + 64,    scrollSnapAlign: 'center',  scrollSnapStop: 'always',  ...containerStyle, }}>
+    <Grid alignItems='center' container style={{ height: `calc(100vh - ${theme.spacing(6) + 64}px)`, marginBottom: theme.spacing(6) + 64, scrollSnapAlign: 'center', scrollSnapStop: 'always', ...containerStyle }}>
       <Grid item xs={12}>
-        <Paper ref={ref} style={{  alignSelf: 'center',  ...style, }}>
+        <Paper ref={ref} style={{ alignSelf: 'center',    ...style }}>
           {children}
         </Paper>
       </Grid>
