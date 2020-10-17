@@ -10,11 +10,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+var isMacLike = /(Mac)/i.test(navigator.platform);
+console.log(isMacLike);
 const CustomCard = forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties; containerStyle?: React.CSSProperties }>(({ children, style, containerStyle }, ref) => {
   const classes = useStyles();
   const theme = useTheme();
   return (
-    <Grid alignItems='center' container style={{ height: `calc(100vh - ${theme.spacing(6) + 64}px)`, maxWidth: 'calc(100vw - 409px)',  marginBottom: theme.spacing(6) + 64, scrollSnapAlign: 'center', scrollSnapStop: 'always', ...containerStyle }}>
+    <Grid alignItems='center' container style={{ height: `calc(100vh - ${theme.spacing(6) + 64}px)`, maxWidth: isMacLike ? 'calc(100vw - 409px)' : undefined,  marginBottom: theme.spacing(6) + 64, scrollSnapAlign: 'center', scrollSnapStop: 'always', ...containerStyle }}>
       <Grid item xs={12}>
         <Paper className={classes.paper} ref={ref} style={{ alignSelf: 'center', ...style }}>
           {children}
