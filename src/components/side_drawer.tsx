@@ -5,9 +5,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AllClasses from 'components/cards/all_cards';
 import {useMetricsTracker} from 'hooks/use_metrics_tracker';
 
-const drawerWidth = 350;
-const useStyles = makeStyles((theme) => ({
-  root: {
+const drawerWidth = 350; const useStyles = makeStyles((theme) => ({ root: {
     display: 'flex',
   },
   drawer: {
