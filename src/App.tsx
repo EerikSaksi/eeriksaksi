@@ -1,13 +1,15 @@
 import React  from 'react';
-import SideDrawer from 'components/side_drawer';
+import AllCards from 'components/cards/all_cards'
 import 'App.css';
+import {useMetricsTracker} from 'hooks/use_metrics_tracker';
 const App: React.FC = () => {
   const jumpToNthElement = async (nth: number) => {
     document.getElementsByClassName('app')[0]!.scrollTop = (nth * window.innerHeight) 
   }
+  const {setVisibleSection, timeSpentOnSections} = useMetricsTracker()
   return (
-    <div className='app' style={{ height: '100vh', scrollSnapType: 'y mandatory', overflowY: 'scroll', scrollPaddingTop: 64, }}>
-      <SideDrawer jumpToNthElement = {jumpToNthElement} />
+    <div className='app' style={{ height: '100vh', scrollSnapType: 'y mandatory', overflowY: 'scroll', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <AllCards setVisibleSection={setVisibleSection} timeSpentOnSections = {timeSpentOnSections}/>
     </div>
   );
 };

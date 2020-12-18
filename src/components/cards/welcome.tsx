@@ -37,7 +37,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
     }
   }, [ballRowWidth]);
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/coffee.jpg'), preview: require('media/coffee-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '0% 20%' }} setInView={setInView} alertCurrentlyVisible={alertCurrentlyVisible}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/coffee.jpg'), preview: require('media/coffee-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '0% 20%', }} setInView={setInView} alertCurrentlyVisible={alertCurrentlyVisible}>
       <Grid container justify='space-evenly'>
         <Grid item sm={6}>
           <Grid container justify='flex-end'>
