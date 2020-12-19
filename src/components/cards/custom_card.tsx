@@ -10,13 +10,14 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 22px 30px -14px rgba(0,0,0,0.8),0px 48px 76px 6px rgba(0,0,0,0.56),0px 18px 92px 16px rgba(0,0,0,0.48)",
     alignSelf: "center", 
     width: "80%", 
-    maxWidth: "80%"
+    maxWidth: "80%",
   },
   grid: {
     height: "100vh",
     scrollSnapAlign: "center",
     scrollSnapStop: "always",
     alignItems: "center",
+  
     justifyContent: "center",
   },
 }));

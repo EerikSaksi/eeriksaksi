@@ -52,15 +52,13 @@ const CustomCardWithBackground: React.FC<{
       {...progressiveImageProps}
       render={(src, style) => {
         return (
-          <React.Fragment>
           <CustomCard ref={ref} style={cardStyle}>
-            <div className={classes.backgroundImage} style={{ ...style, ...backgroundImageStyle, opacity: inView && entry ? entry.intersectionRatio : 0, backgroundImage: `url(${src})`,  transition: 'all 50ms'}}>
+            <div className={classes.backgroundImage} style={{ ...style, ...backgroundImageStyle, opacity: inView ? 1 : 0, backgroundImage: `url(${src})`, transition: 'all 350ms' }}>
               {photoCredit ? <p className={classes.credit}>{`Photo credit: ${photoCredit}`}</p> : null}
-              {children}
+              {childrenOutsideCard}
             </div>
-
+            {children}
           </CustomCard>
-        </React.Fragment>
         );
       }}
     />
