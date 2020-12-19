@@ -53,7 +53,7 @@ const CustomCardWithBackground: React.FC<{
       render={(src, style) => {
         return (
           <CustomCard ref={ref} style={cardStyle}>
-            <div className={classes.backgroundImage} style={{ ...style, ...backgroundImageStyle, opacity: inView ? 1 : 0, backgroundImage: `url(${src})`, transition: 'all 350ms' }}>
+            <div className={classes.backgroundImage} style={{ ...style, ...backgroundImageStyle, opacity: inView && entry ? entry.intersectionRatio : 0, backgroundImage: `url(${src})`, transition: 'all 350ms' }}>
               {photoCredit ? <p className={classes.credit}>{`Photo credit: ${photoCredit}`}</p> : null}
               {childrenOutsideCard}
             </div>
