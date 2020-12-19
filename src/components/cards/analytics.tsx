@@ -9,10 +9,16 @@ const sections = ['Welcome', 'Timeline', 'Second Year', 'UROS', 'Third Year', 'T
 
 const useStyles = makeStyles(theme => ({
   spacedRow: {
+    [theme.breakpoints.only('xs')]: {
+      marginBottom: theme.spacing(8)
+    },
     [theme.breakpoints.up('sm')]: {
       marginBottom: theme.spacing(8)
     },
   },
+  centeredText: {
+    textAlign: 'center'
+  }
 }))
 
 
@@ -61,7 +67,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
     }
   }, [currentTab, timeSpentOnSections, averageTimeSpent, currentSection]);
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '25%, 25%',  }} photoCredit='University of Glasgow Facebook' alertCurrentlyVisible={alertCurrentlyVisible} cardStyle={{ minHeight: '40vh',  marginRight: 0, padding: 0 }}>
+    <CustomCardWithBackground progressiveImageProps={{ src: require('media/glasgow-grass.jpg'), preview: require('media/glasgow-grass-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '25%, 25%',  }} photoCredit='University of Glasgow Facebook' alertCurrentlyVisible={alertCurrentlyVisible} cardStyle={{minHeight: '40vh',  marginRight: 0, padding: 0}}>
       <Grid  container justify='center' >
         <Tabs  value={currentTab} onChange={(_event, value) => setCurrentTab(value)} indicatorColor='primary' textColor='primary' variant='scrollable' scrollButtons = {usingPhone ? 'on' : 'off'} aria-label='scrollable auto tabs example' >
           <Tab label='Welcome' />
@@ -74,17 +80,16 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
           <Tab label='Fourth Year' />
           <Tab label='Analytics' />
         </Tabs>
-        <Grid item xs={12} style={{ marginBottom: theme.spacing(4) }}>
-          <Typography style={{ textAlign: 'center' }} variant='h5'>
-            I could talk about how I learned Material UI and TypeScript for this site (which I can't believe I lived without) or I could show you how I've tracked your reading times and use it to estimate which sections are and aren't interesting. Here's your and the sites average analytics:
-          </Typography>
+        <Grid item xs={12} >
+          <Typography className = {classes.centeredText} variant='h5'>
+            I could talk about how I learned Material UI and TypeScript for this site (which I can't believe I lived without) or I could show you how I've tracked your reading times and use it to estimate which sections are and aren't interesting. Here's your and the sites average analytics:          </Typography>
         </Grid>
-        <Grid item xs={10} style = {{ marginBottom: theme.spacing(4) }}>
-          <Typography className = {classes.spacedRow} style={{ textAlign: 'center', }} variant='h6'>
+        <Grid item xs={10} >
+          <Typography className = {classes.centeredText}  variant='h6'>
             Your spent time
           </Typography>
         </Grid>
-        <Grid  style = {{ marginBottom: theme.spacing(4) }} item xs={10}>
+        <Grid  item xs={10}>
           <Slider
             style = {{ transition: 'all 1000ms' }}
             max={maxValue}
@@ -97,8 +102,8 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
             ]}
           />
         </Grid>
-        <Grid style = {{ marginBottom: theme.spacing(4) }} className = {classes.spacedRow} item xs={10} >
-          <Typography style={{ textAlign: 'center' }} variant='h6'>
+        <Grid  className = {classes.spacedRow} item xs={10} >
+          <Typography className = {classes.centeredText} variant='h6'>
             Average spent time
           </Typography>
         </Grid>

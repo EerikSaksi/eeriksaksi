@@ -12,8 +12,12 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       height: '2.5em'
     },
+  },
+  tableContainer: {
+    boxShadow: 'none' 
   }
 }))
+
 const CourseTable: React.FC<{ children?: React.ReactNode; headers: Array<string>; rowCols: RowCols }> = ({ children, headers, rowCols }) => {
   const classes = useStyles()
   return (
@@ -22,7 +26,7 @@ const CourseTable: React.FC<{ children?: React.ReactNode; headers: Array<string>
         {children}
       </Grid>
       <Grid item xs={12}>
-        <TableContainer style = {{ boxShadow: 'none' }} component={Paper} >
+        <TableContainer className = {classes.tableContainer} component={Paper} >
           <Table aria-label='simple table' size='small'>
             <TableHead>
               <TableRow className = {classes.row}>

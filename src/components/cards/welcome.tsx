@@ -1,12 +1,54 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Avatar, Grid, Hidden, Typography } from '@material-ui/core';
-import CustomCardWithBackground from './custom_card_with_background';
-import { ProgressiveImageProps } from 'react-progressive-image-loading';
-import PhoneIcon from '@material-ui/icons/Phone';
-import MailIcon from '@material-ui/icons/Mail';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+import React, { useState, useEffect, useRef } from "react";
+import { Avatar, Grid, Hidden, Typography } from "@material-ui/core";
+import CustomCardWithBackground from "./custom_card_with_background";
+import { ProgressiveImageProps } from "react-progressive-image-loading";
+import PhoneIcon from "@material-ui/icons/Phone";
+import MailIcon from "@material-ui/icons/Mail";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
+  typography: {
+    textAlign: "center",
+  },
+  greenAvatar: {
+    transition: "all ease-in-out 1.5s",
+    width: 100,
+    height: 100,
+    backgroundColor: "green",
+  },
+  blueAvatar: {
+    backgroundBlendMode: "multiply",
+    opacity: 0.7,
+    transition: "all ease-in-out 1.5s",
+    width: 100,
+    height: 100,
+    backgroundColor: "blue",
+  },
+  yellowAvatar: {
+    backgroundBlendMode: "multiply",
+    opacity: 0.7,
+    transition: "all ease-in-out 1.5s",
+    width: 100,
+    height: 100,
+    backgroundColor: "yellow",
+    color: "black",
+  },
+  contactInfo: {
+    marginBottom: "0.5em",
+  },
+  profileAvatar: {
+    height: 200,
+    width: 200,
+    justifyContent: "center",
+  },
+  iconGrid: {
+    display: "flex",
+    alignSelf: "center",
+  },
+}));
 const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
+  const classes = useStyles();
   const [inView, setInView] = useState(false);
 
   //whether or not the balls should start moving, set from the useEffect hook
@@ -37,104 +79,105 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
     }
   }, [ballRowWidth]);
   return (
-    <CustomCardWithBackground progressiveImageProps={{ src: require('media/coffee.jpg'), preview: require('media/coffee-tiny.jpg') } as ProgressiveImageProps} backgroundImageStyle={{ backgroundPosition: '0% 20%', }} setInView={setInView} alertCurrentlyVisible={alertCurrentlyVisible}>
-      <Grid container justify='space-evenly'>
+    <CustomCardWithBackground
+      progressiveImageProps={{ src: require("media/coffee.jpg"), preview: require("media/coffee-tiny.jpg") } as ProgressiveImageProps}
+      backgroundImageStyle={{ backgroundPosition: "0% 20%" }}
+      setInView={setInView}
+      alertCurrentlyVisible={alertCurrentlyVisible}
+    >
+      <Grid container justify="space-evenly">
         <Grid item sm={6}>
-          <Grid container justify='flex-end'>
+          <Grid container justify="flex-end">
             <Grid item xs={12}>
-              <Typography style={{ textAlign: 'center' }} variant='h1'>
+              <Typography className={classes.typography} variant="h1">
                 Eerik Saksi
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography style={{ textAlign: 'center' }} variant='h2'>
+              <Typography className={classes.typography} variant="h2">
                 Aspiring
               </Typography>
             </Grid>
             {showFullstack ? (
               <Grid item xs={12}>
-                <Grid container justify='center'>
-                  <Avatar style={{ transition: 'all ease-in-out 1.5s', width: 100, height: 100, backgroundColor: 'green' }}>Fullstack</Avatar>
+                <Grid container justify="center">
+                  <Avatar className={classes.greenAvatar}>Fullstack</Avatar>
                 </Grid>
               </Grid>
             ) : (
               <>
                 <Grid ref={ballRowRef} item xs={6}>
-                  <Grid container justify='flex-start'>
-                    <Avatar style={{ backgroundBlendMode: 'multiply', opacity: 0.7, transition: 'all ease-in-out 1.5s', left: ballsShifted ? ballRowWidth : 0, width: 100, height: 100, backgroundColor: 'blue' }}>Frontend</Avatar>
+                  <Grid container justify="flex-start">
+                    <Avatar className={classes.blueAvatar} style={{ left: ballsShifted ? ballRowWidth : 0 }}>
+                      Frontend
+                    </Avatar>
                   </Grid>
                 </Grid>
                 <Grid item xs={6}>
-                  <Grid container justify='flex-end'>
-                    <Avatar style={{ backgroundBlendMode: 'multiply', opacity: 0.7, transition: 'all ease-in-out 1.5s', right: ballsShifted ? ballRowWidth : 0, width: 100, height: 100, backgroundColor: 'yellow', color: 'black' }}>Backend</Avatar>
+                  <Grid container justify="flex-end">
+                    <Avatar className={classes.yellowAvatar} style={{ right: ballsShifted ? ballRowWidth : 0 }}>
+                      Backend
+                    </Avatar>
                   </Grid>
                 </Grid>
               </>
             )}
             <Grid item xs={12}>
-              <Typography style={{ textAlign: 'center' }} variant='h2'>
+              <Typography className={classes.typography} variant="h2">
                 Developer
               </Typography>
             </Grid>
           </Grid>
         </Grid>
         <Grid item sm={3}>
-          <Grid style={{ marginBottom: '0.5em' }} container justify='center'>
-            <Avatar style={{ height: 200, width: 200, justifyContent: 'center' }} alt='Eerik Saksi' src={require('media/orek.jpg')} />
+          <Grid className={classes.contactInfo} container justify="center">
+            <Avatar className={classes.profileAvatar} alt="Eerik Saksi" src={require("media/orek.jpg")} />
           </Grid>
-          <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
-            <Grid item sm={1} xs={2} style = {{ display: 'flex', alignSelf: 'center' }}>
+          <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
+            <Grid item sm={1} xs={2} className = {classes.iconGrid}>
               <PhoneIcon />
             </Grid>
-            <Grid item alignItems = "flex-start">
-              <Typography style={{ textAlign: 'center' }} variant='h5'>
-                <a href='tel:+44 7519 698 702'>
-                  <Hidden xsDown>
-                    +44 7519 698 702
-                  </Hidden>
-                  <Hidden smUp>
-                    Mobile
-                  </Hidden>
+            <Grid item alignItems="flex-start">
+              <Typography className={classes.typography} variant="h5">
+                <a href="tel:+44 7519 698 702">
+                  <Hidden xsDown>+44 7519 698 702</Hidden>
+                  <Hidden smUp>Mobile</Hidden>
                 </a>
               </Typography>
             </Grid>
           </Grid>
-          <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
-            <Grid style = {{ display: 'flex', alignSelf: 'center' }} item sm={1} xs={2} >
+          <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
+            <Grid className = {classes.iconGrid} item sm={1} xs={2}>
               <MailIcon />
             </Grid>
             <Grid item>
-              <Typography style={{ textAlign: 'center' }} variant='h5'>
-                <a href='mailto:saksi.eerik@gmail.com'>
-                  <Hidden xsDown>
-                    saksi.eerik@gmail.com
-                  </Hidden>
-                  <Hidden smUp>
-                    Email
-                  </Hidden>
+              <Typography className={classes.typography} variant="h5">
+                <a href="mailto:saksi.eerik@gmail.com">
+                  <Hidden xsDown>saksi.eerik@gmail.com</Hidden>
+                  <Hidden smUp>Email</Hidden>
                 </a>
               </Typography>
             </Grid>
           </Grid>
-          <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
-            <Grid item sm={1} xs={2} style = {{ display: 'flex', alignSelf: 'center' }}>
+          <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
+            <Grid item sm={1} xs={2} className = {classes.iconGrid}>
               <GitHubIcon />
             </Grid>
             <Grid item>
-              <Typography style={{ textAlign: 'center' }} variant='h5'>
-                <a href='https://github.com/EerikSaksi' target='_blank' rel='noopener noreferrer'>
+              <Typography className={classes.typography} variant="h5">
+                <a href="https://github.com/EerikSaksi" target="_blank" rel="noopener noreferrer">
                   EerikSaksi
                 </a>
               </Typography>
             </Grid>
           </Grid>
-          <Grid style={{ marginBottom: '0.5em' }} container alignItems='flex-end' justify='center'>
-            <Grid item sm={1} xs={2} style={{ display: 'flex', alignSelf: 'center' }}>
+          <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
+            <Grid item sm={1} xs={2} className = {classes.iconGrid}>
               <PictureAsPdfIcon />
             </Grid>
             <Grid item>
-              <Typography style={{ textAlign: 'center' }} variant='h5'>
-                <a href='https://drive.google.com/uc?export=download&id=1ZkthduWcQRQuJ70Ma_PTB11x7ePEzwM7' download >
+              <Typography className={classes.typography} variant="h5">
+                <a href="https://drive.google.com/uc?export=download&id=1ZkthduWcQRQuJ70Ma_PTB11x7ePEzwM7" download>
                   Résumé
                 </a>
               </Typography>
