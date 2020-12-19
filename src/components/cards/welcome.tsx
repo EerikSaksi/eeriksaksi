@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Avatar, Grid, Hidden, Typography } from "@material-ui/core";
 import CustomCardWithBackground from "./custom_card_with_background";
-import { ProgressiveImageProps } from "react-progressive-image-loading";
+import ProgressiveImage, { ProgressiveImageProps } from "react-progressive-image-loading";
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
 import GitHubIcon from "@material-ui/icons/GitHub";
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   iconGrid: {
     display: "flex",
     alignSelf: "center",
-    marginRight: 8
+    marginRight: 8,
   },
 }));
 const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
@@ -132,10 +132,14 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
         </Grid>
         <Grid item sm={3}>
           <Grid className={classes.contactInfo} container justify="center">
-            <Avatar className={classes.profileAvatar} alt="Eerik Saksi" src={require("media/orek.jpg")} />
+            <ProgressiveImage
+              preview={require("media/orek-tiny.jpg")}
+              src={require("media/orek.jpg")}
+              render={(src, style) => <Avatar className={classes.profileAvatar} alt="Eerik Saksi" src={src} style={style} />}
+            />
           </Grid>
           <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
-            <Grid item sm={1} xs={2} className = {classes.iconGrid}>
+            <Grid item sm={1} xs={2} className={classes.iconGrid}>
               <PhoneIcon />
             </Grid>
             <Grid item alignItems="flex-start">
@@ -148,7 +152,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
             </Grid>
           </Grid>
           <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
-            <Grid className = {classes.iconGrid} item sm={1} xs={2}>
+            <Grid className={classes.iconGrid} item sm={1} xs={2}>
               <MailIcon />
             </Grid>
             <Grid item>
@@ -161,7 +165,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
             </Grid>
           </Grid>
           <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
-            <Grid item sm={1} xs={2} className = {classes.iconGrid}>
+            <Grid item sm={1} xs={2} className={classes.iconGrid}>
               <GitHubIcon />
             </Grid>
             <Grid item>
@@ -173,7 +177,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
             </Grid>
           </Grid>
           <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
-            <Grid item sm={1} xs={2} className = {classes.iconGrid}>
+            <Grid item sm={1} xs={2} className={classes.iconGrid}>
               <PictureAsPdfIcon />
             </Grid>
             <Grid item>
