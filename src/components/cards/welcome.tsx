@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   iconGrid: {
     display: "flex",
     alignSelf: "center",
+    marginRight: 8
   },
 }));
 const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {

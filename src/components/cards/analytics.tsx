@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(8),
     },
     [theme.breakpoints.up("sm")]: {
-      marginBottom: theme.spacing(8),
+      marginBottom: theme.spacing(12),
     },
   },
   centeredText: {
@@ -89,13 +89,13 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
           <Tab label="tunety.pe" />
           <Tab label="Analytics" />
         </Tabs>
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <Typography className={classes.centeredText} variant="h5">
             I could talk about how I learned Material UI and TypeScript for this site (which I can't believe I lived without) or I could show you how I've tracked your reading times and use it to
             estimate which sections are and aren't interesting. Here's your and the sites average analytics:{" "}
           </Typography>
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={10} className = {classes.spacedRow}>
           <Typography className={classes.centeredText} variant="h6">
             Your spent time
           </Typography>

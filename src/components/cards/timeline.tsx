@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Fade, useTheme, Slider, Typography } from "@material-ui/core";
-import "components/cards/timeline.css";
+import "./timeline.css";
 import CustomCardWithBackground from "./custom_card_with_background";
 import { ProgressiveImageProps } from "react-progressive-image-loading";
 
