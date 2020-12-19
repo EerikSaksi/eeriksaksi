@@ -12,7 +12,7 @@ const AllCards: React.FC<{ setVisibleSection: (arg: string) => void; timeSpentOn
   return (
     <div style = {{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Suspense fallback={<Loading height={356} />}>
-        <Rpgym alertCurrentlyVisible={() => setVisibleSection('Welcome')} />
+        <Rpgym alertCurrentlyVisible={() => setVisibleSection('Rpgym')} />
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <Welcome alertCurrentlyVisible={() => setVisibleSection('Welcome')} />

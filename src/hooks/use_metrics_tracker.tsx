@@ -4,15 +4,12 @@ export const useMetricsTracker = () => {
   const [sessionID, setSessionID] = useState('');
 
   const [timeSpentOnSections, setTimeSpentOnSections] = useState({
-    Welcome: 0.0,
-    Timeline: 0.0,
-    'Second Year': 0.0,
-    UROS: 0.0,
-    'Third Year': 0.0,
-    'Third Year Team Project': 0.0,
-    'tunety.pe': 0.0,
-    'Fourth Year': 0.0,
-    Analytics: 0.0,
+  'Welcome': 0.0,
+  'Rpgym': 0.0,
+  'Timeline': 0.0,
+  'UROS': 0.0,
+  'tunety.pe': 0.0,
+  'Analytics': 0.0,
   });
   useEffect(() => {
     //if we don't have a session id then fetch one

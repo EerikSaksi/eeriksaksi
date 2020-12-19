@@ -1,3 +1,9 @@
 .app{
   --webkit-overflow-scrolling: touch;
+ height: 100vh;
+ scroll-snap-type: y mandatory;
+ overflow-y: scroll;
+ flex: 1;
+ justify-content: center;
+ align-items: center
 }
