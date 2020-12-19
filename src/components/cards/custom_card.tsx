@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Grid, useTheme, Paper, makeStyles } from "@material-ui/core";
+import { Grid, Paper, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

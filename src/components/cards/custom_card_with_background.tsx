@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import ProgressiveImage, { ProgressiveImageProps } from "react-progressive-image-loading";
 import CustomCard from "components/cards/custom_card";
-import { useInView } from "react-hook-inview";
+import { useInView } from "react-intersection-observer";
 
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
   backgroundImage: {
     position: "absolute",
     top: 0,
+
     right: 0,
     left: 0,
     bottom: 0,
@@ -24,6 +25,7 @@ const useStyles = makeStyles(() => ({
     bottom: 0,
   },
 }));
+const threshold = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]
 const CustomCardWithBackground: React.FC<{
   children: React.ReactNode;
   progressiveImageProps: ProgressiveImageProps;
@@ -34,28 +36,31 @@ const CustomCardWithBackground: React.FC<{
   alertCurrentlyVisible: () => void;
   childrenOutsideCard?: React.ReactNode;
 }> = ({ progressiveImageProps, children, backgroundImageStyle, cardStyle, photoCredit, setInView, alertCurrentlyVisible, childrenOutsideCard }) => {
-  const [inViewRef, inView] = useInView();
   const classes = useStyles();
+  const { inView, ref, entry } = useInView({
+    /* Optional options */
+    threshold 
+  });
   useEffect(() => {
-    if (setInView) {
-      setInView(inView);
-    }
-    if (inView) {
+    if (entry && entry.intersectionRatio >= 0.5) {
+      if (setInView) setInView(true);
       alertCurrentlyVisible();
     }
-  }, [inView, setInView, alertCurrentlyVisible]);
+  }, [entry, setInView, alertCurrentlyVisible]);
   return (
     <ProgressiveImage
       {...progressiveImageProps}
       render={(src, style) => {
         return (
-          <CustomCard ref={inViewRef} style={cardStyle}>
-            <div className={classes.backgroundImage} style={{ ...style, ...backgroundImageStyle, opacity: inView ? 1 : 0, backgroundImage: `url(${src})`, transition: 'all 350ms' }}>
+          <React.Fragment>
+          <CustomCard ref={ref} style={cardStyle}>
+            <div className={classes.backgroundImage} style={{ ...style, ...backgroundImageStyle, opacity: inView && entry ? entry.intersectionRatio : 0, backgroundImage: `url(${src})`,  transition: 'all 50ms'}}>
               {photoCredit ? <p className={classes.credit}>{`Photo credit: ${photoCredit}`}</p> : null}
-              {childrenOutsideCard}
+              {children}
             </div>
-            {children}
+
           </CustomCard>
+        </React.Fragment>
         );
       }}
     />

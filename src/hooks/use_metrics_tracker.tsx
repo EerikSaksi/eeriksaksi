@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 export const useMetricsTracker = () => {
-  const [visibleSection, setVisibleSection] = useState('Welcome');
-  const [sessionID, setSessionID] = useState('');
+  const [visibleSection, setVisibleSection] = useState("Welcome");
+  const [sessionID, setSessionID] = useState("");
 
   const [timeSpentOnSections, setTimeSpentOnSections] = useState({
-  'Welcome': 0.0,
-  'Rpgym': 0.0,
-  'Timeline': 0.0,
-  'UROS': 0.0,
-  'tunety.pe': 0.0,
-  'Analytics': 0.0,
+    Welcome: 0.0,
+    Rpgym: 0.0,
+    Timeline: 0.0,
+    UROS: 0.0,
+    "tunety.pe": 0.0,
+    Analytics: 0.0,
   });
   useEffect(() => {
     //if we don't have a session id then fetch one
-    if (sessionID === '') {
-      fetch('https://rocky-beyond-02836.herokuapp.com/session_id', {
-        method: 'POST',
-        mode: 'cors',
+    if (sessionID === "") {
+      fetch("https://rocky-beyond-02836.herokuapp.com/session_id", {
+        method: "POST",
+        mode: "cors",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       })
         .then((response) => {
@@ -47,12 +47,12 @@ export const useMetricsTracker = () => {
     return () => clearInterval(interval);
   }, [visibleSection, sessionID]);
   useEffect(() => {
-    fetch('https://rocky-beyond-02836.herokuapp.com/send_session_info', {
-      method: 'POST',
-      mode: 'cors',
+    fetch("https://rocky-beyond-02836.herokuapp.com/send_session_info", {
+      method: "POST",
+      mode: "cors",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ sessionID, ...timeSpentOnSections }),
     });

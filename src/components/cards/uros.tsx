@@ -1,5 +1,5 @@
 import React, { lazy } from "react";
-import { Grid, useTheme, Avatar, Hidden } from "@material-ui/core";
+import { Grid, Avatar, Hidden } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { ProgressiveImageProps } from "react-progressive-image-loading";
 import CustomCardWithBackground from "./custom_card_with_background";
