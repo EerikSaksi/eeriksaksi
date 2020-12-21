@@ -89,7 +89,7 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
           setTextOpacity(0);
           await new Promise((resolve) => setTimeout(resolve, 500));
           setExplanation(null);
-          ref.current!.play();
+          ref.current!.play()
         }
       }
     }, 100);
@@ -102,7 +102,7 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
       backgroundImageStyle={{ backgroundPosition: "80% 80%" }}
       photoCredit="Policy Scotland"
       alertCurrentlyVisible={alertCurrentlyVisible}
-      cardStyle={{ padding: 0, width: '45vh', height: '80vh', backgroundColor: 'rgba(0, 0, 255, 0)'}}
+      cardStyle={{ padding: 0, width: "45vh",  height: '70vh', top: '10vh'}}
     >
       <div className={classes.container}>
         <div className={classes.textContainer}>
