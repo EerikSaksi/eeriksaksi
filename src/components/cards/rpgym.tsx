@@ -50,7 +50,7 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
   const ref = useRef<HTMLVideoElement | null>(null);
   const [explanation, setExplanation] = useState<string | null>();
   const [explanationsIndex, setExplanationsIndex] = useState(0);
-  (() => {
+  useEffect(() => {
     const handleEvent = async () => {
       //check that we can get the video duration,
       if (explanationsIndex < explanations.length && !explanation) {
