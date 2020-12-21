@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Grid, Paper } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   paper: {

@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { ProgressiveImageProps } from "react-progressive-image-loading";
 import CustomCardWithBackground from "./custom_card_with_background";
-import Loading from "components/cards/loading";
 
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     filter: "blur(8px)",
     WebkitFilter: "blur(8px)",
     animation: "all 500ms",
-    transform: "translateY(-8)",
   },
   typography: {
     textAlign: "center",
@@ -96,7 +94,7 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
       }
     }, 500);
     return () => clearInterval(interval);
-  }, [ref, explanationsIndex, inView]);
+  }, [ref, explanationsIndex, inView, explanation]);
 
   return (
     <CustomCardWithBackground
