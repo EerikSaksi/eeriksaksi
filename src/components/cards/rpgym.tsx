@@ -11,10 +11,11 @@ const useStyles = makeStyles((theme) => ({
     transition: "all 500ms ease-in-out",
   },
   pausedImg: {
-    filter: "blur(8px)",
     height: "80vh",
+    filter: "blur(8px)",
     WebkitFilter: "blur(8px)",
     animation: "all 500ms",
+    transform: "translateY(-8)",
   },
   typography: {
     textAlign: "center",
@@ -52,17 +53,17 @@ const explanations = [
   },
   {
     text: "Getting stronger makes your virtual character stronger",
-    start: 18.4,
+    start: 18.5,
     duration: 3.0,
   },
   {
     text: "Tracking a workout triggers a fight with your team's current enemy",
-    start: 24.9,
+    start: 25.0,
     duration: 3.0,
   },
   {
     text: "Killing an enemy progresses your team to the next level",
-    start: 33.9,
+    start: 34.0,
     duration: 3.055556,
   },
 ];
@@ -73,9 +74,10 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
   const [explanation, setExplanation] = useState<string | null>();
   const [explanationsIndex, setExplanationsIndex] = useState(0);
   const [textOpacity, setTextOpacity] = useState(0);
+  const [inView, setInView] = useState(false)
   useEffect(() => {
     const interval = setInterval(async () => {
-      if (ref.current && explanationsIndex < explanations.length && !explanation) {
+      if (ref.current && explanationsIndex < explanations.length && !explanation && inView) {
         const currentTime = ref.current.currentTime;
         console.log(currentTime);
         const expl = explanations[explanationsIndex];
@@ -89,12 +91,12 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
           setTextOpacity(0);
           await new Promise((resolve) => setTimeout(resolve, 500));
           setExplanation(null);
-          ref.current!.play()
+          ref.current!.play();
         }
       }
-    }, 100);
+    }, 500);
     return () => clearInterval(interval);
-  }, [ref, explanationsIndex]);
+  }, [ref, explanationsIndex, inView]);
 
   return (
     <CustomCardWithBackground
@@ -102,7 +104,8 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
       backgroundImageStyle={{ backgroundPosition: "80% 80%" }}
       photoCredit="Policy Scotland"
       alertCurrentlyVisible={alertCurrentlyVisible}
-      cardStyle={{ padding: 0, width: "45vh",  height: '70vh', top: '10vh'}}
+      cardStyle={{ padding: 0, width: "45vh",  }}
+      setInView = {setInView}
     >
       <div className={classes.container}>
         <div className={classes.textContainer}>

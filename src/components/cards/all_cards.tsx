@@ -17,9 +17,6 @@ const AllCards: React.FC<{ setVisibleSection: (arg: string) => void; timeSpentOn
   const setAnalyticsVisible = useCallback(() => setVisibleSection("Analytics"), [setVisibleSection]);
   return (
     <React.Fragment>
-      <Suspense fallback={<Loading height={"80vh"}  width = {"45vh"}/>}>
-        <Rpgym alertCurrentlyVisible={setRpgymVisible} />
-      </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <Welcome alertCurrentlyVisible={setWelcomeVisible} />
       </Suspense>
@@ -28,6 +25,9 @@ const AllCards: React.FC<{ setVisibleSection: (arg: string) => void; timeSpentOn
       </Suspense>
       <Suspense fallback={<Loading height={417} />}>
         <Uros alertCurrentlyVisible={setUrosVisible} />
+      </Suspense>
+      <Suspense fallback={<Loading height={"80vh"}  width = {"45vh"}/>}>
+        <Rpgym alertCurrentlyVisible={setRpgymVisible} />
       </Suspense>
       <Suspense fallback={<Loading height={356} />}>
         <SummerProject alertCurrentlyVisible={setTunetypeVisible} />
