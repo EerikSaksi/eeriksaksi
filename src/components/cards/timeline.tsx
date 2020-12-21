@@ -52,7 +52,7 @@ function dayToDisplayDate(day: number) {
 }
 
 //the maxDate (last days endDate)
-const maxDate = getDeltaFromFirst(dates[dates.length - 1].endDate!);
+const maxDate = getDeltaFromFirst(new Date("2022-05"));
 const TimeLine: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
   const theme = useTheme();
   const classes = useStyles();
