@@ -34,8 +34,7 @@ const CustomCardWithBackground: React.FC<{
   photoCredit?: string;
   setInView?: (arg: boolean) => void;
   alertCurrentlyVisible: () => void;
-  childrenOutsideCard?: React.ReactNode;
-}> = ({ progressiveImageProps, children, backgroundImageStyle, cardStyle, photoCredit, setInView, alertCurrentlyVisible, childrenOutsideCard }) => {
+}> = ({ progressiveImageProps, children, backgroundImageStyle, cardStyle, photoCredit, setInView, alertCurrentlyVisible}) => {
   const classes = useStyles();
   const { inView, ref, entry } = useInView({
     /* Optional options */
@@ -55,7 +54,6 @@ const CustomCardWithBackground: React.FC<{
           <CustomCard ref={ref} style={cardStyle}>
             <div className={classes.backgroundImage} style={{ ...style, ...backgroundImageStyle, opacity: inView && entry ? entry.intersectionRatio : 0, backgroundImage: `url(${src})`, transition: 'all 350ms' }}>
               {photoCredit ? <p className={classes.credit}>{`Photo credit: ${photoCredit}`}</p> : null}
-              {childrenOutsideCard}
             </div>
             {children}
           </CustomCard>

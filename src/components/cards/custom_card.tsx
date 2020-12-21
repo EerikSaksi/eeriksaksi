@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     scrollSnapAlign: "center",
     scrollSnapStop: "always",
     alignItems: "center",
-  
     justifyContent: "center",
   },
 }));

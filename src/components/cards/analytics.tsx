@@ -25,7 +25,6 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
   const [maxValue, setMaxValue] = useState(0.1);
   const [currentTab, setCurrentTab] = useState(0);
   const classes = useStyles();
-  console.log(averageTimeSpent);
   useEffect(() => {
     fetch("https://rocky-beyond-02836.herokuapp.com/averages", {
       method: "POST",
@@ -37,7 +36,6 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         setAverageTimeSpent(json);
       });
   }, []);
@@ -54,7 +52,6 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
     }
   }, [averageTimeSpent, timeSpentOnSections]);
   const currentSection = sections[currentTab];
-  console.log({ currentSection });
 
   //whenever a section changes, update the max value (this is to prevent constant ugly maxValue updates but allows for changes in the range (for example in the analytics))
   useEffect(() => {
