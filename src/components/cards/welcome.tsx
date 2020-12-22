@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 8,
   },
 }));
-const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
+const Welcome: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: number }> = ({ alertCurrentlyVisible,  backgroundOpacity}) => {
   const classes = useStyles();
   const [inView, setInView] = useState(false);
 
@@ -85,6 +85,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrent
       backgroundImageStyle={{ backgroundPosition: "0% 20%" }}
       setInView={setInView}
       alertCurrentlyVisible={alertCurrentlyVisible}
+      backgroundOpacity = {backgroundOpacity}
     >
       <Grid container justify="space-evenly">
         <Grid item sm={6}>

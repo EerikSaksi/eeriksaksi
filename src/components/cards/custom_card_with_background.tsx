@@ -32,19 +32,9 @@ const CustomCardWithBackground: React.FC<{
   photoCredit?: string;
   setInView?: (arg: boolean) => void;
   alertCurrentlyVisible: () => void;
-}> = ({ progressiveImageProps, children, backgroundImageStyle, cardStyle, photoCredit, setInView, alertCurrentlyVisible }) => {
+  backgroundOpacity?: number
+}> = ({ progressiveImageProps, children, backgroundImageStyle, cardStyle, photoCredit, setInView, alertCurrentlyVisible, backgroundOpacity }) => {
   const classes = useStyles();
-  const { inView, ref } = useInView({
-    /* Optional options */
-    threshold: 0.5,
-  });
-  const backgroundImageRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (inView) {
-      if (setInView) setInView(true);
-      alertCurrentlyVisible();
-    }
-  }, [inView, setInView, alertCurrentlyVisible]);
 
 
   return (
@@ -52,12 +42,12 @@ const CustomCardWithBackground: React.FC<{
       {...progressiveImageProps}
       render={(src, style) => {
         return (
-          <CustomCard ref={ref} style={cardStyle}>
+          <CustomCard  style={cardStyle}>
             <div
-              ref={backgroundImageRef}
               className={classes.backgroundImage}
-              style={{ ...style, ...backgroundImageStyle, opacity: inView ? 1 : 0, backgroundImage: `url(${src})`, transition: "all 150ms" }}
+              style={{ ...style, ...backgroundImageStyle, opacity: backgroundOpacity, backgroundImage: `url(${src})`, transition: "all 50ms" }}
             >
+          >
               {photoCredit ? <p className={classes.credit}>{`Photo credit: ${photoCredit}`}</p> : null}
             </div>
             {children}

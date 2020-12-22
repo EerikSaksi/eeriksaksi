@@ -53,7 +53,7 @@ function dayToDisplayDate(day: number) {
 
 //the maxDate (last days endDate)
 const maxDate = getDeltaFromFirst(new Date("2022-05"));
-const TimeLine: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
+const TimeLine: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
   const theme = useTheme();
   const classes = useStyles();
   const [inView, setInView] = useState(false);
@@ -92,6 +92,7 @@ const TimeLine: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurren
       cardStyle={{ height: "60vh", padding: theme.spacing(2) }}
       backgroundImageStyle={{ backgroundPosition: "40% 40%" }}
       alertCurrentlyVisible={alertCurrentlyVisible}
+      backgroundOpacity = {backgroundOpacity}
     >
       <Grid id="timeline" className={classes.timeline} container justify="center">
         <Grid item xs={12}>

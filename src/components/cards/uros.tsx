@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
 }));
-const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
+const Uros: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
+  console.log('ran')
   const classes = useStyles();
   const jobDescription = (
     <Grid container justify="center">
@@ -80,6 +81,7 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyV
       backgroundImageStyle={{ backgroundPosition: "100% 100%" }}
       photoCredit="kolster.fi"
       alertCurrentlyVisible={alertCurrentlyVisible}
+      backgroundOpacity = {backgroundOpacity}
     >
       <Hidden smUp>
         <QAndAAccordion
