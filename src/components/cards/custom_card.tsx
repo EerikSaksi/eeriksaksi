@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomCard = forwardRef<unknown, { children: React.ReactNode; style?: React.CSSProperties; containerStyle?: React.CSSProperties }>(({ children, style, containerStyle }, ref) => {
+const CustomCard = forwardRef<HTMLDivElement | null, { children: React.ReactNode; style?: React.CSSProperties; containerStyle?: React.CSSProperties }>(({ children, style, containerStyle }, ref) => {
   const classes = useStyles();
   return (
-    <Grid alignItems="center" className={classes.grid} container style={containerStyle}>
-      <Paper className={classes.paper} ref={ref} style={style}>
+    <Grid ref={ref} alignItems="center" className={classes.grid} container style={containerStyle}>
+      <Paper className={classes.paper}  style={style}>
         {children}
       </Paper>
     </Grid>

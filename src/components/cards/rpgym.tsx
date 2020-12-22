@@ -77,13 +77,11 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
     const interval = setInterval(async () => {
       if (ref.current && explanationsIndex < explanations.length && !explanation && inView) {
         const currentTime = ref.current.currentTime;
-        console.log(currentTime);
         const expl = explanations[explanationsIndex];
         if (expl.start <= currentTime) {
           setTextOpacity(1);
           setExplanationsIndex((index) => index + 1);
           setExplanation(expl.text);
-          console.log(expl.text);
           ref.current!.pause();
           await new Promise((resolve) => setTimeout(resolve, expl.duration * 1000));
           setTextOpacity(0);
