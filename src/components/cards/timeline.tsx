@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Grid, Fade, useTheme, Slider, Typography } from "@material-ui/core";
 import "./timeline.css";
 import CustomCardWithBackground from "./custom_card_with_background";
-import { ProgressiveImageProps } from "react-progressive-image-loading";
 
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
@@ -11,7 +10,6 @@ const useStyles = makeStyles(() => ({
   },
   typography: {
     textAlign: "center",
-
   },
 }));
 
@@ -53,17 +51,31 @@ function dayToDisplayDate(day: number) {
 
 //the maxDate (last days endDate)
 const maxDate = getDeltaFromFirst(new Date("2022-05"));
-const TimeLine: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
+const TimeLine: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
   const theme = useTheme();
   const classes = useStyles();
-  const [inView, setInView] = useState(false);
+
+  const loadingImage = useRef(false);
+  const [srcAndBlur, setSrcAndBlur] = useState({ src: require("media/road-tiny.jpg"), blur: true });
+  useEffect(() => {
+    //visible but have not loaded non preview
+    if (backgroundOpacity && !loadingImage.current) {
+      loadingImage.current = true;
+      var img = new Image();
+      img.onload = function () {
+        setSrcAndBlur({ src: img.src, blur: false });
+      };
+      img.src = require("media/road.jpg");
+    }
+  }, [srcAndBlur, backgroundOpacity, loadingImage]);
+
   const [sliderValue, setSliderValue] = useState<number[]>([0, 0]);
   const [descriptionVisible, setDescriptionVisible] = useState(false);
   const [dateIndex, setDateIndex] = useState(0);
   const [ranFunction, setRanFunction] = useState(false);
   useEffect(() => {
     const periodicallyIncrementIndex = async () => {
-      for (var i = dateIndex; i < dates.length && inView; i++) {
+      for (var i = dateIndex; i < dates.length && 0.5 < backgroundOpacity; i++) {
         setDateIndex(i);
         const date = dates[i];
         setDescriptionVisible(true);
@@ -74,11 +86,11 @@ const TimeLine: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity:
         await new Promise((resolve) => setTimeout(resolve, 500));
       }
     };
-    if (inView && !ranFunction) {
+    if (0.5 < backgroundOpacity && !ranFunction) {
       setRanFunction(true);
       periodicallyIncrementIndex();
     }
-  }, [inView, ranFunction, dateIndex]);
+  }, [backgroundOpacity, ranFunction, dateIndex]);
   useEffect(() => {
     const date = dates[dateIndex];
     if (date.startDate) {
@@ -87,27 +99,28 @@ const TimeLine: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity:
   }, [dateIndex]);
   return (
     <CustomCardWithBackground
-      progressiveImageProps={{ src: require("media/road.jpg"), preview: require("media/road-tiny.jpg") } as ProgressiveImageProps}
-      setInView={setInView}
       cardStyle={{ height: "60vh", padding: theme.spacing(2) }}
       backgroundImageStyle={{ backgroundPosition: "40% 40%" }}
       alertCurrentlyVisible={alertCurrentlyVisible}
-      backgroundOpacity = {backgroundOpacity}
+      backgroundOpacity={backgroundOpacity}
+      srcAndBlur={srcAndBlur}
     >
-      <Grid id="timeline" className={classes.timeline} container justify="center">
-        <Grid item xs={12}>
-          <Fade in={descriptionVisible}>
-            <Typography className = {classes.typography} variant="h3">
-              {dates[dateIndex].description}
-            </Typography>
-          </Fade>
-        </Grid>
-        <Grid justify="center" container alignItems="flex-end">
-          <Grid item xs={10}>
-            <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? "on" : "off"} aria-labelledby="range-slider" />
+      {backgroundOpacity ? (
+        <Grid id="timeline" className={classes.timeline} container justify="center">
+          <Grid item xs={12}>
+            <Fade in={descriptionVisible}>
+              <Typography className={classes.typography} variant="h3">
+                {dates[dateIndex].description}
+              </Typography>
+            </Fade>
+          </Grid>
+          <Grid justify="center" container alignItems="flex-end">
+            <Grid item xs={10}>
+              <Slider value={sliderValue} valueLabelFormat={dayToDisplayDate} max={maxDate} valueLabelDisplay={dates[dateIndex].valueLabelDisplay ? "on" : "off"} aria-labelledby="range-slider" />
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      ) : undefined}
     </CustomCardWithBackground>
   );
 };

@@ -107,7 +107,6 @@ const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alert
   ];
   return (
     <CustomCardWithBackground
-      progressiveImageProps={{ src: require("media/rick.gif"), preview: require("media/rick-tiny.jpg") } as ProgressiveImageProps}
       backgroundImageStyle={{ backgroundPosition: "20% 0%" }}
       alertCurrentlyVisible={alertCurrentlyVisible}
       cardStyle={{ maxWidth: "100%" }}

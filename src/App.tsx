@@ -15,8 +15,18 @@ const App: React.FC = () => {
       ref.current!.addEventListener('scroll', log)
     }
   }, [ref])
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (ref.current){
+        ref.current.scrollTop = ref.current!.clientHeight * cardPosition
+      }
+    }) 
+  }, [cardPosition])
+
+  console.log(cardPosition)
   return (
-    <div ref = {ref} className='app'>
+    <div  ref = {ref} className='app'>
       <AllCards setVisibleSection={setVisibleSectionCallback} timeSpentOnSections = {timeSpentOnSections} cardPosition = {cardPosition}/>
     </div>
   );

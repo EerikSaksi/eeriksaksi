@@ -96,12 +96,10 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
 
   return (
     <CustomCardWithBackground
-      progressiveImageProps={{ src: require("media/glasgow.jpg"), preview: require("media/glasgow-tiny.jpg") } as ProgressiveImageProps}
       backgroundImageStyle={{ backgroundPosition: "80% 80%" }}
       photoCredit="Policy Scotland"
       alertCurrentlyVisible={alertCurrentlyVisible}
       cardStyle={{ padding: 0, width: "45vh",  }}
-      setInView = {setInView}
     >
       <div className={classes.container}>
         <div className={classes.textContainer}>

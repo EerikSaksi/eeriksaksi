@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from "react";
-import ProgressiveImage, { ProgressiveImageProps } from "react-progressive-image-loading";
+import React, { useState } from "react";
 import CustomCard from "components/cards/custom_card";
 import { useInView } from "react-intersection-observer";
 
@@ -24,37 +23,24 @@ const useStyles = makeStyles(() => ({
     bottom: 0,
   },
 }));
+type SrcAndBlur = {src: string, blur: boolean}
 const CustomCardWithBackground: React.FC<{
   children: React.ReactNode;
-  progressiveImageProps: ProgressiveImageProps;
   backgroundImageStyle?: React.CSSProperties;
   cardStyle?: React.CSSProperties;
   photoCredit?: string;
-  setInView?: (arg: boolean) => void;
   alertCurrentlyVisible: () => void;
-  backgroundOpacity?: number
-}> = ({ progressiveImageProps, children, backgroundImageStyle, cardStyle, photoCredit, setInView, alertCurrentlyVisible, backgroundOpacity }) => {
+  backgroundOpacity?: number;
+  srcAndBlur?: SrcAndBlur
+}> = ({ children, backgroundImageStyle, cardStyle, photoCredit, backgroundOpacity, srcAndBlur }) => {
   const classes = useStyles();
-
-
   return (
-    <ProgressiveImage
-      {...progressiveImageProps}
-      render={(src, style) => {
-        return (
-          <CustomCard  style={cardStyle}>
-            <div
-              className={classes.backgroundImage}
-              style={{ ...style, ...backgroundImageStyle, opacity: backgroundOpacity, backgroundImage: `url(${src})`, transition: "all 50ms" }}
-            >
-          >
-              {photoCredit ? <p className={classes.credit}>{`Photo credit: ${photoCredit}`}</p> : null}
-            </div>
-            {children}
-          </CustomCard>
-        );
-      }}
-    />
+    <CustomCard style={cardStyle}>
+      <div className={classes.backgroundImage} style={{...backgroundImageStyle, opacity: backgroundOpacity, backgroundImage: `url(${srcAndBlur?.src})`, filter: srcAndBlur?.blur ? 'blur(8px)' : undefined,  transition: "all 50ms" }}>
+        {photoCredit ? <p className={classes.credit}>{`Photo credit: ${photoCredit}`}</p> : null}
+      </div>
+      {children}
+    </CustomCard>
   );
 };
 export default CustomCardWithBackground;

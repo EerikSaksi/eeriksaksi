@@ -12,15 +12,12 @@
   transition: width 2s;
 }
 
-
-.jss19, .PrivateValueLabel-circle-19 {
-  position: absolute;
+.jss17, .PrivateValueLabel-circle-17 {
   width: 80px;
   height: 80px;
-  transform: rotate(-45deg) translate(19px, -53px);
+  transform: rotate(-45deg) translate(21px, -53px);
 }
 
-.jss20, .PrivateValueLabel-label-20 {
+.jss22, .PrivateValueLabel-label-22 {
   text-align: center;
 }
-

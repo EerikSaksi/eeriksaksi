@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, useState, useEffect, useRef } from "react";
 import { Grid, Avatar, Hidden } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { ProgressiveImageProps } from "react-progressive-image-loading";
@@ -29,9 +29,23 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
 }));
-const Uros: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
-  console.log('ran')
+const Uros: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
   const classes = useStyles();
+
+  const loadingImage = useRef(false);
+  const [srcAndBlur, setSrcAndBlur] = useState({ src: require("media/uros-tiny.png"), blur: true });
+  useEffect(() => {
+    //visible but have not loaded non preview
+    if (backgroundOpacity && !loadingImage.current) {
+      loadingImage.current = true;
+      var img = new Image();
+      img.onload = function () {
+        setSrcAndBlur({ src: img.src, blur: false });
+      };
+      img.src = require("media/uros.png");
+    }
+  }, [srcAndBlur, backgroundOpacity, loadingImage]);
+
   const jobDescription = (
     <Grid container justify="center">
       <Grid item>
@@ -77,26 +91,30 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: num
 
   return (
     <CustomCardWithBackground
-      progressiveImageProps={{ src: require("media/uros.webp"), preview: require("media/uros.webp") } as ProgressiveImageProps}
       backgroundImageStyle={{ backgroundPosition: "100% 100%" }}
       photoCredit="kolster.fi"
       alertCurrentlyVisible={alertCurrentlyVisible}
-      backgroundOpacity = {backgroundOpacity}
+      backgroundOpacity={backgroundOpacity}
+      srcAndBlur={srcAndBlur}
     >
-      <Hidden smUp>
-        <QAndAAccordion
-          questionAnswers={[
-            { question: "Supervisor's comment", answer: testimonial },
-            { question: "What did I do at UROS?", answer: jobDescription },
-          ]}
-        />
-      </Hidden>
-      <Hidden only = 'xs'>
-        <Grid container justify="center">
-          {testimonial}
-          {jobDescription}
-        </Grid>
-      </Hidden>
+      {backgroundOpacity ? (
+        <React.Fragment>
+          <Hidden smUp>
+            <QAndAAccordion
+              questionAnswers={[
+                { question: "Supervisor's comment", answer: testimonial },
+                { question: "What did I do at UROS?", answer: jobDescription },
+              ]}
+            />
+          </Hidden>
+          <Hidden only="xs">
+            <Grid container justify="center">
+              {testimonial}
+              {jobDescription}
+            </Grid>
+          </Hidden>
+        </React.Fragment>
+      ) : undefined}
     </CustomCardWithBackground>
   );
 };
