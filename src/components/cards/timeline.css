@@ -1,23 +1,8 @@
-.MuiSlider-thumb {
-  transition: left 2s;
-}
-
-/* This is needed. Without it drag and drop with a mouse looks very weird */
-.MuiSlider-thumb.MuiSlider-active {
-  transition: left 0s;
-}
-
 /* Animating track with CSS3 as well */
 .MuiSlider-track {
-  transition: width 2s;
+  transition: all 1s;
 }
-
-.jss33, .PrivateValueLabel-circle-33 {
-  width: 80px;
-  height: 80px;
-  transform: rotate(-45deg) translate(21px, -53px);
-}
-
-.jss34, .PrivateValueLabel-label-34 {
-  text-align: center;
+/* Adds CSS3 animation */
+.MuiSlider-thumb {
+  transition: all 0.5s;
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Avatar, Grid, Hidden, Typography } from "@material-ui/core";
 import CustomCardWithBackground from "./custom_card_with_background";
-import ProgressiveImage from "react-progressive-image-loading";
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
 import GitHubIcon from "@material-ui/icons/GitHub";
@@ -58,14 +57,14 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: 
 
 
   const loadingImage = useRef(false)
-  const [srcAndBlur, setSrcAndBlur] = useState({src: require("media/coffee-tiny.jpg"), blur: true})
+  const [srcAndBlur, setSrcAndBlur] = useState({src: require("media/coffee-tiny.webp"), blur: true})
   useEffect(() => {
     //visible but have not loaded non preview
     if (backgroundOpacity && !loadingImage.current){
       loadingImage.current = true
       var img = new Image();
       img.onload = function() { setSrcAndBlur({src: img.src, blur: false}) }
-      img.src = require('media/coffee.jpg');
+      img.src = require('media/coffee.webp');
     }
   }, [srcAndBlur, backgroundOpacity, loadingImage])
 
@@ -94,7 +93,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: 
       backgroundImageStyle={{ backgroundPosition: "0% 20%" }}
       alertCurrentlyVisible={alertCurrentlyVisible}
       backgroundOpacity={backgroundOpacity}
-      srcAndBlur={backgroundOpacity ? { src: require("media/coffee.jpg"), blur: false } : { src: require("media/coffee-tiny.jpg"), blur: true }}
+      srcAndBlur = {srcAndBlur}
     >
       {0 < backgroundOpacity ? (
         <Grid container justify="space-evenly">
@@ -143,11 +142,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: 
           </Grid>
           <Grid item sm={3}>
             <Grid className={classes.contactInfo} container justify="center">
-              <ProgressiveImage
-                preview={require("media/orek-tiny.jpg")}
-                src={require("media/orek.jpg")}
-                render={(src, style) => <Avatar className={classes.profileAvatar} alt="Eerik Saksi" src={src} style={style} />}
-              />
+              <Avatar className={classes.profileAvatar} alt="Eerik Saksi" src={require('media/orek.webp')}/> 
             </Grid>
             <Grid className={classes.contactInfo} container alignItems="flex-end" justify="center">
               <Grid item sm={1} xs={2} className={classes.iconGrid}>

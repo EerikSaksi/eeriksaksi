@@ -1,6 +1,7 @@
 import React, {useCallback, useRef, useEffect, useState}  from 'react';
 import AllCards from 'components/cards/all_cards'
 import 'App.css';
+import 'fontsource-roboto';
 import {useMetricsTracker} from 'hooks/use_metrics_tracker';
 const App: React.FC = () => {
   const {setVisibleSection, timeSpentOnSections} = useMetricsTracker()
@@ -28,7 +29,7 @@ const App: React.FC = () => {
   }, [cardPosition])
 
   return (
-    <div  ref = {ref} className='app'>
+    <div ref = {ref} className='app'>
       <AllCards setVisibleSection={setVisibleSectionCallback} timeSpentOnSections = {timeSpentOnSections} cardPosition = {cardPosition}/>
     </div>
   );
