@@ -48,7 +48,7 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: num
 
   useEffect(() => {
     if (0.5 <= backgroundOpacity) alertCurrentlyVisible()
-  }, [backgroundOpacity])
+  }, [backgroundOpacity, alertCurrentlyVisible])
 
   const jobDescription = (
     <Grid container justify="center">
@@ -96,7 +96,6 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: num
     <CustomCardWithBackground
       backgroundImageStyle={{ backgroundPosition: "100% 100%" }}
       photoCredit="kolster.fi"
-      alertCurrentlyVisible={alertCurrentlyVisible}
       backgroundOpacity={backgroundOpacity}
       srcAndBlur={srcAndBlur}
     >

@@ -82,7 +82,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: 
       alertCurrentlyVisible()
       sleepAndShiftBalls();
     }
-  }, [backgroundOpacity]);
+  }, [backgroundOpacity, alertCurrentlyVisible]);
   useEffect(() => {
     if (ballRowRef.current) {
       setBallRowWidth(ballRowRef.current.clientWidth - 50);
@@ -91,7 +91,6 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: 
   return (
     <CustomCardWithBackground
       backgroundImageStyle={{ backgroundPosition: "0% 20%" }}
-      alertCurrentlyVisible={alertCurrentlyVisible}
       backgroundOpacity={backgroundOpacity}
       srcAndBlur = {srcAndBlur}
     >

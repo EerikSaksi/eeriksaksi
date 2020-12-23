@@ -116,7 +116,7 @@ const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void; backgroundOp
 
   useEffect(() => {
     if (0.5 <= backgroundOpacity) alertCurrentlyVisible()
-  }, [backgroundOpacity])
+  }, [backgroundOpacity, alertCurrentlyVisible])
 
   if (!backgroundOpacity) {
     return <CustomCard />;

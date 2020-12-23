@@ -87,7 +87,6 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
     <CustomCardWithBackground
       backgroundImageStyle={{ backgroundPosition: "25%, 25%" }}
       photoCredit="University of Glasgow Facebook"
-      alertCurrentlyVisible={alertCurrentlyVisible}
       cardStyle={{ minHeight: "40vh", marginRight: 0, padding: 0 }}
       srcAndBlur = {srcAndBlur}
       backgroundOpacity={backgroundOpacity}

@@ -99,7 +99,7 @@ const TimeLine: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity:
       alertCurrentlyVisible();
       periodicallyIncrementIndex();
     }
-  }, [backgroundOpacity, ranFunction, dateIndex]);
+  }, [backgroundOpacity, ranFunction, dateIndex, alertCurrentlyVisible]);
   useEffect(() => {
     const showDatesOnSlider = async () => {
       const date = dates[dateIndex];
@@ -117,7 +117,6 @@ const TimeLine: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity:
     <CustomCardWithBackground
       cardStyle={{ height: "60vh", padding: theme.spacing(2) }}
       backgroundImageStyle={{ backgroundPosition: "40% 40%" }}
-      alertCurrentlyVisible={alertCurrentlyVisible}
       backgroundOpacity={backgroundOpacity}
       srcAndBlur={srcAndBlur}
     >

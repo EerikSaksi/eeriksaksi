@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Grid, Typography } from "@material-ui/core";
-import { ProgressiveImageProps } from "react-progressive-image-loading";
 import CustomCardWithBackground from "./custom_card_with_background";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -85,7 +84,7 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: nu
 
   useEffect(() => {
     if (0.5 <= backgroundOpacity) alertCurrentlyVisible()
-  }, [backgroundOpacity])
+  }, [backgroundOpacity, alertCurrentlyVisible])
 
   const [explanation, setExplanation] = useState<string | null>();
   const [explanationsIndex, setExplanationsIndex] = useState(0);
@@ -116,7 +115,6 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: nu
     <CustomCardWithBackground
       backgroundImageStyle={{ backgroundPosition: "80% 80%" }}
       photoCredit="Policy Scotland"
-      alertCurrentlyVisible={alertCurrentlyVisible}
       cardStyle={{ padding: 0, width: "45vh",  }}
       backgroundOpacity = {backgroundOpacity}
       srcAndBlur = {srcAndBlur}

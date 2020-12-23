@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import CustomCard from "components/cards/custom_card";
-import { useInView } from "react-intersection-observer";
 
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
@@ -29,7 +28,6 @@ const CustomCardWithBackground: React.FC<{
   backgroundImageStyle?: React.CSSProperties;
   cardStyle?: React.CSSProperties;
   photoCredit?: string;
-  alertCurrentlyVisible: () => void;
   backgroundOpacity: number;
   srcAndBlur: SrcAndBlur
 }> = ({ children, backgroundImageStyle, cardStyle, photoCredit, backgroundOpacity, srcAndBlur }) => {
