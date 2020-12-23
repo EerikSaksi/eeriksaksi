@@ -46,6 +46,10 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: num
     }
   }, [srcAndBlur, backgroundOpacity, loadingImage]);
 
+  useEffect(() => {
+    if (0.5 <= backgroundOpacity) alertCurrentlyVisible()
+  }, [backgroundOpacity])
+
   const jobDescription = (
     <Grid container justify="center">
       <Grid item>

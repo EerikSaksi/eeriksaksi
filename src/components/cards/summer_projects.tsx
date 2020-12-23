@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Tabs, Tab, Hidden, makeStyles } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import QAndAAccordion from "components/q_and_a_accordion";
@@ -113,6 +113,11 @@ const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void; backgroundOp
       ),
     },
   ];
+
+  useEffect(() => {
+    if (0.5 <= backgroundOpacity) alertCurrentlyVisible()
+  }, [backgroundOpacity])
+
   if (!backgroundOpacity) {
     return <CustomCard />;
   }

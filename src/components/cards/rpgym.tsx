@@ -83,6 +83,10 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: nu
     }
   }, [srcAndBlur, backgroundOpacity, loadingImage]);
 
+  useEffect(() => {
+    if (0.5 <= backgroundOpacity) alertCurrentlyVisible()
+  }, [backgroundOpacity])
+
   const [explanation, setExplanation] = useState<string | null>();
   const [explanationsIndex, setExplanationsIndex] = useState(0);
   const [textOpacity, setTextOpacity] = useState(0);

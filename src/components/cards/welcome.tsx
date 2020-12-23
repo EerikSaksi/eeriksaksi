@@ -111,7 +111,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: 
                 </Typography>
               </Grid>
               {showFullstack ? (
-                <Grid item xs={11}>
+                <Grid item xs={12}>
                   <Grid container justify="center">
                     <Avatar className={classes.greenAvatar}>Fullstack</Avatar>
                   </Grid>
