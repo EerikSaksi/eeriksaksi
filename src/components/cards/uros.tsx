@@ -1,7 +1,6 @@
 import React, { lazy, useState, useEffect, useRef } from "react";
 import { Grid, Avatar, Hidden } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-import { ProgressiveImageProps } from "react-progressive-image-loading";
 import CustomCardWithBackground from "./custom_card_with_background";
 import { makeStyles } from "@material-ui/core/styles";
 const QAndAAccordion = lazy(() => import("components/q_and_a_accordion"));

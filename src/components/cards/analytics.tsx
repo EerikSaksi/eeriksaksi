@@ -27,7 +27,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
 }) => {
   useEffect(() => {
     if (0.5 <= backgroundOpacity) alertCurrentlyVisible()
-  }, [backgroundOpacity])
+  }, [backgroundOpacity, alertCurrentlyVisible])
 
   const loadingImage = useRef(false);
   const [srcAndBlur, setSrcAndBlur] = useState({ src: require("media/cloisters-tiny.jpg"), blur: true });

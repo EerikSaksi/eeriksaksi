@@ -1,4 +1,4 @@
-import React, {useCallback, useState } from "react";
+import React, {useCallback} from "react";
 import { TimeSpentOnSections } from "types";
 import Timeline from "components/cards/timeline"
 import Welcome from "components/cards/welcome"
