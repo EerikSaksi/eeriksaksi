@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Grid, Fade, useTheme, Slider, Typography, withStyles } from "@material-ui/core";
+import { Grid, Fade, useTheme, Slider, Typography} from "@material-ui/core";
 import CustomCardWithBackground from "./custom_card_with_background";
 import "components/cards/timeline.css";
-import Tooltip from "@material-ui/core/Tooltip";
 import { makeStyles } from "@material-ui/core/styles";
+import SliderValue from 'components/slider_value'
 const useStyles = makeStyles(() => ({
   timeline: {
     height: "100%",
@@ -56,14 +56,6 @@ function dayToDisplayDate(day: number) {
 //the maxDate (last days endDate)
 const maxDate = getDeltaFromFirst(new Date("2022-05"));
 
-function ValueLabelComponent(props) {
-  const { children, open, value } = props;
-  return (
-    <Tooltip style={{ transition: "all 500ms" }} open={open} enterTouchDelay={0} placement="top" title={value}>
-      {children}
-    </Tooltip>
-  );
-}
 const TimeLine: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
   const theme = useTheme();
   const classes = useStyles();
@@ -146,7 +138,7 @@ const TimeLine: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity:
                 max={maxDate}
                 valueLabelDisplay={dates[dateIndex].valueLabelDisplay && showSliders ? "on" : "off"}
                 aria-labelledby="range-slider"
-                ValueLabelComponent={ValueLabelComponent}
+                ValueLabelComponent={SliderValue}
                 classes = {{thumb: classes.thumb}}
               />
             </Grid>

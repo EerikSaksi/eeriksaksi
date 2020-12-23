@@ -51,7 +51,7 @@ const technologyRows = [
 const useStyles = makeStyles((theme) => ({
   tab: {
     [theme.breakpoints.up("sm")]: {
-      fontSize: "2em",
+      fontSize: "1.5em",
     },
   },
   grid: {

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Typography, Slider, Tabs, Grid, Tab, makeStyles } from "@material-ui/core";
 import CustomCardWithBackground from "./custom_card_with_background";
 import { TimeSpentOnSections } from "types";
+import SliderValue from 'components/slider_value'
 
 const sections = ["Welcome", "Timeline", "UROS", "Rpgym", "tunety.pe", "Analytics"];
 
@@ -131,8 +132,9 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
                 { value: 0, label: "0s" },
                 { value: maxValue, label: `${maxValue.toFixed(2)}s` },
               ]}
+              ValueLabelComponent = {SliderValue}
             />
-          </Grid>
+        </Grid>
           <Grid className={classes.spacedRow} item xs={10}>
             <Typography className={classes.centeredText} variant="h6">
               Average spent time
@@ -148,6 +150,7 @@ const Analytics: React.FC<{ alertCurrentlyVisible: () => void; timeSpentOnSectio
                 { value: 0, label: "0s" },
                 { value: maxValue, label: `${maxValue.toFixed(2)}s` },
               ]}
+              ValueLabelComponent = {SliderValue}
             />
           </Grid>
         </Grid>
