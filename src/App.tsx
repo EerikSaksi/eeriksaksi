@@ -9,6 +9,8 @@ const App: React.FC = () => {
   }, [setVisibleSection])
   const [cardPosition, setCardPosition] = useState(0)
   const ref = useRef<HTMLDivElement | null>(null)
+
+  //whenever the user scrolls, set cardPosition to be on which card the user is (can be decimal such as 0.5 if between card 0 and 1)
   useEffect(() => {
     if (ref.current){
       const log = () => setCardPosition(ref.current!.scrollTop / ref.current!.clientHeight)
@@ -16,6 +18,7 @@ const App: React.FC = () => {
     }
   }, [ref])
 
+  //whenever the user resizes we want to stay on the same card in the same position by multiplying the new client by the position
   useEffect(() => {
     window.addEventListener('resize', () => {
       if (ref.current){
@@ -24,7 +27,6 @@ const App: React.FC = () => {
     }) 
   }, [cardPosition])
 
-  console.log(cardPosition)
   return (
     <div  ref = {ref} className='app'>
       <AllCards setVisibleSection={setVisibleSectionCallback} timeSpentOnSections = {timeSpentOnSections} cardPosition = {cardPosition}/>

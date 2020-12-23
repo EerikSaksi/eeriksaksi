@@ -30,13 +30,13 @@ const CustomCardWithBackground: React.FC<{
   cardStyle?: React.CSSProperties;
   photoCredit?: string;
   alertCurrentlyVisible: () => void;
-  backgroundOpacity?: number;
-  srcAndBlur?: SrcAndBlur
+  backgroundOpacity: number;
+  srcAndBlur: SrcAndBlur
 }> = ({ children, backgroundImageStyle, cardStyle, photoCredit, backgroundOpacity, srcAndBlur }) => {
   const classes = useStyles();
   return (
     <CustomCard style={cardStyle}>
-      <div className={classes.backgroundImage} style={{...backgroundImageStyle, opacity: backgroundOpacity, backgroundImage: `url(${srcAndBlur?.src})`, filter: srcAndBlur?.blur ? 'blur(8px)' : undefined,  transition: "all 50ms" }}>
+      <div className={classes.backgroundImage} style={{...backgroundImageStyle, opacity: backgroundOpacity, backgroundImage: `url(${srcAndBlur?.src})`, filter: srcAndBlur?.blur ? 'blur(8px)' : undefined,  transition: "all 30ms" }}>
         {photoCredit ? <p className={classes.credit}>{`Photo credit: ${photoCredit}`}</p> : null}
       </div>
       {children}

@@ -24,13 +24,10 @@ const AllCards: React.FC<{ setVisibleSection: (arg: string) => void; timeSpentOn
       <Welcome alertCurrentlyVisible={setWelcomeVisible} backgroundOpacity={calcOpacity(0, cardPosition)} />
       <Timeline alertCurrentlyVisible={setTimelineVisible} backgroundOpacity={calcOpacity(1, cardPosition)} />
       <Uros alertCurrentlyVisible={setUrosVisible} backgroundOpacity={calcOpacity(2, cardPosition)} />
+      <Rpgym alertCurrentlyVisible={setRpgymVisible} backgroundOpacity={calcOpacity(3, cardPosition)} />
+      <SummerProject alertCurrentlyVisible={setTunetypeVisible} backgroundOpacity={calcOpacity(4, cardPosition)} />
+      <Analytics alertCurrentlyVisible={setAnalyticsVisible} timeSpentOnSections={timeSpentOnSections}  backgroundOpacity={calcOpacity(5, cardPosition)}/>
     </React.Fragment>
   );
 };
 export default AllCards;
-//     <Suspense fallback={<Loading height={356} />}>
-//       <SummerProject alertCurrentlyVisible={setTunetypeVisible} />
-//     </Suspense>
-//     <Suspense fallback={<Loading height={356} />}>
-//       <Analytics alertCurrentlyVisible={setAnalyticsVisible} timeSpentOnSections={timeSpentOnSections} />
-//     </Suspense>

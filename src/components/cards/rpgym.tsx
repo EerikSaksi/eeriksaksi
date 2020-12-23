@@ -66,33 +66,47 @@ const explanations = [
   },
 ];
 
-const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
+const Rpgym: React.FC<{ alertCurrentlyVisible: () => void, backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
   const classes = useStyles();
   const ref = useRef<HTMLVideoElement | null>(null);
+  const loadingImage = useRef(false);
+  const [srcAndBlur, setSrcAndBlur] = useState({ src: require("media/glasgow-tiny.jpg"), blur: true });
+  useEffect(() => {
+    //visible but have not loaded non preview
+    if (backgroundOpacity && !loadingImage.current) {
+      loadingImage.current = true;
+      var img = new Image();
+      img.onload = function () {
+        setSrcAndBlur({ src: img.src, blur: false });
+      };
+      img.src = require("media/glasgow.jpg");
+    }
+  }, [srcAndBlur, backgroundOpacity, loadingImage]);
+
   const [explanation, setExplanation] = useState<string | null>();
   const [explanationsIndex, setExplanationsIndex] = useState(0);
   const [textOpacity, setTextOpacity] = useState(0);
-  const [inView, setInView] = useState(false)
+
   useEffect(() => {
     const interval = setInterval(async () => {
-      if (ref.current && explanationsIndex < explanations.length && !explanation && inView) {
+      if (ref.current && explanationsIndex < explanations.length && !explanation && 0.5 < backgroundOpacity) {
         const currentTime = ref.current.currentTime;
         const expl = explanations[explanationsIndex];
         if (expl.start <= currentTime) {
           setTextOpacity(1);
           setExplanationsIndex((index) => index + 1);
           setExplanation(expl.text);
-          ref.current!.pause();
+          ref.current?.pause();
           await new Promise((resolve) => setTimeout(resolve, expl.duration * 1000));
           setTextOpacity(0);
           await new Promise((resolve) => setTimeout(resolve, 500));
           setExplanation(null);
-          ref.current!.play();
+          ref.current?.play();
         }
       }
     }, 500);
     return () => clearInterval(interval);
-  }, [ref, explanationsIndex, inView, explanation]);
+  }, [ref, explanationsIndex, backgroundOpacity, explanation]);
 
   return (
     <CustomCardWithBackground
@@ -100,7 +114,12 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
       photoCredit="Policy Scotland"
       alertCurrentlyVisible={alertCurrentlyVisible}
       cardStyle={{ padding: 0, width: "45vh",  }}
+      backgroundOpacity = {backgroundOpacity}
+      srcAndBlur = {srcAndBlur}
     >
+      {
+      backgroundOpacity
+      ?
       <div className={classes.container}>
         <div className={classes.textContainer}>
           <Typography style={{ opacity: textOpacity }} className={classes.text} variant="h3">
@@ -111,6 +130,9 @@ const Rpgym: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrently
           <video className={explanation ? classes.pausedImg : classes.img} ref={ref} controls={false} muted={true} src={require("media/rpgym.webm")}></video>
         </Grid>
       </div>
+      :
+      undefined
+    }
     </CustomCardWithBackground>
   );
 };

@@ -80,6 +80,7 @@ const Welcome: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: 
     };
     //if inview trigger animations
     if (0.5 <= backgroundOpacity) {
+      alertCurrentlyVisible()
       sleepAndShiftBalls();
     }
   }, [backgroundOpacity]);

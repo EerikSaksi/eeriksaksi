@@ -88,6 +88,7 @@ const TimeLine: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity:
     };
     if (0.5 < backgroundOpacity && !ranFunction) {
       setRanFunction(true);
+      alertCurrentlyVisible()
       periodicallyIncrementIndex();
     }
   }, [backgroundOpacity, ranFunction, dateIndex]);

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Grid, Tabs, Tab, Hidden, makeStyles } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-import { ProgressiveImageProps } from "react-progressive-image-loading";
 import QAndAAccordion from "components/q_and_a_accordion";
-import CustomCardWithBackground from "./custom_card_with_background";
 import CourseTable from "components/course_table";
+import CustomCard from "components/cards/custom_card";
 
 const technologyRows = [
   [
@@ -61,11 +60,20 @@ const useStyles = makeStyles((theme) => ({
   typography: {
     textAlign: "center",
   },
+  video: {
+    objectFit: "cover",
+    width: "100vw",
+    height: "100vh",
+    position: "fixed",
+    top: 0,
+    left: 0,
+  },
 }));
 
-const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alertCurrentlyVisible }) => {
+const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: number }> = ({ alertCurrentlyVisible, backgroundOpacity }) => {
   const [activeValue, setActiveValue] = useState(0);
   const classes = useStyles();
+
   const technologies = (
     <Grid className={classes.grid}>
       <Tabs variant="fullWidth" centered value={activeValue} onChange={(_event, value) => setActiveValue(value)}>
@@ -105,18 +113,17 @@ const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alert
       ),
     },
   ];
+  if (!backgroundOpacity) {
+    return <CustomCard />;
+  }
   return (
-    <CustomCardWithBackground
-      backgroundImageStyle={{ backgroundPosition: "20% 0%" }}
-      alertCurrentlyVisible={alertCurrentlyVisible}
-      cardStyle={{ maxWidth: "100%" }}
-    >
-      <React.Fragment>
+    <React.Fragment>
+      <CustomCard>
         <Hidden xsDown>
           <Grid container justify="center">
             <Grid item xs={12}>
               <a href="https://tunety.pe" target="_blank" rel="noopener noreferrer">
-                <Typography className = {classes.typography} variant="h2">
+                <Typography className={classes.typography} variant="h2">
                   tunety.pe
                 </Typography>
               </a>
@@ -124,8 +131,9 @@ const SummerProjects: React.FC<{ alertCurrentlyVisible: () => void }> = ({ alert
           </Grid>
         </Hidden>
         <QAndAAccordion questionAnswers={questionAnswers} />
-      </React.Fragment>
-    </CustomCardWithBackground>
+      </CustomCard>
+      <video autoPlay style={{ opacity: backgroundOpacity, zIndex: -1 }} className={classes.video} muted src={require("media/rick.webm")} />
+    </React.Fragment>
   );
 };
 
