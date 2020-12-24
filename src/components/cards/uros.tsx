@@ -1,6 +1,5 @@
-import React, { lazy, useState, useEffect, useRef } from "react";
-import { Grid, Avatar, Hidden } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+import React, { lazy, useState, useEffect, useRef, Suspense } from "react";
+import { Grid, Avatar, Hidden, Typography, CircularProgress } from "@material-ui/core";
 import CustomCardWithBackground from "./custom_card_with_background";
 import { makeStyles } from "@material-ui/core/styles";
 const QAndAAccordion = lazy(() => import("components/q_and_a_accordion"));
@@ -46,8 +45,8 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: num
   }, [srcAndBlur, backgroundOpacity, loadingImage]);
 
   useEffect(() => {
-    if (0.5 <= backgroundOpacity) alertCurrentlyVisible()
-  }, [backgroundOpacity, alertCurrentlyVisible])
+    if (0.5 <= backgroundOpacity) alertCurrentlyVisible();
+  }, [backgroundOpacity, alertCurrentlyVisible]);
 
   const jobDescription = (
     <Grid container justify="center">
@@ -83,7 +82,8 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: num
           </Grid>
           <Grid item xs={12} sm={9}>
             <Typography variant="h5">
-              "Eerik filled very well his position as a trainee in our software development team. Eerik has enthusiastic attitude towards learning new areas, even difficult ones. This mindset helped us to achieve good goals in a short time. Promising young talent."
+              "Eerik filled very well his position as a trainee in our software development team. Eerik has enthusiastic attitude towards learning new areas, even difficult ones. This mindset helped
+              us to achieve good goals in a short time. Promising young talent."
             </Typography>
           </Grid>
         </Grid>
@@ -92,21 +92,18 @@ const Uros: React.FC<{ alertCurrentlyVisible: () => void; backgroundOpacity: num
   );
 
   return (
-    <CustomCardWithBackground
-      backgroundImageStyle={{ backgroundPosition: "100% 100%" }}
-      photoCredit="kolster.fi"
-      backgroundOpacity={backgroundOpacity}
-      srcAndBlur={srcAndBlur}
-    >
+    <CustomCardWithBackground backgroundImageStyle={{ backgroundPosition: "100% 100%" }} photoCredit="kolster.fi" backgroundOpacity={backgroundOpacity} srcAndBlur={srcAndBlur}>
       {backgroundOpacity ? (
         <React.Fragment>
           <Hidden smUp>
-            <QAndAAccordion
-              questionAnswers={[
-                { question: "Supervisor's comment", answer: testimonial },
-                { question: "What did I do at UROS?", answer: jobDescription },
-              ]}
-            />
+            <Suspense fallback = {<CircularProgress/>}>
+              <QAndAAccordion
+                questionAnswers={[
+                  { question: "Supervisor's comment", answer: testimonial },
+                  { question: "What did I do at UROS?", answer: jobDescription },
+                ]}
+              />
+            </Suspense>
           </Hidden>
           <Hidden only="xs">
             <Grid container justify="center">
